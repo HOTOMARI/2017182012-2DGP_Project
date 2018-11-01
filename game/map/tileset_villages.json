@@ -1,0 +1,15 @@
+{ "columns":48,
+ "image":"tileset_villages.png",
+ "imageheight":512,
+ "imagewidth":1536,
+ "margin":0,
+ "name":"tileset_villages",
+ "spacing":0,
+ "tilecount":768,
+ "tiledversion":"1.2.0",
+ "tileheight":32,
+ "tilewidth":32,
+ "transparentcolor":"#000000",
+ "type":"tileset",
+ "version":1.2
+}

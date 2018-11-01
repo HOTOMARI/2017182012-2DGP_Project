@@ -1,0 +1,6 @@
+{
+	"HP_Potion" : {"NUM":4},
+    "MP_Potion" : {"NUM":4},
+    "Cure_Potion" : {"NUM":4},
+    "Phoenix_Down" : {"NUM":99}
+}
