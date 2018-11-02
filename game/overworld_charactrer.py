@@ -37,40 +37,32 @@ class RunState:
         if character.move_dir[0] and character.move_dir[1] == 0 and character.move_dir[2] == 0 and character.move_dir[3] == 0:
             character.state = 3
             character.x -= 3
-            character.play_lotto(100)
         elif character.move_dir[1] and character.move_dir[0] == 0 and character.move_dir[2] == 0 and character.move_dir[3] == 0:
             character.state = 2
             character.x += 3
-            character.play_lotto(100)
         elif character.move_dir[2] and character.move_dir[1] == 0 and character.move_dir[0] == 0 and character.move_dir[3] == 0:
             character.state = 1
             character.y += 3
-            character.play_lotto(100)
         elif character.move_dir[3] and character.move_dir[1] == 0 and character.move_dir[2] == 0 and character.move_dir[0] == 0:
             character.state = 0
             character.y -= 3
-            character.play_lotto(100)
 
         elif character.move_dir[0] and character.move_dir[2]:
             character.state = 1
             character.x -= Diagonal
             character.y += Diagonal
-            character.play_lotto(100)
         elif character.move_dir[1] and character.move_dir[2]:
             character.state = 1
             character.x += Diagonal
             character.y += Diagonal
-            character.play_lotto(100)
         elif character.move_dir[0] and character.move_dir[3]:
             character.state = 0
             character.x -= Diagonal
             character.y -= Diagonal
-            character.play_lotto(100)
         elif character.move_dir[1] and character.move_dir[3]:
             character.state = 0
             character.x += Diagonal
             character.y -= Diagonal
-            character.play_lotto(100)
 
         character.x = clamp(0, character.x, character.bg.w)
         character.y = clamp(0, character.y, character.bg.h)
@@ -165,8 +157,3 @@ class Character():
             elif key_event == DOWN_UP:
                 self.move_dir[3] = 0
             self.add_event(key_event)
-
-    def play_lotto(self,mother):
-        # 1/mother의 확률로 배틀 들어감
-        if random.randint(0,mother) is 0:
-            self.battle_start = True

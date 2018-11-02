@@ -44,6 +44,14 @@ def enter():
     character.bg.w = GPD.bg_x
     character.bg.h = GPD.bg_y
 
+    if GPD.now_map == 1:
+        character.x = 461
+        character.y = 353
+        character.bg.w = 1600
+        character.bg.h = 1600
+        character.state = 0
+        GPD.now_map = 0
+
     GPD.Upload_data()
     GPD.now_map = 0
 

@@ -45,9 +45,9 @@ def enter():
         character.bg.w = 1440
         character.bg.h = 1440
         character.state = 1
+        GPD.now_map = 1
 
     GPD.Upload_data()
-    GPD.now_map = 1
 
 
 def exit():
