@@ -13,6 +13,7 @@ import m_wolf
 WIDTH=800
 HEIGHT=600
 
+character = None
 background = None
 Cant_Move_Tile = []
 Entrance_Tile = []
@@ -26,8 +27,10 @@ def enter():
     current_time = 0
     Prevtime = 0
 
-    character = Character()
-    background = Background()
+    if character is None:
+        character = Character()
+    if background is None:
+        background = Background()
 
     character.set_background(background)
     background.set_center_object(character)
@@ -43,6 +46,14 @@ def enter():
     character.y = GPD.y
     character.bg.w = GPD.bg_x
     character.bg.h = GPD.bg_y
+
+    if GPD.now_map == 1:
+        character.x = 461
+        character.y = 353
+        character.bg.w = 1600
+        character.bg.h = 1600
+        character.state = 0
+        GPD.now_map = 0
 
     GPD.Upload_data()
     GPD.now_map = 0
@@ -75,7 +86,7 @@ def update():
 
         if character.battle_start:
             character.battle_start = False
-            start_battle()
+            #start_battle()
 
         Prevtime = current_time
 

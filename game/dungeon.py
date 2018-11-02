@@ -14,6 +14,7 @@ WIDTH=800
 HEIGHT=600
 
 background = None
+character = None
 Cant_Move_Tile = []
 Entrance_Tile = []
 
@@ -26,8 +27,10 @@ def enter():
     current_time = 0
     Prevtime = 0
 
-    character = Character()
-    background = Background()
+    if character is None:
+        character = Character()
+    if background is None:
+        background = Background()
 
     character.set_background(background)
     background.set_center_object(character)
@@ -45,9 +48,9 @@ def enter():
         character.bg.w = 1440
         character.bg.h = 1440
         character.state = 1
+        GPD.now_map = 1
 
     GPD.Upload_data()
-    GPD.now_map = 1
 
 
 def exit():
