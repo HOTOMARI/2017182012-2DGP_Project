@@ -75,8 +75,8 @@ def update():
         if collide(character, Entrance_Tile[0]):
             game_framework.change_state(overworld)
 
-        if character.battle_start:
-            character.battle_start = False
+        if character.battle_counter <= 0:
+            character.battle_counter = 40
             start_battle()
 
         Prevtime = current_time

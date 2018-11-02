@@ -81,8 +81,8 @@ def update():
         if collide(character, Entrance_Tile[1]):
             game_framework.change_state(dungeon)
 
-        if character.battle_start:
-            character.battle_start = False
+        if character.battle_counter <= 0:
+            character.battle_counter = 40
             start_battle()
 
         Prevtime = current_time
@@ -96,7 +96,7 @@ def draw():
     character.draw_bb()
     for Zone in Cant_Move_Tile:
         Zone.draw_bb(background)
-    GPD.Ingame_font.font.draw(75, 115, str(GPD.money), [255, 255, 255])
+    GPD.Ingame_font.font.draw(75, 115, str(character.battle_counter), [255, 255, 255])
     update_canvas()
 
 

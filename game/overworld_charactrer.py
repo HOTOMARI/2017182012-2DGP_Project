@@ -1,6 +1,7 @@
 from pico2d import*
 from math import*
 import random
+import game_framework
 
 
 Diagonal = sqrt(3)
@@ -37,35 +38,44 @@ class RunState:
         if character.move_dir[0] and character.move_dir[1] == 0 and character.move_dir[2] == 0 and character.move_dir[3] == 0:
             character.state = 3
             character.x -= 3
+            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
         elif character.move_dir[1] and character.move_dir[0] == 0 and character.move_dir[2] == 0 and character.move_dir[3] == 0:
             character.state = 2
             character.x += 3
+            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
         elif character.move_dir[2] and character.move_dir[1] == 0 and character.move_dir[0] == 0 and character.move_dir[3] == 0:
             character.state = 1
             character.y += 3
+            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
         elif character.move_dir[3] and character.move_dir[1] == 0 and character.move_dir[2] == 0 and character.move_dir[0] == 0:
             character.state = 0
             character.y -= 3
+            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
 
         elif character.move_dir[0] and character.move_dir[2]:
             character.state = 1
             character.x -= Diagonal
             character.y += Diagonal
+            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
         elif character.move_dir[1] and character.move_dir[2]:
             character.state = 1
             character.x += Diagonal
             character.y += Diagonal
+            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
         elif character.move_dir[0] and character.move_dir[3]:
             character.state = 0
             character.x -= Diagonal
             character.y -= Diagonal
+            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
         elif character.move_dir[1] and character.move_dir[3]:
             character.state = 0
             character.x += Diagonal
             character.y -= Diagonal
+            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
 
         character.x = clamp(0, character.x, character.bg.w)
         character.y = clamp(0, character.y, character.bg.h)
+
 
     @staticmethod
     def draw(character):
@@ -94,6 +104,7 @@ class Character():
         self.frame = 0
         self.move_dir=[0,0,0,0]
         self.state = 0
+        self.battle_counter = 40
         self.battle_start = False
         self.canvas_width = get_canvas_width()
         self.canvas_height = get_canvas_height()
