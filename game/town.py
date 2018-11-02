@@ -1,14 +1,10 @@
 from pico2d import*
-from overworld_load import FixedTileBackground as Background
+from town_load import FixedTileBackground as Background
 from overworld_charactrer import Character as Character
 import game_framework
-import battle
-import dungeon
-import town
 import Game_Playing_Data as GPD
-import BaseEffect
 import Bounding_box
-import m_wolf
+import overworld
 
 
 WIDTH=800
@@ -34,9 +30,9 @@ def enter():
     background.set_center_object(character)
     background.update()
 
-    Cant_Move_Tile = [Bounding_box.BaseZone(background.tile_map.layers[1]['objects'][i],1600)
+    Cant_Move_Tile = [Bounding_box.BaseZone(background.tile_map.layers[1]['objects'][i],960)
                      for i in range(len(background.tile_map.layers[1]['objects']))]
-    Entrance_Tile = [Bounding_box.BaseZone(background.tile_map.layers[2]['objects'][i],1600)
+    Entrance_Tile = [Bounding_box.BaseZone(background.tile_map.layers[2]['objects'][i],960)
                      for i in range(len(background.tile_map.layers[2]['objects']))]
 
     # 캐릭터 시작위치
@@ -45,13 +41,13 @@ def enter():
     character.bg.w = GPD.bg_x
     character.bg.h = GPD.bg_y
 
-    if GPD.now_map == 1:
+    if GPD.now_map == 0:
         character.x = 461
         character.y = 353
-        character.bg.w = 1600
-        character.bg.h = 1600
+        character.bg.w = 960
+        character.bg.h = 960
         character.state = 0
-        GPD.now_map = 0
+        GPD.now_map = 2
 
     GPD.Upload_data()
     GPD.now_map = 0
@@ -79,14 +75,12 @@ def update():
                 character.y = backup_y
                 break
 
-        if collide(character, Entrance_Tile[0]):
-            game_framework.change_state(town)
-        elif collide(character, Entrance_Tile[1]):
-            game_framework.change_state(dungeon)
+        if collide(character, Entrance_Tile[1]):
+            pass
+            #game_framework.change_state(dungeon)
 
         if character.battle_counter <= 0:
             character.battle_counter = 40
-            start_battle()
 
         Prevtime = current_time
 
@@ -118,9 +112,6 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
                 game_framework.quit()
-            # 강제 배틀 돌입
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_0:
-            start_battle()
         else:
              character.handle_events(event)
 
@@ -137,15 +128,3 @@ def collide(a, b):
     if bottom_a > top_b:
         return False
     return True
-
-
-def start_battle():
-    global character
-
-    for i in range(0, 4):
-        character.move_dir[i] = 0
-    for i in range(0, 3):
-        GPD.monsters[i] = m_wolf.Wolf(i)
-    if GPD.effects == None:
-        GPD.effects = BaseEffect.Effect()
-    game_framework.push_state(battle)

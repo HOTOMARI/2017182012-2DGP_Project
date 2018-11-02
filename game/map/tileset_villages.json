@@ -1,5 +1,5 @@
 { "columns":48,
- "image":"tileset_villages.png",
+ "image":"map\\tileset_villages.png",
  "imageheight":512,
  "imagewidth":1536,
  "margin":0,
