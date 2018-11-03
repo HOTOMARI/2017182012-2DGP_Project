@@ -17,6 +17,7 @@ x,y,bg_x,bg_y=506,1109,1600,1600
 
 Menu = None
 Ingame_font = None
+Ingame_Big_font = None
 
 Player = None
 Warrior = None
@@ -33,7 +34,7 @@ OverPower = None
 Fell_Cleave = None
 
 def Upload_data():
-    global Menu, Ingame_font
+    global Menu, Ingame_font, Ingame_Big_font
     global Player, Warrior, WhiteMage, BlackMage, Thief
     global Attack, Heal, Raise, Provoke, OverPower, Shield, Fell_Cleave
 
@@ -43,6 +44,9 @@ def Upload_data():
     if Ingame_font is None:
         Ingame_font = Player_sound_data()
         Ingame_font.font = load_font('font\\H2SA1M.TTF')
+    if Ingame_Big_font is None:
+        Ingame_Big_font = Player_sound_data()
+        Ingame_Big_font.font = load_font('font\\H2SA1M.TTF',30)
 
     if Player is None:
         Player = Player_sound_data()
