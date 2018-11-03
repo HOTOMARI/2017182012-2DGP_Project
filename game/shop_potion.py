@@ -4,11 +4,12 @@ import Game_Playing_Data as GPD
 
 def enter():
     global current_time, Prevtime
-    global shop_mode, sel_index
+    global shop_mode, sel_index, buy_num
     current_time = 0
     Prevtime = 0
     shop_mode = 0
     sel_index = 0
+    buy_num = 1
 
 def exit():
     pass
@@ -26,7 +27,6 @@ def update():
 
 
 def draw():
-    global sel_index, shop_mode
     clear_canvas()
 
     # 배경 출력
@@ -36,6 +36,27 @@ def draw():
     # 초기메뉴
     if shop_mode is 0:
         GPD.Ingame_Big_font.font.draw(100, 500, '잡화 상점입니다.',[255,255,255])
+        GPD.Ingame_Big_font.font.draw(600, 500, '구입', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(600, 450, '판매', [255, 255, 255])
+        GPD.Menu.image.clip_draw(242, 84, 17, 16, 550, 500 - sel_index * 50, 35, 35) # 손가락
+    # 구입메뉴
+    if shop_mode is 1:
+        GPD.Ingame_Big_font.font.draw(100, 500, '아이템을 구매합니다.',[255,255,255])
+        GPD.Ingame_Big_font.font.draw(500, 500, "남은 골드: " + str(GPD.money), [255, 255, 255])
+
+        GPD.Ingame_Big_font.font.draw(100, 330, '포션', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(500, 330, str(50 * buy_num) + '원', [255, 255, 255])
+
+        GPD.Ingame_Big_font.font.draw(100, 260, '에테르', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(500, 260, str(100 * buy_num) + '원', [255, 255, 255])
+
+        GPD.Ingame_Big_font.font.draw(100, 190, '만병통치약', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(500, 190, str(300 * buy_num) + '원', [255, 255, 255])
+
+        GPD.Ingame_Big_font.font.draw(100, 120, '부활의 깃털', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(500, 120, str(1000 * buy_num) + '원', [255, 255, 255])
+
+        GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35)
 
     update_canvas()
 
@@ -60,10 +81,34 @@ def handle_events():
                 # game_framework.change_state(map)
                 game_framework.pop_state()
             elif event.key == SDLK_a:
-                if sel_index == 0:
-                    game_framework.pop_state()
-                elif sel_index == 1:
-                    pass
+                if shop_mode is 0:
+                    if sel_index == 0:
+                        shop_mode = 1
+                        sel_index = 0
+                    elif sel_index == 1:
+                        shop_mode = 2
+                        sel_index = 0
             elif event.key == SDLK_s:
                 if shop_mode == 0:
                     game_framework.pop_state()
+                if shop_mode is 1 or shop_mode is 2:
+                    shop_mode = 0
+                    sel_index = 0
+            elif event.key == SDLK_UP:
+                if shop_mode is 0:
+                    if sel_index > 0:
+                        sel_index -= 1
+                elif shop_mode is 1:
+                    if sel_index > 0:
+                        sel_index -= 1
+            elif event.key == SDLK_DOWN:
+                if shop_mode is 0:
+                    if sel_index < 1:
+                        sel_index += 1
+                elif shop_mode is 1:
+                    if sel_index < 3:
+                        sel_index += 1
+            elif event.key == SDLK_LEFT:
+                pass
+            elif event.key == SDLK_RIGHT:
+                pass

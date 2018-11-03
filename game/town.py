@@ -78,10 +78,14 @@ def update():
         # 무기상점
         if collide(character, Entrance_Tile[0]):
             #game_framework.change_state(overworld)
+            #character.y -= 50
             pass
         # 잡화상점
         elif collide(character, Entrance_Tile[1]):
             game_framework.push_state(shop_potion)
+            character.y -= 50
+            character.move_dir = [0, 0, 0, 0]
+            character.state = 0
             pass
         # 여관
         elif collide(character, Entrance_Tile[2]):
