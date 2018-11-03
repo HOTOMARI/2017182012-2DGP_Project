@@ -47,10 +47,9 @@ def enter():
         character.bg.w = 960
         character.bg.h = 960
         character.state = 0
-        GPD.now_map = 2
 
     GPD.Upload_data()
-    GPD.now_map = 0
+    GPD.now_map = 2
 
 
 def exit():
@@ -75,9 +74,21 @@ def update():
                 character.y = backup_y
                 break
 
-        if collide(character, Entrance_Tile[1]):
+        # 무기상점
+        if collide(character, Entrance_Tile[0]):
+            #game_framework.change_state(overworld)
             pass
-            #game_framework.change_state(dungeon)
+        # 잡화상점
+        elif collide(character, Entrance_Tile[1]):
+            #game_framework.change_state(overworld)
+            pass
+        # 여관
+        elif collide(character, Entrance_Tile[2]):
+            #game_framework.change_state(overworld)
+            pass
+        # 출구
+        elif collide(character, Entrance_Tile[3]):
+            game_framework.change_state(overworld)
 
         if character.battle_counter <= 0:
             character.battle_counter = 40

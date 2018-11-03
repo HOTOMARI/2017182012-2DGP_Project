@@ -55,8 +55,8 @@
   <object id="24" x="511.167" y="513.167" width="62" height="31.6667"/>
   <object id="25" x="612.167" y="512.5" width="90.6667" height="31.6667"/>
   <object id="26" x="543.5" y="417.167" width="159" height="95.6667"/>
-  <object id="27" x="336.5" y="896.5" width="45.5" height="63"/>
-  <object id="28" x="419" y="896.5" width="44" height="63"/>
+  <object id="27" x="336.5" y="896.5" width="42.0455" height="63"/>
+  <object id="28" x="421.545" y="896.5" width="41.4545" height="63"/>
   <object id="29" x="463.5" y="928.5" width="16" height="32"/>
   <object id="34" x="306.667" y="576" width="13.3333" height="159.667"/>
   <object id="35" x="320.667" y="584.667" width="10.6667" height="151"/>
@@ -64,9 +64,9 @@
   <object id="37" x="341.333" y="597.667" width="10.3333" height="138.333"/>
  </objectgroup>
  <objectgroup id="4" name="Object Layer 2">
-  <object id="30" x="159.5" y="418" width="35" height="25.5"/>
-  <object id="31" x="670.545" y="192.182" width="37.4545" height="28.5"/>
-  <object id="32" x="573.455" y="513.273" width="38.5455" height="26.8636"/>
-  <object id="33" x="382.875" y="899.625" width="36" height="59.125"/>
+  <object id="30" x="159.5" y="418" width="35" height="19.5"/>
+  <object id="31" x="670.545" y="192.182" width="37.4545" height="19.5"/>
+  <object id="32" x="573.455" y="513.273" width="38.5455" height="19.8636"/>
+  <object id="33" x="378.875" y="924.898" width="42.7273" height="33.8523"/>
  </objectgroup>
 </map>

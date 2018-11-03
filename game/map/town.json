@@ -234,7 +234,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":45.5,
+                 "width":42.0454545454546,
                  "x":336.5,
                  "y":896.5
                 }, 
@@ -245,8 +245,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":44,
-                 "x":419,
+                 "width":41.4545454545454,
+                 "x":421.545454545455,
                  "y":896.5
                 }, 
                 {
@@ -316,7 +316,7 @@
          "name":"Object Layer 2",
          "objects":[
                 {
-                 "height":25.5,
+                 "height":19.5,
                  "id":30,
                  "name":"",
                  "rotation":0,
@@ -327,7 +327,7 @@
                  "y":418
                 }, 
                 {
-                 "height":28.5,
+                 "height":19.5,
                  "id":31,
                  "name":"",
                  "rotation":0,
@@ -338,7 +338,7 @@
                  "y":192.182
                 }, 
                 {
-                 "height":26.8636,
+                 "height":19.8636,
                  "id":32,
                  "name":"",
                  "rotation":0,
@@ -349,15 +349,15 @@
                  "y":513.273
                 }, 
                 {
-                 "height":59.125,
+                 "height":33.8522727272727,
                  "id":33,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":36,
-                 "x":382.875,
-                 "y":899.625
+                 "width":42.7272727272727,
+                 "x":378.875,
+                 "y":924.897727272727
                 }],
          "opacity":1,
          "type":"objectgroup",

@@ -51,7 +51,13 @@ def enter():
         character.bg.w = 1600
         character.bg.h = 1600
         character.state = 0
-        GPD.now_map = 0
+
+    elif GPD.now_map == 2:
+        character.x = 506
+        character.y = 1109
+        character.bg.w = 1600
+        character.bg.h = 1600
+        character.state = 0
 
     GPD.Upload_data()
     GPD.now_map = 0
