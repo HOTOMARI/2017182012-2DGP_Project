@@ -9,7 +9,7 @@ def enter():
     Prevtime = 0
     shop_mode = 0
     sel_index = 0
-    buy_num = 1
+    buy_num = [1,1,1,1]
 
 def exit():
     pass
@@ -45,16 +45,20 @@ def draw():
         GPD.Ingame_Big_font.font.draw(500, 500, "남은 골드: " + str(GPD.money), [255, 255, 255])
 
         GPD.Ingame_Big_font.font.draw(100, 330, '포션', [255, 255, 255])
-        GPD.Ingame_Big_font.font.draw(500, 330, str(50 * buy_num) + '원', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(250, 330, str(buy_num[0]) + '개', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(550, 330, str(50 * buy_num[0]) + '원', [255, 255, 255])
 
         GPD.Ingame_Big_font.font.draw(100, 260, '에테르', [255, 255, 255])
-        GPD.Ingame_Big_font.font.draw(500, 260, str(100 * buy_num) + '원', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(250, 260, str(buy_num[1]) + '개', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(550, 260, str(100 * buy_num[1]) + '원', [255, 255, 255])
 
         GPD.Ingame_Big_font.font.draw(100, 190, '만병통치약', [255, 255, 255])
-        GPD.Ingame_Big_font.font.draw(500, 190, str(300 * buy_num) + '원', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(250, 190, str(buy_num[2]) + '개', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(550, 190, str(300 * buy_num[2]) + '원', [255, 255, 255])
 
         GPD.Ingame_Big_font.font.draw(100, 120, '부활의 깃털', [255, 255, 255])
-        GPD.Ingame_Big_font.font.draw(500, 120, str(1000 * buy_num) + '원', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(250, 120, str(buy_num[3]) + '개', [255, 255, 255])
+        GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * buy_num[3]) + '원', [255, 255, 255])
 
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35)
 
@@ -68,7 +72,7 @@ def resume(): pass
 
 
 def handle_events():
-    global shop_mode, sel_index
+    global shop_mode, sel_index, buy_num
 
     events = get_events()
 
@@ -109,6 +113,10 @@ def handle_events():
                     if sel_index < 3:
                         sel_index += 1
             elif event.key == SDLK_LEFT:
-                pass
+                if shop_mode is 1 or shop_mode is 2:
+                    if buy_num[sel_index] > 1:
+                        buy_num[sel_index] -= 1
             elif event.key == SDLK_RIGHT:
-                pass
+                if shop_mode is 1 or shop_mode is 2:
+                    if buy_num[sel_index] < 10:
+                        buy_num[sel_index] += 1
