@@ -1,4 +1,5 @@
 from pico2d import*
+import random
 from overworld_load import FixedTileBackground as Background
 from overworld_charactrer import Character as Character
 import game_framework
@@ -91,7 +92,7 @@ def update():
             game_framework.change_state(dungeon)
 
         if character.battle_counter <= 0:
-            character.battle_counter = 40
+            character.battle_counter = 30 + random.randint(0,10)
             start_battle()
 
         Prevtime = current_time

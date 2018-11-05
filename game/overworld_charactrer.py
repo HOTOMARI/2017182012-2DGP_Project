@@ -104,7 +104,7 @@ class Character():
         self.frame = 0
         self.move_dir=[0,0,0,0]
         self.state = 0
-        self.battle_counter = 40
+        self.battle_counter = 35
         self.battle_start = False
         self.canvas_width = get_canvas_width()
         self.canvas_height = get_canvas_height()
