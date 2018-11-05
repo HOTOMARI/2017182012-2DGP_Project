@@ -1,8 +1,7 @@
 from pico2d import*
 import game_framework
 
-import overworld
-import battle
+import title
 
 import Game_Playing_Data
 import p_warrior
@@ -24,6 +23,6 @@ Game_Playing_Data.items[1]=i_MPpotion.MPpotion()
 Game_Playing_Data.items[2]=i_Curepotion.Curepotion()
 Game_Playing_Data.items[3]=i_PhoenixDown.PhoenixDown()
 
-game_framework.run(overworld)
+game_framework.run(title)
 
 close_canvas()
