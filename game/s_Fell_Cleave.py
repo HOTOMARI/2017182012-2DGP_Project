@@ -1,6 +1,6 @@
 from BaseSkill import*
 import json
-import Game_Playing_Data
+import Game_Playing_Data as GPD
 
 Skill_data_file = open('json\\Skill.json', 'r')
 Skill_Data = json.load(Skill_data_file)
@@ -11,4 +11,5 @@ class Fell_Cleave(Skill):
         super(Fell_Cleave, self).__init__('참수', Skill_Data['Fell_Cleave']['ID'], Skill_Data['Fell_Cleave']['COST'], Skill_Data['Fell_Cleave']['POWER'])
 
     def activate(self, my_index, target_index):
-        print("참수")
+        GPD.monsters[target_index].HP -= int(self.POWER * (GPD.players[my_index].ATK / 5))
+        GPD.monsters[target_index].hate[my_index] += self.POWER * 2
