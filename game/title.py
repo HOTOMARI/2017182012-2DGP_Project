@@ -46,4 +46,4 @@ def handle_events():
             if event.key == SDLK_ESCAPE:
                 game_framework.quit()
             else:
-                pass
+               game_framework.change_state(overworld)
