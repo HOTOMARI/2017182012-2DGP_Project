@@ -11,7 +11,7 @@ items=[[]for i in range(4)]
 
 effects = None
 
-money = 0
+money = 100
 now_map = 0 #0 초원 1 던전 2 마을
 x,y,bg_x,bg_y=506,1109,1600,1600
 
