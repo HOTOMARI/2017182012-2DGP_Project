@@ -7,14 +7,13 @@ Gray_font = [105,105,105]
 
 def enter():
     global current_time, Prevtime
-    global shop_mode, sel_index, buy_num, sell_num, system_message
+    global shop_mode, sel_index, sel_num, system_message
     current_time = 0
     Prevtime = 0
     shop_mode = 0
     sel_index = 0
     system_message = "TEST"
-    buy_num = [1,1,1,1]
-    sell_num = [1, 1, 1, 1]
+    sel_num = [1,1,1,1]
 
 def exit():
     pass
@@ -61,41 +60,41 @@ def draw():
         
         # 아이템을 구입 가능할경우 흰 글씨로 표시
         # 아니면 회색글씨로 표시
-        if 50 * buy_num[0] <= GPD.money:
+        if 50 * sel_num[0] <= GPD.money:
             GPD.Ingame_Big_font.font.draw(100, 330, '포션', White_font)
-            GPD.Ingame_Big_font.font.draw(250, 330, str(buy_num[0]) + '개', White_font)
-            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * buy_num[0]) + '원', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 330, str(sel_num[0]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * sel_num[0]) + '원', White_font)
         else:
             GPD.Ingame_Big_font.font.draw(100, 330, '포션', Gray_font)
-            GPD.Ingame_Big_font.font.draw(250, 330, str(buy_num[0]) + '개', Gray_font)
-            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * buy_num[0]) + '원', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 330, str(sel_num[0]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * sel_num[0]) + '원', Gray_font)
             
-        if 100 * buy_num[1] <= GPD.money:
+        if 100 * sel_num[1] <= GPD.money:
             GPD.Ingame_Big_font.font.draw(100, 260, '에테르', White_font)
-            GPD.Ingame_Big_font.font.draw(250, 260, str(buy_num[1]) + '개', White_font)
-            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * buy_num[1]) + '원', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 260, str(sel_num[1]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * sel_num[1]) + '원', White_font)
         else:
             GPD.Ingame_Big_font.font.draw(100, 260, '에테르', Gray_font)
-            GPD.Ingame_Big_font.font.draw(250, 260, str(buy_num[1]) + '개', Gray_font)
-            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * buy_num[1]) + '원', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 260, str(sel_num[1]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * sel_num[1]) + '원', Gray_font)
 
-        if 300 * buy_num[2] <= GPD.money:
+        if 300 * sel_num[2] <= GPD.money:
             GPD.Ingame_Big_font.font.draw(100, 190, '만병통치약', White_font)
-            GPD.Ingame_Big_font.font.draw(250, 190, str(buy_num[2]) + '개', White_font)
-            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * buy_num[2]) + '원', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 190, str(sel_num[2]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * sel_num[2]) + '원', White_font)
         else:
             GPD.Ingame_Big_font.font.draw(100, 190, '만병통치약', Gray_font)
-            GPD.Ingame_Big_font.font.draw(250, 190, str(buy_num[2]) + '개', Gray_font)
-            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * buy_num[2]) + '원', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 190, str(sel_num[2]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * sel_num[2]) + '원', Gray_font)
 
-        if 1000 * buy_num[3] <= GPD.money:
+        if 1000 * sel_num[3] <= GPD.money:
             GPD.Ingame_Big_font.font.draw(100, 120, '부활의 깃털', White_font)
-            GPD.Ingame_Big_font.font.draw(250, 120, str(buy_num[3]) + '개', White_font)
-            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * buy_num[3]) + '원', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 120, str(sel_num[3]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * sel_num[3]) + '원', White_font)
         else:
             GPD.Ingame_Big_font.font.draw(100, 120, '부활의 깃털', Gray_font)
-            GPD.Ingame_Big_font.font.draw(250, 120, str(buy_num[3]) + '개', Gray_font)
-            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * buy_num[3]) + '원', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 120, str(sel_num[3]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * sel_num[3]) + '원', Gray_font)
 
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35) #손가락
 
@@ -117,41 +116,41 @@ def draw():
 
         # 아이템을 판매 가능할경우 흰 글씨로 표시
         # 아니면 회색글씨로 표시
-        if 0 < GPD.items[0].NUM:
+        if sel_num[0] <= GPD.items[0].NUM:
             GPD.Ingame_Big_font.font.draw(100, 330, '포션', White_font)
-            GPD.Ingame_Big_font.font.draw(250, 330, str(buy_num[0]) + '개', White_font)
-            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * buy_num[0]) + '원', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 330, str(sel_num[0]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * sel_num[0]) + '원', White_font)
         else:
             GPD.Ingame_Big_font.font.draw(100, 330, '포션', Gray_font)
-            GPD.Ingame_Big_font.font.draw(250, 330, str(buy_num[0]) + '개', Gray_font)
-            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * buy_num[0]) + '원', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 330, str(sel_num[0]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * sel_num[0]) + '원', Gray_font)
 
-        if 0 < GPD.items[1].NUM:
+        if sel_num[1] <= GPD.items[1].NUM:
             GPD.Ingame_Big_font.font.draw(100, 260, '에테르', White_font)
-            GPD.Ingame_Big_font.font.draw(250, 260, str(buy_num[1]) + '개', White_font)
-            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * buy_num[1]) + '원', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 260, str(sel_num[1]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * sel_num[1]) + '원', White_font)
         else:
             GPD.Ingame_Big_font.font.draw(100, 260, '에테르', Gray_font)
-            GPD.Ingame_Big_font.font.draw(250, 260, str(buy_num[1]) + '개', Gray_font)
-            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * buy_num[1]) + '원', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 260, str(sel_num[1]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * sel_num[1]) + '원', Gray_font)
 
-        if 0 < GPD.items[2].NUM:
+        if sel_num[2] <= GPD.items[2].NUM:
             GPD.Ingame_Big_font.font.draw(100, 190, '만병통치약', White_font)
-            GPD.Ingame_Big_font.font.draw(250, 190, str(buy_num[2]) + '개', White_font)
-            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * buy_num[2]) + '원', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 190, str(sel_num[2]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * sel_num[2]) + '원', White_font)
         else:
             GPD.Ingame_Big_font.font.draw(100, 190, '만병통치약', Gray_font)
-            GPD.Ingame_Big_font.font.draw(250, 190, str(buy_num[2]) + '개', Gray_font)
-            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * buy_num[2]) + '원', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 190, str(sel_num[2]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * sel_num[2]) + '원', Gray_font)
 
-        if 0 < GPD.items[3].NUM:
+        if sel_num[3] <= GPD.items[3].NUM:
             GPD.Ingame_Big_font.font.draw(100, 120, '부활의 깃털', White_font)
-            GPD.Ingame_Big_font.font.draw(250, 120, str(buy_num[3]) + '개', White_font)
-            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * buy_num[3]) + '원', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 120, str(sel_num[3]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * sel_num[3]) + '원', White_font)
         else:
             GPD.Ingame_Big_font.font.draw(100, 120, '부활의 깃털', Gray_font)
-            GPD.Ingame_Big_font.font.draw(250, 120, str(buy_num[3]) + '개', Gray_font)
-            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * buy_num[3]) + '원', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 120, str(sel_num[3]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * sel_num[3]) + '원', Gray_font)
 
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35)  # 손가락
 
@@ -166,7 +165,7 @@ def resume(): pass
 
 
 def handle_events():
-    global shop_mode, sel_index, buy_num, system_message
+    global shop_mode, sel_index, sel_num, system_message
 
     events = get_events()
 
@@ -188,62 +187,62 @@ def handle_events():
                         sel_index = 0
                 elif shop_mode is 1:
                     if sel_index is 0:
-                        if 50 * buy_num[0] <= GPD.money:
-                            GPD.money -= 50 * buy_num[0]
-                            GPD.items[0].NUM += buy_num[0]
+                        if 50 * sel_num[0] <= GPD.money:
+                            GPD.money -= 50 * sel_num[0]
+                            GPD.items[0].NUM += sel_num[0]
                             system_message = "구매에 성공하였습니다!"
                         else:
-                            system_message = "돈이 부족합니다!"
+                            system_message = "아이템이 부족합니다!"
                     elif sel_index is 1:
-                        if 100 * buy_num[1] <= GPD.money:
-                            GPD.money -= 100 * buy_num[1]
-                            GPD.items[1].NUM += buy_num[1]
+                        if 100 * sel_num[1] <= GPD.money:
+                            GPD.money -= 100 * sel_num[1]
+                            GPD.items[1].NUM += sel_num[1]
                             system_message = "구매에 성공하였습니다!"
                         else:
-                            system_message = "돈이 부족합니다!"
+                            system_message = "아이템이 부족합니다!"
                     elif sel_index is 2:
-                        if 300 * buy_num[2] <= GPD.money:
-                            GPD.money -= 300 * buy_num[2]
-                            GPD.items[2].NUM += buy_num[2]
+                        if 300 * sel_num[2] <= GPD.money:
+                            GPD.money -= 300 * sel_num[2]
+                            GPD.items[2].NUM += sel_num[2]
                             system_message = "구매에 성공하였습니다!"
                         else:
-                            system_message = "돈이 부족합니다!"
+                            system_message = "아이템이 부족합니다!"
                     elif sel_index is 3:
-                        if 1000 * buy_num[3] <= GPD.money:
-                            GPD.money -= 1000 * buy_num[3]
-                            GPD.items[3].NUM += buy_num[3]
+                        if 1000 * sel_num[3] <= GPD.money:
+                            GPD.money -= 1000 * sel_num[3]
+                            GPD.items[3].NUM += sel_num[3]
                             system_message = "구매에 성공하였습니다!"
                         else:
-                            system_message = "돈이 부족합니다!"
+                            system_message = "아이템이 부족합니다!"
                 elif shop_mode is 2:
                     if sel_index is 0:
-                        if 0 < GPD.items[0].NUM:
-                            GPD.money -= 50 * buy_num[0]
-                            GPD.items[0].NUM += buy_num[0]
+                        if sel_num[0] <= GPD.items[0].NUM:
+                            GPD.money += 50 * sel_num[0]
+                            GPD.items[0].NUM -= sel_num[0]
                             system_message = "판매에 성공하였습니다!"
                         else:
-                            system_message = "돈이 부족합니다!"
+                            system_message = "아이템이 부족합니다!"
                     elif sel_index is 1:
-                        if 0 < GPD.items[1].NUM:
-                            GPD.money -= 100 * buy_num[1]
-                            GPD.items[1].NUM += buy_num[1]
+                        if sel_num[1] <= GPD.items[1].NUM:
+                            GPD.money += 100 * sel_num[1]
+                            GPD.items[1].NUM -= sel_num[1]
                             system_message = "판매에 성공하였습니다!"
                         else:
-                            system_message = "돈이 부족합니다!"
+                            system_message = "아이템이 부족합니다!"
                     elif sel_index is 2:
-                        if 0 < GPD.items[2].NUM:
-                            GPD.money -= 300 * buy_num[2]
-                            GPD.items[2].NUM += buy_num[2]
+                        if sel_num[2] <= GPD.items[2].NUM:
+                            GPD.money += 300 * sel_num[2]
+                            GPD.items[2].NUM -= sel_num[2]
                             system_message = "판매에 성공하였습니다!"
                         else:
-                            system_message = "돈이 부족합니다!"
+                            system_message = "아이템이 부족합니다!"
                     elif sel_index is 3:
-                        if 0 < GPD.items[3].NUM:
-                            GPD.money -= 1000 * buy_num[3]
-                            GPD.items[3].NUM += buy_num[3]
+                        if sel_num[3] <= GPD.items[3].NUM:
+                            GPD.money += 1000 * sel_num[3]
+                            GPD.items[3].NUM -= sel_num[3]
                             system_message = "판매에 성공하였습니다!"
                         else:
-                            system_message = "돈이 부족합니다!"
+                            system_message = "아이템이 부족합니다!"
             elif event.key == SDLK_s:
                 if shop_mode == 0:
                     game_framework.pop_state()
@@ -254,21 +253,21 @@ def handle_events():
                 if shop_mode is 0:
                     if sel_index > 0:
                         sel_index -= 1
-                elif shop_mode is 1:
+                elif shop_mode is 1 or shop_mode is 2:
                     if sel_index > 0:
                         sel_index -= 1
             elif event.key == SDLK_DOWN:
                 if shop_mode is 0:
                     if sel_index < 1:
                         sel_index += 1
-                elif shop_mode is 1:
+                elif shop_mode is 1 or shop_mode is 2:
                     if sel_index < 3:
                         sel_index += 1
             elif event.key == SDLK_LEFT:
                 if shop_mode is 1 or shop_mode is 2:
-                    if buy_num[sel_index] > 1:
-                        buy_num[sel_index] -= 1
+                    if sel_num[sel_index] > 1:
+                        sel_num[sel_index] -= 1
             elif event.key == SDLK_RIGHT:
                 if shop_mode is 1 or shop_mode is 2:
-                    if buy_num[sel_index] < 10:
-                        buy_num[sel_index] += 1
+                    if sel_num[sel_index] < 10:
+                        sel_num[sel_index] += 1
