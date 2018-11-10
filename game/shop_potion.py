@@ -132,21 +132,29 @@ def handle_events():
                 elif shop_mode is 1:
                     if sel_index is 0:
                         if 50 * buy_num[0] <= GPD.money:
+                            GPD.money -= 50 * buy_num[0]
+                            GPD.items[0].NUM += buy_num[0]
                             system_message = "구매에 성공하였습니다!"
                         else:
                             system_message = "돈이 부족합니다!"
                     elif sel_index is 1:
                         if 100 * buy_num[1] <= GPD.money:
+                            GPD.money -= 100 * buy_num[1]
+                            GPD.items[1].NUM += buy_num[1]
                             system_message = "구매에 성공하였습니다!"
                         else:
                             system_message = "돈이 부족합니다!"
                     elif sel_index is 2:
                         if 300 * buy_num[2] <= GPD.money:
+                            GPD.money -= 300 * buy_num[2]
+                            GPD.items[2].NUM += buy_num[2]
                             system_message = "구매에 성공하였습니다!"
                         else:
                             system_message = "돈이 부족합니다!"
                     elif sel_index is 3:
                         if 1000 * buy_num[3] <= GPD.money:
+                            GPD.money -= 1000 * buy_num[3]
+                            GPD.items[3].NUM += buy_num[3]
                             system_message = "구매에 성공하였습니다!"
                         else:
                             system_message = "돈이 부족합니다!"
