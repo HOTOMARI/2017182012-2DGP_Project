@@ -249,6 +249,7 @@ def handle_events():
                 elif shop_mode is 1 or shop_mode is 2:
                     shop_mode = 0
                     sel_index = 0
+                    system_message = ""
             elif event.key == SDLK_UP:
                 if shop_mode is 0:
                     if sel_index > 0:
