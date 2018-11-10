@@ -78,7 +78,7 @@ def update():
 
         # 스킬상점
         if collide(character, Entrance_Tile[0]):
-            game_framework.change_state(shop_skill)
+            game_framework.push_state(shop_skill)
             character.y -= 50
             character.move_dir = [0, 0, 0, 0]
             character.state = 0
