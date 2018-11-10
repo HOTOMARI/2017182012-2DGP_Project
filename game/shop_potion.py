@@ -184,63 +184,19 @@ def handle_events():
                         shop_mode = 2
                         sel_index = 0
                 elif shop_mode is 1:
-                    if sel_index is 0:
-                        if 50 * sel_num[0] <= GPD.money:
-                            GPD.money -= 50 * sel_num[0]
-                            GPD.items[0].NUM += sel_num[0]
-                            system_message = "구매에 성공하였습니다!"
-                        else:
-                            system_message = "아이템이 부족합니다!"
-                    elif sel_index is 1:
-                        if 100 * sel_num[1] <= GPD.money:
-                            GPD.money -= 100 * sel_num[1]
-                            GPD.items[1].NUM += sel_num[1]
-                            system_message = "구매에 성공하였습니다!"
-                        else:
-                            system_message = "아이템이 부족합니다!"
-                    elif sel_index is 2:
-                        if 300 * sel_num[2] <= GPD.money:
-                            GPD.money -= 300 * sel_num[2]
-                            GPD.items[2].NUM += sel_num[2]
-                            system_message = "구매에 성공하였습니다!"
-                        else:
-                            system_message = "아이템이 부족합니다!"
-                    elif sel_index is 3:
-                        if 1000 * sel_num[3] <= GPD.money:
-                            GPD.money -= 1000 * sel_num[3]
-                            GPD.items[3].NUM += sel_num[3]
-                            system_message = "구매에 성공하였습니다!"
-                        else:
-                            system_message = "아이템이 부족합니다!"
+                    if GPD.items[sel_index].COST <= GPD.money:
+                        GPD.money -= GPD.items[sel_index].COST
+                        GPD.items[sel_index].NUM += sel_num[sel_index]
+                        system_message = "구매에 성공하였습니다!"
+                    else:
+                        system_message = "아이템이 부족합니다!"
                 elif shop_mode is 2:
-                    if sel_index is 0:
-                        if sel_num[0] <= GPD.items[0].NUM:
-                            GPD.money += 50 * sel_num[0]
-                            GPD.items[0].NUM -= sel_num[0]
-                            system_message = "판매에 성공하였습니다!"
-                        else:
-                            system_message = "아이템이 부족합니다!"
-                    elif sel_index is 1:
-                        if sel_num[1] <= GPD.items[1].NUM:
-                            GPD.money += 100 * sel_num[1]
-                            GPD.items[1].NUM -= sel_num[1]
-                            system_message = "판매에 성공하였습니다!"
-                        else:
-                            system_message = "아이템이 부족합니다!"
-                    elif sel_index is 2:
-                        if sel_num[2] <= GPD.items[2].NUM:
-                            GPD.money += 300 * sel_num[2]
-                            GPD.items[2].NUM -= sel_num[2]
-                            system_message = "판매에 성공하였습니다!"
-                        else:
-                            system_message = "아이템이 부족합니다!"
-                    elif sel_index is 3:
-                        if sel_num[3] <= GPD.items[3].NUM:
-                            GPD.money += 1000 * sel_num[3]
-                            GPD.items[3].NUM -= sel_num[3]
-                            system_message = "판매에 성공하였습니다!"
-                        else:
-                            system_message = "아이템이 부족합니다!"
+                    if GPD.items[sel_index].COST <= GPD.money:
+                        GPD.money += GPD.items[sel_index].COST
+                        GPD.items[sel_index].NUM -= sel_num[sel_index]
+                        system_message = "판매에 성공하였습니다!"
+                    else:
+                        system_message = "아이템이 부족합니다!"
             elif event.key == SDLK_s:
                 if shop_mode == 0:
                     game_framework.pop_state()

@@ -8,7 +8,7 @@ Cure_Potion_data_file.close()
 
 class Curepotion(Item):
     def __init__(self):
-        super(Curepotion, self).__init__('만병통치약', Cure_Potion_Data['Cure_Potion']['NUM'])
+        super(Curepotion, self).__init__('만병통치약', Cure_Potion_Data['Cure_Potion']['NUM'], Cure_Potion_Data['Cure_Potion']['COST'])
 
     def use(self, target_index):
         Game_Playing_Data.players[target_index].condition = 0

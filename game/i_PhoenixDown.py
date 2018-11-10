@@ -8,7 +8,7 @@ Phoenix_Down_data_file.close()
 
 class PhoenixDown(Item):
     def __init__(self):
-        super(PhoenixDown, self).__init__('부활의 깃털', Phoenix_Down_Data['Phoenix_Down']['NUM'])
+        super(PhoenixDown, self).__init__('부활의 깃털', Phoenix_Down_Data['Phoenix_Down']['NUM'], Phoenix_Down_Data['Phoenix_Down']['COST'])
 
     def use(self, target_index):
         Game_Playing_Data.players[target_index].act_type = 0

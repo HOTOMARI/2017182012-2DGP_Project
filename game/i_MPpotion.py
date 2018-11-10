@@ -8,7 +8,7 @@ MP_Potion_data_file.close()
 
 class MPpotion(Item):
     def __init__(self):
-        super(MPpotion, self).__init__('에테르', MP_Potion_Data['MP_Potion']['NUM'])
+        super(MPpotion, self).__init__('에테르', MP_Potion_Data['MP_Potion']['NUM'], MP_Potion_Data['MP_Potion']['COST'])
 
     def use(self, target_index):
         Game_Playing_Data.players[target_index].MP += 50
