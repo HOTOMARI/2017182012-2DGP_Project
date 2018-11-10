@@ -36,18 +36,16 @@ def enter():
     Entrance_Tile = [Bounding_box.BaseZone(background.tile_map.layers[2]['objects'][i],960)
                      for i in range(len(background.tile_map.layers[2]['objects']))]
 
-    # 캐릭터 시작위치
+    # 캐릭터 초기  시작위치
     GPD.Player.x = GPD.x
     GPD.Player.y = GPD.y
-    GPD.Player.bg.w = GPD.bg_x
-    GPD.Player.bg.h = GPD.bg_y
+    GPD.Player.bg.w = 960
+    GPD.Player.bg.h = 960
+    GPD.Player.state = 1
 
     if GPD.now_map == 0:
-        GPD.Player.x = 461
-        GPD.Player.y = 353
-        GPD.Player.bg.w = 960
-        GPD.Player.bg.h = 960
-        GPD.Player.state = 0
+        GPD.Player.x = 398
+        GPD.Player.y = 100
 
     GPD.now_map = 2
 
