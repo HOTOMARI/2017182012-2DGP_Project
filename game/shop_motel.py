@@ -9,9 +9,10 @@ background = None
 
 def enter():
     global current_time, Prevtime
-    global background
+    global background, system_message
     current_time = 0
     Prevtime = 0
+    system_message = "TEST"
 
     if background is None:
         background = load_image('image\\black_point.png')
@@ -45,6 +46,8 @@ def draw():
     GPD.Ingame_font.font.draw(300, 250, "필요한 돈: 200", White_font)
     GPD.Ingame_font.font.draw(400, 250, "현재 돈: "+ str(GPD.money), White_font)
 
+    GPD.Ingame_Big_font.font.draw(400-len(system_message)*7, 150, system_message, [255,0,0])
+
     update_canvas()
 
 
@@ -68,6 +71,8 @@ def handle_events():
                 # game_framework.change_state(map)
                 game_framework.pop_state()
             elif event.key == SDLK_a:
+                if GPD.money < 200:
+                    system_message = "돈이 부족합니다!"
                 pass
 
             elif event.key == SDLK_s:
