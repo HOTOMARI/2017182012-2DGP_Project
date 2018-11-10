@@ -16,7 +16,6 @@ Cant_Move_Tile = []
 Entrance_Tile = []
 
 def enter():
-    global character
     global current_time, Prevtime
     global background, Cant_Move_Tile, Entrance_Tile
     #open_canvas(WIDTH,HEIGHT)
@@ -24,11 +23,12 @@ def enter():
     current_time = 0
     Prevtime = 0
 
-    character = Character()
+    GPD.Upload_data()
+
     background = Background()
 
-    character.set_background(background)
-    background.set_center_object(character)
+    GPD.Player.set_background(background)
+    background.set_center_object(GPD.Player)
     background.update()
 
     Cant_Move_Tile = [Bounding_box.BaseZone(background.tile_map.layers[1]['objects'][i],960)
@@ -37,19 +37,18 @@ def enter():
                      for i in range(len(background.tile_map.layers[2]['objects']))]
 
     # 캐릭터 시작위치
-    character.x = GPD.x
-    character.y = GPD.y
-    character.bg.w = GPD.bg_x
-    character.bg.h = GPD.bg_y
+    GPD.Player.x = GPD.x
+    GPD.Player.y = GPD.y
+    GPD.Player.bg.w = GPD.bg_x
+    GPD.Player.bg.h = GPD.bg_y
 
     if GPD.now_map == 0:
-        character.x = 461
-        character.y = 353
-        character.bg.w = 960
-        character.bg.h = 960
-        character.state = 0
+        GPD.Player.x = 461
+        GPD.Player.y = 353
+        GPD.Player.bg.w = 960
+        GPD.Player.bg.h = 960
+        GPD.Player.state = 0
 
-    GPD.Upload_data()
     GPD.now_map = 2
 
 
@@ -58,48 +57,47 @@ def exit():
 
 
 def update():
-    global character, Cant_Move_Tile, Entrance_Tile
+    global Cant_Move_Tile, Entrance_Tile
     global current_time, Prevtime
 
     current_time = get_time()
 
     if current_time - Prevtime > 1 / 60:
-        collide_zone = []
         background.update()
-        backup_x, backup_y = character.x, character.y
-        character.update()
+        backup_x, backup_y = GPD.Player.x, GPD.Player.y
+        GPD.Player.update()
 
         for Zone in Cant_Move_Tile:
-            if collide(character, Zone):
-                character.x = backup_x
-                character.y = backup_y
+            if collide(GPD.Player, Zone):
+                GPD.Player.x = backup_x
+                GPD.Player.y = backup_y
                 break
 
         # 스킬상점
-        if collide(character, Entrance_Tile[0]):
+        if collide(GPD.Player, Entrance_Tile[0]):
             game_framework.push_state(shop_skill)
-            character.y -= 50
-            character.move_dir = [0, 0, 0, 0]
-            character.state = 0
+            GPD.Player.y -= 50
+            GPD.Player.move_dir = [0, 0, 0, 0]
+            GPD.Player.state = 0
         # 잡화상점
-        elif collide(character, Entrance_Tile[1]):
+        elif collide(GPD.Player, Entrance_Tile[1]):
             game_framework.push_state(shop_potion)
-            character.y -= 50
-            character.move_dir = [0, 0, 0, 0]
-            character.state = 0
+            GPD.Player.y -= 50
+            GPD.Player.move_dir = [0, 0, 0, 0]
+            GPD.Player.state = 0
         # 여관
-        elif collide(character, Entrance_Tile[2]):
+        elif collide(GPD.Player, Entrance_Tile[2]):
             game_framework.push_state(shop_motel)
-            character.y -= 50
-            character.move_dir = [0, 0, 0, 0]
-            character.state = 0
+            GPD.Player.y -= 50
+            GPD.Player.move_dir = [0, 0, 0, 0]
+            GPD.Player.state = 0
             pass
         # 출구
-        elif collide(character, Entrance_Tile[3]):
+        elif collide(GPD.Player, Entrance_Tile[3]):
             game_framework.change_state(overworld)
 
-        if character.battle_counter <= 0:
-            character.battle_counter = 40
+        if GPD.Player.battle_counter <= 0:
+            GPD.Player.battle_counter = 40
 
         Prevtime = current_time
 
@@ -108,11 +106,11 @@ def draw():
     global background
     clear_canvas()
     background.draw()
-    character.draw()
-    character.draw_bb()
+    GPD.Player.draw()
+    GPD.Player.draw_bb()
     for Zone in Cant_Move_Tile:
         Zone.draw_bb(background)
-    GPD.Ingame_font.font.draw(75, 115, str(character.battle_counter), [255, 255, 255])
+    GPD.Ingame_font.font.draw(75, 115, str(GPD.Player.battle_counter), [255, 255, 255])
     update_canvas()
 
 
@@ -123,8 +121,6 @@ def resume(): pass
 
 
 def handle_events():
-    global character
-
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -132,7 +128,7 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
                 game_framework.quit()
         else:
-             character.handle_events(event)
+            GPD.Player.handle_events(event)
 
 
 def collide(a, b):

@@ -20,19 +20,18 @@ Cant_Move_Tile = []
 Entrance_Tile = []
 
 def enter():
-    global character
     global current_time, Prevtime
     global background, Cant_Move_Tile, Entrance_Tile
-    #open_canvas(WIDTH,HEIGHT)
 
     current_time = 0
     Prevtime = 0
 
-    character = Character()
+    GPD.Upload_data()
+
     background = Background()
 
-    character.set_background(background)
-    background.set_center_object(character)
+    GPD.Player.set_background(background)
+    background.set_center_object(GPD.Player)
     background.update()
 
     Cant_Move_Tile = [Bounding_box.BaseZone(background.tile_map.layers[1]['objects'][i],1600)
@@ -41,26 +40,25 @@ def enter():
                      for i in range(len(background.tile_map.layers[2]['objects']))]
 
     # 캐릭터 시작위치
-    character.x = GPD.x
-    character.y = GPD.y
-    character.bg.w = GPD.bg_x
-    character.bg.h = GPD.bg_y
+    GPD.Player.x = GPD.x
+    GPD.Player.y = GPD.y
+    GPD.Player.bg.w = GPD.bg_x
+    GPD.Player.bg.h = GPD.bg_y
 
     if GPD.now_map == 1:
-        character.x = 461
-        character.y = 353
-        character.bg.w = 1600
-        character.bg.h = 1600
-        character.state = 0
+        GPD.Player.x = 461
+        GPD.Player.y = 353
+        GPD.Player.bg.w = 1600
+        GPD.Player.bg.h = 1600
+        GPD.Player.state = 0
 
     elif GPD.now_map == 2:
-        character.x = 506
-        character.y = 1109
-        character.bg.w = 1600
-        character.bg.h = 1600
-        character.state = 0
+        GPD.Player.x = 506
+        GPD.Player.y = 1109
+        GPD.Player.bg.w = 1600
+        GPD.Player.bg.h = 1600
+        GPD.Player.state = 0
 
-    GPD.Upload_data()
     GPD.now_map = 0
 
 
@@ -69,30 +67,29 @@ def exit():
 
 
 def update():
-    global character, Cant_Move_Tile, Entrance_Tile
+    global Cant_Move_Tile, Entrance_Tile
     global current_time, Prevtime
 
     current_time = get_time()
 
     if current_time - Prevtime > 1 / 60:
-        collide_zone = []
         background.update()
-        backup_x, backup_y = character.x, character.y
-        character.update()
+        backup_x, backup_y = GPD.Player.x, GPD.Player.y
+        GPD.Player.update()
 
         for Zone in Cant_Move_Tile:
-            if collide(character, Zone):
-                character.x = backup_x
-                character.y = backup_y
+            if collide(GPD.Player, Zone):
+                GPD.Player.x = backup_x
+                GPD.Player.y = backup_y
                 break
 
-        if collide(character, Entrance_Tile[0]):
+        if collide(GPD.Player, Entrance_Tile[0]):
             game_framework.change_state(town)
-        elif collide(character, Entrance_Tile[1]):
+        elif collide(GPD.Player, Entrance_Tile[1]):
             game_framework.change_state(dungeon)
 
-        if character.battle_counter <= 0:
-            character.battle_counter = 30 + random.randint(0,10)
+        if GPD.Player.battle_counter <= 0:
+            GPD.Player.battle_counter = 30 + random.randint(0,10)
             start_battle()
 
         Prevtime = current_time
@@ -102,11 +99,11 @@ def draw():
     global background
     clear_canvas()
     background.draw()
-    character.draw()
-    character.draw_bb()
+    GPD.Player.draw()
+    GPD.Player.draw_bb()
     for Zone in Cant_Move_Tile:
         Zone.draw_bb(background)
-    GPD.Ingame_font.font.draw(75, 115, str(character.battle_counter), [255, 255, 255])
+    GPD.Ingame_font.font.draw(75, 115, str(GPD.Player.battle_counter), [255, 255, 255])
     update_canvas()
 
 
@@ -117,8 +114,6 @@ def resume(): pass
 
 
 def handle_events():
-    global character
-
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -129,7 +124,7 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_0:
             start_battle()
         else:
-             character.handle_events(event)
+            GPD.Player.handle_events(event)
 
 
 def collide(a, b):
@@ -147,10 +142,8 @@ def collide(a, b):
 
 
 def start_battle():
-    global character
-
     for i in range(0, 4):
-        character.move_dir[i] = 0
+        GPD.Player.move_dir[i] = 0
     for i in range(0, 3):
         GPD.monsters[i] = m_wolf.Wolf(i)
     if GPD.effects == None:

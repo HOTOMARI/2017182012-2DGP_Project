@@ -1,5 +1,5 @@
 from pico2d import*
-import BaseEffect
+import overworld_charactrer
 
 # 구별 id : 프레임 수
 skill_MAXframe ={0:3, 1:19, 2:29, 11:5, 12:6, 13:24, 14:16}
@@ -49,8 +49,8 @@ def Upload_data():
         Ingame_Big_font.font = load_font('font\\H2SA1M.TTF',30)
 
     if Player is None:
-        Player = Player_sound_data()
-        Player.image = load_image('image\\player\\Warrior.png')
+        print("로드")
+        Player = overworld_charactrer.Character()
     if Warrior is None:
         Warrior = Player_sound_data()
         Warrior.image = load_image('image\\player\\Warrior.png')
