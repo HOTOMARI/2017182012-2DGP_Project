@@ -5,8 +5,7 @@ import game_framework
 import Game_Playing_Data as GPD
 import Bounding_box
 import overworld
-import shop_potion
-import shop_skill
+import shop_potion, shop_skill, shop_motel
 
 
 WIDTH=800
@@ -82,7 +81,6 @@ def update():
             character.y -= 50
             character.move_dir = [0, 0, 0, 0]
             character.state = 0
-            pass
         # 잡화상점
         elif collide(character, Entrance_Tile[1]):
             game_framework.push_state(shop_potion)
@@ -91,7 +89,10 @@ def update():
             character.state = 0
         # 여관
         elif collide(character, Entrance_Tile[2]):
-            #game_framework.change_state(overworld)
+            game_framework.push_state(shop_motel)
+            character.y -= 50
+            character.move_dir = [0, 0, 0, 0]
+            character.state = 0
             pass
         # 출구
         elif collide(character, Entrance_Tile[3]):
