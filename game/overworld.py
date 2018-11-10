@@ -1,7 +1,7 @@
 from pico2d import*
 import random
 from overworld_load import FixedTileBackground as Background
-from overworld_charactrer import Character as Character
+import SAVE_Manager
 import game_framework
 import battle
 import dungeon
@@ -86,6 +86,8 @@ def update():
         if GPD.Player.battle_counter <= 0:
             GPD.Player.battle_counter = 30 + random.randint(0,10)
             start_battle()
+
+        SAVE_Manager.Save_game()
 
         Prevtime = current_time
 
