@@ -1,6 +1,6 @@
 {
-  "Provoke" : {"ID":1, "COST":5, "POWER":1},
-  "Overpower" : {"ID":2, "COST":7, "POWER":10},
-  "Defiance" : {"ID":3, "COST":7, "POWER":5},
-  "Fell_Cleave" : {"ID":4, "COST":13, "POWER":30}
+  "Provoke" : {"ID":1, "COST":5, "POWER":1, "UPGRADE": 1},
+  "Overpower" : {"ID":2, "COST":7, "POWER":10, "UPGRADE":15},
+  "Defiance" : {"ID":3, "COST":7, "POWER":5, "UPGRADE": 5},
+  "Fell_Cleave" : {"ID":4, "COST":13, "POWER":30, "UPGRADE": 20}
 }

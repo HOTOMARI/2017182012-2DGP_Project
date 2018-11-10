@@ -8,7 +8,7 @@ Skill_data_file.close()
 
 class Provoke(Skill):
     def __init__(self):
-        super(Provoke, self).__init__('도발', Skill_Data['Provoke']['ID'], Skill_Data['Provoke']['COST'], Skill_Data['Provoke']['POWER'])
+        super(Provoke, self).__init__('도발', Skill_Data['Provoke']['ID'], Skill_Data['Provoke']['COST'], Skill_Data['Provoke']['POWER'], Skill_Data['Provoke']['UPGRADE'])
 
     def activate(self, my_index, target_index):
         max_value = -1

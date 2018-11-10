@@ -8,7 +8,7 @@ Skill_data_file.close()
 
 class Overpower(Skill):
     def __init__(self):
-        super(Overpower, self).__init__('압도', Skill_Data['Overpower']['ID'], Skill_Data['Overpower']['COST'], Skill_Data['Overpower']['POWER'])
+        super(Overpower, self).__init__('압도', Skill_Data['Overpower']['ID'], Skill_Data['Overpower']['COST'], Skill_Data['Overpower']['POWER'], Skill_Data['Overpower']['UPGRADE'])
 
     def activate(self, my_index):
         for target_index in range(0,3):

@@ -70,14 +70,14 @@ def draw():
         # 스킬을 업그레이드 가능할경우 흰 글씨로 표시
         # 아니면 회색글씨로 표시
         for i in range(0,4):
-            if GPD.players[sel_player].skill[i].POWER <= GPD.money:
+            if GPD.players[sel_player].skill[i].POWER*10 <= GPD.money:
                 GPD.Ingame_Big_font.font.draw(100, 330 - 70*i, GPD.players[sel_player].skill[i].name , White_font)
                 GPD.Ingame_Big_font.font.draw(250, 330 - 70*i, str(GPD.players[sel_player].skill[i].POWER), [255,255,0])
-                GPD.Ingame_Big_font.font.draw(550, 330 - 70*i, str(GPD.players[sel_player].skill[i].POWER) + '원', White_font)
+                GPD.Ingame_Big_font.font.draw(550, 330 - 70*i, str(GPD.players[sel_player].skill[i].POWER * 10) + '원', White_font)
             else:
                 GPD.Ingame_Big_font.font.draw(100, 330 - 70 * i, GPD.players[sel_player].skill[i].name, Gray_font)
                 GPD.Ingame_Big_font.font.draw(250, 330 - 70 * i, str(GPD.players[sel_player].skill[i].POWER), [105, 105, 0])
-                GPD.Ingame_Big_font.font.draw(550, 330 - 70 * i, str(GPD.players[sel_player].skill[i].POWER) + '원', Gray_font)
+                GPD.Ingame_Big_font.font.draw(550, 330 - 70 * i, str(GPD.players[sel_player].skill[i].POWER * 10) + '원', Gray_font)
 
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35)  # 손가락
 
@@ -111,6 +111,10 @@ def handle_events():
                     sel_player = sel_index
                     sel_index = 0
                 elif shop_mode is 1:
+                    if GPD.players[sel_player].skill[sel_index].POWER * 10 <= GPD.money:
+                        GPD.money -= GPD.players[sel_player].skill[sel_index].POWER * 10
+                        GPD.players[sel_player].skill[sel_index].POWER += GPD.players[sel_player].skill[sel_index].UPGRADE
+                        system_message = "업그레이드에 성공하였습니다!"
                     pass
 
             elif event.key == SDLK_s:
