@@ -9,9 +9,10 @@ background = None
 
 def enter():
     global current_time, Prevtime
-    global background, system_message
+    global background, shop_mode, system_message
     current_time = 0
     Prevtime = 0
+    shop_mode = 0
     system_message = "TEST"
 
     if background is None:
@@ -58,7 +59,7 @@ def resume(): pass
 
 
 def handle_events():
-    global shop_mode, sel_index, sel_player, system_message
+    global shop_mode, system_message
 
     events = get_events()
 
@@ -71,9 +72,21 @@ def handle_events():
                 # game_framework.change_state(map)
                 game_framework.pop_state()
             elif event.key == SDLK_a:
-                if GPD.money < 200:
-                    system_message = "돈이 부족합니다!"
-                pass
+                if shop_mode is 0:
+                    if GPD.money < 200:
+                        system_message = "돈이 부족합니다!"
+                    else:
+                        GPD.money -= 200
+                        system_message = "데이터를 저장합니다."
+                        SAVE()
+                        system_message = "데이터 저장이 완료되었습니다."
+                        shop_mode = 1
+                elif shop_mode is 1:
+                    game_framework.pop_state()
 
             elif event.key == SDLK_s:
-                game_framework.pop_state()
+                if shop_mode is 0:
+                    game_framework.pop_state()
+
+def SAVE():
+    pass
