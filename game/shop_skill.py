@@ -54,7 +54,7 @@ def draw():
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 80, 35, 35)  # 손가락
     # 구입메뉴
     elif shop_mode is 1:
-        # 아이템 설명
+        # 스킬 설명
         if sel_index is 0:
             GPD.Ingame_Big_font.font.draw(100, 500, 'HP를 50 회복합니다.', White_font)
         elif sel_index is 1:
@@ -67,12 +67,17 @@ def draw():
 
         GPD.Ingame_Big_font.font.draw(500, 500, "남은 골드: " + str(GPD.money), White_font)
 
-        # 아이템을 구입 가능할경우 흰 글씨로 표시
+        # 스킬을 업그레이드 가능할경우 흰 글씨로 표시
         # 아니면 회색글씨로 표시
-        if 50 * 0 <= GPD.money:
-            GPD.Ingame_Big_font.font.draw(100, 330, '포션', White_font)
-            GPD.Ingame_Big_font.font.draw(250, 330, str(0) + '개', White_font)
-            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * 0) + '원', White_font)
+        for i in range(0,4):
+            if GPD.players[sel_player].skill[i].POWER <= GPD.money:
+                GPD.Ingame_Big_font.font.draw(100, 330 - 70*i, GPD.players[sel_player].skill[i].name , White_font)
+                GPD.Ingame_Big_font.font.draw(250, 330 - 70*i, str(GPD.players[sel_player].skill[i].POWER), [255,255,0])
+                GPD.Ingame_Big_font.font.draw(550, 330 - 70*i, str(GPD.players[sel_player].skill[i].POWER) + '원', White_font)
+            else:
+                GPD.Ingame_Big_font.font.draw(100, 330 - 70 * i, GPD.players[sel_player].skill[i].name, Gray_font)
+                GPD.Ingame_Big_font.font.draw(250, 330 - 70 * i, str(GPD.players[sel_player].skill[i].POWER), [105, 105, 0])
+                GPD.Ingame_Big_font.font.draw(550, 330 - 70 * i, str(GPD.players[sel_player].skill[i].POWER) + '원', Gray_font)
 
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35)  # 손가락
 
@@ -111,7 +116,7 @@ def handle_events():
             elif event.key == SDLK_s:
                 if shop_mode == 0:
                     game_framework.pop_state()
-                elif shop_mode is 1 or shop_mode is 2:
+                elif shop_mode is 1:
                     shop_mode = 0
                     sel_index = 0
                     system_message = ""
@@ -119,13 +124,13 @@ def handle_events():
                 if shop_mode is 0:
                     if sel_index > 0:
                         sel_index -= 1
-                elif shop_mode is 1 or shop_mode is 2:
+                elif shop_mode is 1:
                     if sel_index > 0:
                         sel_index -= 1
             elif event.key == SDLK_DOWN:
                 if shop_mode is 0:
                     if sel_index < 3:
                         sel_index += 1
-                elif shop_mode is 1 or shop_mode is 2:
+                elif shop_mode is 1:
                     if sel_index < 3:
                         sel_index += 1
