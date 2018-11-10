@@ -25,8 +25,6 @@ def update():
     current_time = get_time()
 
     if current_time - Prevtime > 1 / 60:
-        for i in range (0,4):
-            GPD.players[i].frame += 0.05
         Prevtime = current_time
 
 
