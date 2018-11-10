@@ -7,13 +7,14 @@ Gray_font = [105,105,105]
 
 def enter():
     global current_time, Prevtime
-    global shop_mode, sel_index, buy_num, system_message
+    global shop_mode, sel_index, buy_num, sell_num, system_message
     current_time = 0
     Prevtime = 0
     shop_mode = 0
     sel_index = 0
     system_message = "TEST"
     buy_num = [1,1,1,1]
+    sell_num = [1, 1, 1, 1]
 
 def exit():
     pass
@@ -44,7 +45,8 @@ def draw():
         GPD.Ingame_Big_font.font.draw(600, 450, '판매', White_font)
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 550, 500 - sel_index * 50, 35, 35) # 손가락
     # 구입메뉴
-    if shop_mode is 1:
+    elif shop_mode is 1:
+        # 아이템 설명
         if sel_index is 0:
             GPD.Ingame_Big_font.font.draw(100, 500, 'HP를 50 회복합니다.',White_font)
         elif sel_index is 1:
@@ -98,7 +100,62 @@ def draw():
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35) #손가락
 
         GPD.Ingame_Big_font.font.draw(325, 50, system_message, [255,0,0])
+    # 판매메뉴
+    elif shop_mode is 2:
+        # 아이템 설명
+        if sel_index is 0:
+            GPD.Ingame_Big_font.font.draw(100, 500, 'HP를 50 회복합니다.', White_font)
+        elif sel_index is 1:
+            GPD.Ingame_Big_font.font.draw(100, 500, 'MP를 50 회복합니다.', White_font)
+        elif sel_index is 2:
+            GPD.Ingame_Big_font.font.draw(100, 500, '모든 상태이상을 제거합니다.', White_font)
+        elif sel_index is 3:
+            GPD.Ingame_Big_font.font.draw(100, 475, '대상 아군의 HP와 MP를 전부 채워줍니다.', White_font)
+            GPD.Ingame_Big_font.font.draw(100, 525, '대상이 죽어있었으면 부활시킵니다.', White_font)
 
+        GPD.Ingame_Big_font.font.draw(500, 500, "남은 골드: " + str(GPD.money), White_font)
+
+        # 아이템을 판매 가능할경우 흰 글씨로 표시
+        # 아니면 회색글씨로 표시
+        if 0 < GPD.items[0].NUM:
+            GPD.Ingame_Big_font.font.draw(100, 330, '포션', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 330, str(buy_num[0]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * buy_num[0]) + '원', White_font)
+        else:
+            GPD.Ingame_Big_font.font.draw(100, 330, '포션', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 330, str(buy_num[0]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 330, str(50 * buy_num[0]) + '원', Gray_font)
+
+        if 0 < GPD.items[1].NUM:
+            GPD.Ingame_Big_font.font.draw(100, 260, '에테르', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 260, str(buy_num[1]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * buy_num[1]) + '원', White_font)
+        else:
+            GPD.Ingame_Big_font.font.draw(100, 260, '에테르', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 260, str(buy_num[1]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 260, str(100 * buy_num[1]) + '원', Gray_font)
+
+        if 0 < GPD.items[2].NUM:
+            GPD.Ingame_Big_font.font.draw(100, 190, '만병통치약', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 190, str(buy_num[2]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * buy_num[2]) + '원', White_font)
+        else:
+            GPD.Ingame_Big_font.font.draw(100, 190, '만병통치약', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 190, str(buy_num[2]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 190, str(300 * buy_num[2]) + '원', Gray_font)
+
+        if 0 < GPD.items[3].NUM:
+            GPD.Ingame_Big_font.font.draw(100, 120, '부활의 깃털', White_font)
+            GPD.Ingame_Big_font.font.draw(250, 120, str(buy_num[3]) + '개', White_font)
+            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * buy_num[3]) + '원', White_font)
+        else:
+            GPD.Ingame_Big_font.font.draw(100, 120, '부활의 깃털', Gray_font)
+            GPD.Ingame_Big_font.font.draw(250, 120, str(buy_num[3]) + '개', Gray_font)
+            GPD.Ingame_Big_font.font.draw(550, 120, str(1000 * buy_num[3]) + '원', Gray_font)
+
+        GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35)  # 손가락
+
+        GPD.Ingame_Big_font.font.draw(325, 50, system_message, [255, 0, 0])
     update_canvas()
 
 
@@ -156,6 +213,35 @@ def handle_events():
                             GPD.money -= 1000 * buy_num[3]
                             GPD.items[3].NUM += buy_num[3]
                             system_message = "구매에 성공하였습니다!"
+                        else:
+                            system_message = "돈이 부족합니다!"
+                elif shop_mode is 2:
+                    if sel_index is 0:
+                        if 0 < GPD.items[0].NUM:
+                            GPD.money -= 50 * buy_num[0]
+                            GPD.items[0].NUM += buy_num[0]
+                            system_message = "판매에 성공하였습니다!"
+                        else:
+                            system_message = "돈이 부족합니다!"
+                    elif sel_index is 1:
+                        if 0 < GPD.items[1].NUM:
+                            GPD.money -= 100 * buy_num[1]
+                            GPD.items[1].NUM += buy_num[1]
+                            system_message = "판매에 성공하였습니다!"
+                        else:
+                            system_message = "돈이 부족합니다!"
+                    elif sel_index is 2:
+                        if 0 < GPD.items[2].NUM:
+                            GPD.money -= 300 * buy_num[2]
+                            GPD.items[2].NUM += buy_num[2]
+                            system_message = "판매에 성공하였습니다!"
+                        else:
+                            system_message = "돈이 부족합니다!"
+                    elif sel_index is 3:
+                        if 0 < GPD.items[3].NUM:
+                            GPD.money -= 1000 * buy_num[3]
+                            GPD.items[3].NUM += buy_num[3]
+                            system_message = "판매에 성공하였습니다!"
                         else:
                             system_message = "돈이 부족합니다!"
             elif event.key == SDLK_s:
