@@ -77,6 +77,9 @@ def handle_events():
                         system_message = "돈이 부족합니다!"
                     else:
                         GPD.money -= 200
+                        for i in range (0,4):
+                            GPD.players[i].HP = GPD.players[i].MAX_HP
+                            GPD.players[i].MP = GPD.players[i].MAX_MP
                         system_message = "데이터를 저장합니다."
                         SAVE()
                         system_message = "데이터 저장이 완료되었습니다."
