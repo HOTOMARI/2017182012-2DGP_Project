@@ -50,6 +50,7 @@ def draw():
 
     # 캐릭터 메뉴
     elif shop_mode is 1:
+        GPD.Ingame_Big_font.font.draw(100, 500, '캐릭터의 능력치를 상승시킬 수 있습니다.', White_font)
         for i in range(0,4):
             if GPD.players[i].name == '전사':
                 GPD.Warrior.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
