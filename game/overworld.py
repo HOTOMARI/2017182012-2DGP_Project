@@ -87,7 +87,7 @@ def update():
             GPD.Player.battle_counter = 30 + random.randint(0,10)
             start_battle()
 
-        SAVE_Manager.Save_game()
+        #SAVE_Manager.Save_game()
 
         Prevtime = current_time
 
@@ -120,6 +120,9 @@ def handle_events():
             # 강제 배틀 돌입
         elif event.type == SDL_KEYDOWN and event.key == SDLK_0:
             start_battle()
+            # 데이터 로드 테스트
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
+            SAVE_Manager.Load_game()
         else:
             GPD.Player.handle_events(event)
 

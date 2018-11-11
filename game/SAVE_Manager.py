@@ -21,6 +21,34 @@ def Save_game():
         for s in range(0,4):
             f.write(str(GPD.players[i].skill[s].POWER) + '\n')
 
+    f.close()
+
 
 def Load_game():
-    pass
+    f = open('test.txt', mode='rt')
+    # 캐릭터 위치
+    GPD.now_map = int(f.readline())
+    GPD.Player.x = int(f.readline())
+    GPD.Player.y = int(f.readline())
+    # 아이템 정보
+    GPD.money = int(f.readline())
+    for i in range(0, 4):
+        GPD.items[i].NUM = int(f.readline())
+
+    # 캐릭터 정보
+    for i in range(0, 4):
+        GPD.players[i].HP = int(f.readline())
+        GPD.players[i].MAX_HP = int(f.readline())
+        GPD.players[i].MP = int(f.readline())
+        GPD.players[i].MAX_MP = int(f.readline())
+        GPD.players[i].LEVEL = int(f.readline())
+        GPD.players[i].EXP = int(f.readline())
+        GPD.players[i].MAX_EXP = int(f.readline())
+        GPD.players[i].ATK = int(f.readline())
+        GPD.players[i].DEF = int(f.readline())
+        GPD.players[i].AP = int(f.readline())
+
+        for s in range(0, 4):
+            GPD.players[i].skill[s].POWER = int(f.readline())
+
+    f.close()
