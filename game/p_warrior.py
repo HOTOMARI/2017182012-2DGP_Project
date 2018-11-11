@@ -17,7 +17,7 @@ class Warrior(Player):
                                       Warrior_Data['Warrior']['MP'], Warrior_Data['Warrior']['MAX_MP'],
                                       Warrior_Data['Warrior']['LEVEL'], Warrior_Data['Warrior']['EXP'],
                                       Warrior_Data['Warrior']['MAX_EXP'], Warrior_Data['Warrior']['ATK'],
-                                      Warrior_Data['Warrior']['DEF'],0)
+                                      Warrior_Data['Warrior']['DEF'],0,0)
         self.party_num = party_num
         self.frame=0
         self.attack_animation = 0

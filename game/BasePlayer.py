@@ -1,7 +1,7 @@
 from pico2d import*
 
 class Player():
-    def __init__(self,name,hp,maxhp,mp,maxmp,level,exp,maxexp,atk,defence,shield):
+    def __init__(self,name,hp,maxhp,mp,maxmp,level,exp,maxexp,atk,defence,shield,ap):
         self.name = name
         self.HP = hp  # 현재 체력
         self.MAX_HP = maxhp  # 최대 체력
@@ -13,6 +13,7 @@ class Player():
         self.MAX_EXP = maxexp  # 최대 경험치
         self.ATK = atk  # 공격력
         self.SHIELD = shield # 실드 전투 돌입, 종료시 0으로 초기화
+        self.AP = ap # 스탯 강화용 포인트
         
         # 0 common  1 attack ready  2 attack  3 magic 4 victory 5 lesshp 6 damaged 7 die
         self.act_type=0
