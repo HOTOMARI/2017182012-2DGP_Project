@@ -5,6 +5,8 @@ import overworld
 import dungeon
 import town
 
+import SAVE_Manager
+
 background = None
 logo = None
 time = 0
@@ -58,7 +60,16 @@ def handle_events():
                 if sel_index is 0:
                     game_framework.change_state(overworld)
                 elif sel_index is 1:
-                    pass
+                    SAVE_Manager.Load_game()
+                    if GPD.now_map is 0:
+                        GPD.now_map = -1
+                        game_framework.change_state(overworld)
+                    elif GPD.now_map is 1:
+                        GPD.now_map = -1
+                        game_framework.change_state(dungeon)
+                    elif GPD.now_map is 2:
+                        GPD.now_map = -1
+                        game_framework.change_state(town)
                 elif sel_index is 2:
                     pass
                 elif sel_index is 3:

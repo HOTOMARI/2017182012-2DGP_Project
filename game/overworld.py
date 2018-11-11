@@ -40,7 +40,12 @@ def enter():
                      for i in range(len(background.tile_map.layers[2]['objects']))]
 
     # 캐릭터 초기 시작위치
-    if GPD.now_map is 0:
+    if GPD.now_map is -1:
+        GPD.Player.x = GPD.x
+        GPD.Player.y = GPD.y
+        pass
+
+    elif GPD.now_map is 0:
         GPD.Player.x = GPD.x
         GPD.Player.y = GPD.y
         GPD.Player.state = 0
@@ -124,6 +129,9 @@ def handle_events():
             # 데이터 로드 테스트
         elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
             SAVE_Manager.Load_game()
+            # 데이터 세이브 테스트
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_2:
+            SAVE_Manager.Save_game()
         else:
             GPD.Player.handle_events(event)
 

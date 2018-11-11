@@ -4,7 +4,7 @@ import Game_Playing_Data as GPD
 def Save_game():
     f = open('test.txt', mode='wt')
     # 캐릭터 위치
-    f.write(str(GPD.now_map) + '\n' + str(GPD.Player.x) + '\n' + str(GPD.Player.y) + '\n')
+    f.write(str(GPD.now_map) + '\n' + str(int(GPD.Player.x)) + '\n' + str(int(GPD.Player.y)) + '\n')
     # 아이템 정보
     f.write(str(GPD.money) + '\n')
     for i in range(0,4):
@@ -28,8 +28,8 @@ def Load_game():
     f = open('test.txt', mode='rt')
     # 캐릭터 위치
     GPD.now_map = int(f.readline())
-    GPD.Player.x = int(f.readline())
-    GPD.Player.y = int(f.readline())
+    GPD.x = int(f.readline())
+    GPD.y = int(f.readline())
     # 아이템 정보
     GPD.money = int(f.readline())
     for i in range(0, 4):
