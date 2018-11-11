@@ -83,18 +83,18 @@ def draw():
         GPD.Ingame_Big_font.font.draw(250, 330, str(GPD.players[sel_player].MAX_HP), [255,0,0])
 
         GPD.Ingame_Big_font.font.draw(100, 260, 'MAX MP', White_font)
-        GPD.Ingame_Big_font.font.draw(250, 260, str(GPD.players[sel_player].MAX_HP), [0, 255, 255])
+        GPD.Ingame_Big_font.font.draw(250, 260, str(GPD.players[sel_player].MAX_MP), [0, 255, 255])
 
         GPD.Ingame_Big_font.font.draw(100, 190, 'ATK', White_font)
-        GPD.Ingame_Big_font.font.draw(250, 190, str(GPD.players[sel_player].MAX_HP), [255, 255, 0])
+        GPD.Ingame_Big_font.font.draw(250, 190, str(GPD.players[sel_player].ATK), [255, 255, 0])
 
         GPD.Ingame_Big_font.font.draw(100, 120, 'DEF', White_font)
-        GPD.Ingame_Big_font.font.draw(250, 120, str(GPD.players[sel_player].MAX_HP), [0, 255, 0])
+        GPD.Ingame_Big_font.font.draw(250, 120, str(GPD.players[sel_player].DEF), [0, 255, 0])
 
         GPD.Ingame_Big_font.font.draw(550, 270, '남은 AP', White_font)
         GPD.Ingame_Big_font.font.draw(570, 220, str(GPD.players[sel_player].AP), White_font)
 
-
+        GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35)  # 손가락
         pass
 
 
@@ -150,16 +150,12 @@ def handle_events():
                     sel_index = 0
                     system_message = ""
             elif event.key == SDLK_UP:
-                if shop_mode is 0:
-                    if sel_index > 0:
-                        sel_index -= 1
-                elif shop_mode is 1:
                     if sel_index > 0:
                         sel_index -= 1
             elif event.key == SDLK_DOWN:
                 if shop_mode is 0:
                     if sel_index < 2:
                         sel_index += 1
-                elif shop_mode is 1:
+                elif shop_mode is 1 or shop_mode is 4:
                     if sel_index < 3:
                         sel_index += 1
