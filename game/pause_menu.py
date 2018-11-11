@@ -15,6 +15,8 @@ def enter():
     sel_index = 0
     sel_player = 0
     system_message = "TEST"
+    # 능력치 증가 테스트용
+    GPD.players[0].AP += 5
 
 
 def exit():
@@ -137,9 +139,23 @@ def handle_events():
                     sel_index = 0
                     pass
                 elif shop_mode is 4:
-                    shop_mode = 4
-                    sel_player = sel_index
-                    sel_index = 0
+                    if GPD.players[sel_player].AP > 0:
+                        if sel_index is 0:
+                            GPD.players[sel_player].MAX_HP += 3
+                            GPD.players[sel_player].AP -= 1
+                            pass
+                        elif sel_index is 1:
+                            GPD.players[sel_player].MAX_MP += 2
+                            GPD.players[sel_player].AP -= 1
+                            pass
+                        elif sel_index is 2:
+                            GPD.players[sel_player].ATK += 1
+                            GPD.players[sel_player].AP -= 1
+                            pass
+                        elif sel_index is 3:
+                            GPD.players[sel_player].DEF += 1
+                            GPD.players[sel_player].AP -= 1
+                            pass
                     pass
 
             elif event.key == SDLK_s:
