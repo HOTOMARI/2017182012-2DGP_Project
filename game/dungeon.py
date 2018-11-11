@@ -1,6 +1,7 @@
 from pico2d import*
 import random
 from dungeon_load import FixedTileBackground as Background
+import pause_menu
 import SAVE_Manager
 import game_framework
 import battle
@@ -109,7 +110,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-                game_framework.quit()
+                game_framework.push_state(pause_menu)
             # 강제 배틀 돌입
         elif event.type == SDL_KEYDOWN and event.key == SDLK_0:
             start_battle()

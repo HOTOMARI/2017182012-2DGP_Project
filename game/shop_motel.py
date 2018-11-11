@@ -91,6 +91,3 @@ def handle_events():
             elif event.key == SDLK_s:
                 if shop_mode is 0:
                     game_framework.pop_state()
-
-def SAVE():
-    pass
