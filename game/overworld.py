@@ -40,20 +40,21 @@ def enter():
                      for i in range(len(background.tile_map.layers[2]['objects']))]
 
     # 캐릭터 초기 시작위치
-    GPD.Player.x = GPD.x
-    GPD.Player.y = GPD.y
-    GPD.Player.bg.w = 1600
-    GPD.Player.bg.h = 1600
-    GPD.Player.state = 0
+    if GPD.now_map is 0:
+        GPD.Player.x = GPD.x
+        GPD.Player.y = GPD.y
+        GPD.Player.state = 0
 
-    if GPD.now_map == 1:
+    elif GPD.now_map is 1:
         GPD.Player.x = 461
         GPD.Player.y = 353
 
-    elif GPD.now_map == 2:
+    elif GPD.now_map is 2:
         GPD.Player.x = 506
         GPD.Player.y = 1109
 
+    GPD.Player.bg.w = 1600
+    GPD.Player.bg.h = 1600
     GPD.now_map = 0
 
 
