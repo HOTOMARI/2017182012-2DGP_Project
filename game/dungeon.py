@@ -48,7 +48,8 @@ def enter():
         GPD.Player.x = 119
         GPD.Player.y = 221
         GPD.Player.state = 1
-        GPD.now_map = 1
+
+    GPD.now_map = 1
 
     GPD.Upload_data()
 

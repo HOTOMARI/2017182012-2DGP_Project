@@ -132,10 +132,6 @@ def update():
                     if GPD.monsters[0].act_type == 2 and \
                             GPD.monsters[1].act_type == 2 and \
                             GPD.monsters[2].act_type == 2:
-                        for i in range (0,3):
-                            GPD.money += GPD.monsters[i].MONEY
-                        for j in range (0,4):
-                            GPD.players[j].EXP += GPD.monsters[i].EXP
                         game_framework.push_state(battle_win)
                         Battle_is_End = True
                     else:
