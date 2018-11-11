@@ -55,9 +55,28 @@ def draw():
             if GPD.players[i].name == '전사':
                 GPD.Warrior.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
             GPD.Ingame_Big_font.font.draw(170, 330 - 80 * i, GPD.players[i].name, White_font)
-            for j in range(0,4):
-                GPD.Ingame_font.font.draw(275 + 100 * j, 340 - 80 * i, GPD.players[i].skill[j].name, White_font)
-                GPD.Ingame_font.font.draw(275 + 100 * j, 310 - 80 * i, str(GPD.players[i].skill[j].POWER), White_font)
+
+            GPD.Ingame_font.font.draw(275, 340 - 80 * i, 'HP', White_font)
+            GPD.Ingame_font.font.draw(275, 310 - 80 * i, str(GPD.players[i].HP) + '/' + str(GPD.players[i].MAX_HP),
+                                      White_font)
+
+            GPD.Ingame_font.font.draw(350, 340 - 80 * i, 'MP', White_font)
+            GPD.Ingame_font.font.draw(350, 310 - 80 * i, str(GPD.players[i].MP) + '/' + str(GPD.players[i].MAX_MP),
+                                      White_font)
+
+            GPD.Ingame_font.font.draw(425, 340 - 80 * i, 'EXP', White_font)
+            GPD.Ingame_font.font.draw(425, 310 - 80 * i, str(GPD.players[i].EXP) + '/' + str(GPD.players[i].MAX_EXP),
+                                      White_font)
+
+            GPD.Ingame_font.font.draw(500, 340 - 80 * i, 'ATK', White_font)
+            GPD.Ingame_font.font.draw(500, 310 - 80 * i, str(GPD.players[i].ATK), White_font)
+
+            GPD.Ingame_font.font.draw(575, 340 - 80 * i, 'DEF', White_font)
+            GPD.Ingame_font.font.draw(575, 310 - 80 * i, str(GPD.players[i].DEF), White_font)
+
+            GPD.Ingame_font.font.draw(650, 340 - 80 * i, 'AP', White_font)
+            GPD.Ingame_font.font.draw(650, 310 - 80 * i, str(GPD.players[i].AP),  White_font)
+
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 80, 35, 35)  # 손가락
 
         GPD.Ingame_Big_font.font.draw(325, 50, system_message, [255, 0, 0])
