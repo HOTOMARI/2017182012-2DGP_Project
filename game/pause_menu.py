@@ -78,8 +78,25 @@ def draw():
             GPD.Ingame_font.font.draw(650, 310 - 80 * i, str(GPD.players[i].AP),  White_font)
 
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 80, 35, 35)  # 손가락
+    elif shop_mode is 4:
+        GPD.Ingame_Big_font.font.draw(100, 330, 'MAX HP', White_font)
+        GPD.Ingame_Big_font.font.draw(250, 330, str(GPD.players[sel_player].MAX_HP), [255,0,0])
 
-        GPD.Ingame_Big_font.font.draw(325, 50, system_message, [255, 0, 0])
+        GPD.Ingame_Big_font.font.draw(100, 260, 'MAX MP', White_font)
+        GPD.Ingame_Big_font.font.draw(250, 260, str(GPD.players[sel_player].MAX_HP), [0, 255, 255])
+
+        GPD.Ingame_Big_font.font.draw(100, 190, 'ATK', White_font)
+        GPD.Ingame_Big_font.font.draw(250, 190, str(GPD.players[sel_player].MAX_HP), [255, 255, 0])
+
+        GPD.Ingame_Big_font.font.draw(100, 120, 'DEF', White_font)
+        GPD.Ingame_Big_font.font.draw(250, 120, str(GPD.players[sel_player].MAX_HP), [0, 255, 0])
+
+        GPD.Ingame_Big_font.font.draw(550, 270, '남은 AP', White_font)
+        GPD.Ingame_Big_font.font.draw(570, 220, str(GPD.players[sel_player].AP), White_font)
+
+
+        pass
+
 
     update_canvas()
 
@@ -115,7 +132,12 @@ def handle_events():
                         shop_mode = 3
                         pass
                 elif shop_mode is 1:
-                    shop_mode = 1
+                    shop_mode = 4
+                    sel_player = sel_index
+                    sel_index = 0
+                    pass
+                elif shop_mode is 4:
+                    shop_mode = 4
                     sel_player = sel_index
                     sel_index = 0
                     pass
