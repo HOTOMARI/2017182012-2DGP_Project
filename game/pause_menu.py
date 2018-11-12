@@ -180,7 +180,9 @@ def handle_events():
             elif event.key == SDLK_s:
                 if shop_mode == 0:
                     game_framework.pop_state()
-                elif shop_mode is 1 or shop_mode is 2 or shop_mode is 3:
+                elif shop_mode is 4:
+                    shop_mode = 1
+                else:
                     shop_mode = 0
                     sel_index = 0
                     system_message = ""
