@@ -1,6 +1,7 @@
 from pico2d import *
 from SAVE_Manager import *
 import game_framework
+import title
 import Game_Playing_Data as GPD
 
 
@@ -106,9 +107,12 @@ def draw():
         GPD.Ingame_Big_font.font.draw(600, 500, '네', White_font)
         GPD.Ingame_Big_font.font.draw(600, 450, '아니오', White_font)
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 550, 500 - sel_index * 50, 35, 35)  # 손가락
-        pass
     # 타이틀로
     elif shop_mode is 3:
+        GPD.Ingame_Big_font.font.draw(100, 500, '타이틀로 돌아가시겠습니까?', White_font)
+        GPD.Ingame_Big_font.font.draw(600, 500, '네', White_font)
+        GPD.Ingame_Big_font.font.draw(600, 450, '아니오', White_font)
+        GPD.Menu.image.clip_draw(242, 84, 17, 16, 550, 500 - sel_index * 50, 35, 35)  # 손가락
         pass
 
     GPD.Ingame_Big_font.font.draw(325, 50, system_message, [255, 0, 0])
@@ -179,14 +183,15 @@ def handle_events():
                         shop_mode = 0
                         sel_index = 0
                         system_message = "SAVE COMPLETE!"
-                        pass
                     elif sel_index is 1:
                         shop_mode = 0
                         sel_index = 0
-                        pass
-                    pass
                 elif shop_mode is 3:
-                    pass
+                    if sel_index is 0:
+                        game_framework.change_state(title)
+                    elif sel_index is 1:
+                        shop_mode = 0
+                        sel_index = 0
 
             elif event.key == SDLK_s:
                 if shop_mode == 0:
@@ -207,6 +212,6 @@ def handle_events():
                 elif shop_mode is 1 or shop_mode is 4:
                     if sel_index < 3:
                         sel_index += 1
-                elif shop_mode is 2:
+                elif shop_mode is 2 or shop_mode is 3:
                     if sel_index < 1:
                         sel_index += 1

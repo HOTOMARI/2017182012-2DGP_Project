@@ -1,9 +1,9 @@
 from pico2d import*
 import Game_Playing_Data as GPD
 import game_framework
-import overworld
-import dungeon
-import town
+import overworld, dungeon, town
+import p_warrior
+import i_HPpotion, i_MPpotion, i_Curepotion, i_PhoenixDown
 
 import SAVE_Manager
 
@@ -58,8 +58,11 @@ def handle_events():
                 game_framework.quit()
             elif event.key == SDLK_a:
                 if sel_index is 0:
+                    New_Game()
+                    GPD.now_map = 0
                     game_framework.change_state(overworld)
                 elif sel_index is 1:
+                    New_Game()
                     SAVE_Manager.Load_game()
                     if GPD.now_map is 0:
                         GPD.now_map = -1
@@ -80,3 +83,17 @@ def handle_events():
             elif event.key == SDLK_DOWN:
                 if sel_index < 3:
                     sel_index += 1
+
+
+def New_Game():
+    GPD.money = 400
+    GPD.now_map = 0  # 0 초원 1 던전 2 마을
+    GPD.x, GPD.y = 506, 1109
+    for i in range(0, 4):
+        GPD.players[i] = p_warrior.Warrior(i)
+
+        GPD.items[0] = i_HPpotion.HPpotion()
+        GPD.items[1] = i_MPpotion.MPpotion()
+        GPD.items[2] = i_Curepotion.Curepotion()
+        GPD.items[3] = i_PhoenixDown.PhoenixDown()
+    pass
