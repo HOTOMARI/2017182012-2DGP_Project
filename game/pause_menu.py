@@ -1,6 +1,8 @@
 from pico2d import *
+from SAVE_Manager import *
 import game_framework
 import Game_Playing_Data as GPD
+
 
 White_font = [255, 255, 255]
 Gray_font = [105, 105, 105]
@@ -109,6 +111,8 @@ def draw():
     elif shop_mode is 3:
         pass
 
+    GPD.Ingame_Big_font.font.draw(325, 50, system_message, [255, 0, 0])
+
     update_canvas()
 
 
@@ -135,12 +139,15 @@ def handle_events():
                 if shop_mode is 0:
                     if sel_index is 0:
                         shop_mode = 1
+                        sel_index = 0
                         pass
                     elif sel_index is 1:
                         shop_mode = 2
+                        sel_index = 0
                         pass
                     elif sel_index is 2:
                         shop_mode = 3
+                        sel_index = 0
                         pass
                 elif shop_mode is 1:
                     shop_mode = 4
@@ -168,6 +175,10 @@ def handle_events():
                     pass
                 elif shop_mode is 2:
                     if sel_index is 0:
+                        Save_game()
+                        shop_mode = 0
+                        sel_index = 0
+                        system_message = "SAVE COMPLETE!"
                         pass
                     elif sel_index is 1:
                         shop_mode = 0
