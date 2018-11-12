@@ -98,7 +98,16 @@ def draw():
 
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 70, 35, 35)  # 손가락
         pass
-
+    # 저장메뉴
+    elif shop_mode is 2:
+        GPD.Ingame_Big_font.font.draw(100, 500, '데이터를 저장하시겠습니까?', White_font)
+        GPD.Ingame_Big_font.font.draw(600, 500, '네', White_font)
+        GPD.Ingame_Big_font.font.draw(600, 450, '아니오', White_font)
+        GPD.Menu.image.clip_draw(242, 84, 17, 16, 550, 500 - sel_index * 50, 35, 35)  # 손가락
+        pass
+    # 타이틀로
+    elif shop_mode is 3:
+        pass
 
     update_canvas()
 
@@ -157,11 +166,21 @@ def handle_events():
                             GPD.players[sel_player].AP -= 1
                             pass
                     pass
+                elif shop_mode is 2:
+                    if sel_index is 0:
+                        pass
+                    elif sel_index is 1:
+                        shop_mode = 0
+                        sel_index = 0
+                        pass
+                    pass
+                elif shop_mode is 3:
+                    pass
 
             elif event.key == SDLK_s:
                 if shop_mode == 0:
                     game_framework.pop_state()
-                elif shop_mode is 1:
+                elif shop_mode is 1 or shop_mode is 2 or shop_mode is 3:
                     shop_mode = 0
                     sel_index = 0
                     system_message = ""
@@ -174,4 +193,7 @@ def handle_events():
                         sel_index += 1
                 elif shop_mode is 1 or shop_mode is 4:
                     if sel_index < 3:
+                        sel_index += 1
+                elif shop_mode is 2:
+                    if sel_index < 1:
                         sel_index += 1
