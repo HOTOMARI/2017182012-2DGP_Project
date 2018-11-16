@@ -12,4 +12,4 @@ class Fell_Cleave(Skill):
 
     def activate(self, my_index, target_index):
         GPD.monsters[target_index].HP -= int(self.POWER * (GPD.players[my_index].ATK / 5))
-        GPD.monsters[target_index].hate[my_index] += self.POWER * 2
+        GPD.monsters[target_index].hate[my_index] += self.POWER * 3

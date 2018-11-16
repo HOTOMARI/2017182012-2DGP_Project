@@ -16,4 +16,4 @@ class Provoke(Skill):
             if GPD.monsters[target_index].hate[player] > max_value:
                 max_value = GPD.monsters[target_index].hate[player]
 
-        GPD.monsters[target_index].hate[my_index] = max_value + self.POWER
+        GPD.monsters[target_index].hate[my_index] = max_value + (self.POWER*10)
