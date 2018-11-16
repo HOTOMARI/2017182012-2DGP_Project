@@ -2,7 +2,7 @@ from pico2d import*
 import overworld_charactrer
 
 # 구별 id : 프레임 수
-skill_MAXframe ={0:3, 1:19, 2:29, 11:5, 12:6, 13:24, 14:16}
+skill_MAXframe ={0:3, 1:19, 2:29, 11:5, 12:6, 13:24, 14:16, 15:0, 16:19, 17:19, 18:0}
 
 players=[[]for i in range(4)]
 monsters=[[]for i in range(3)]

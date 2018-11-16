@@ -13,5 +13,5 @@ class SCure(Skill):
     def activate(self, my_index):
         for i in range(0, 4):
             GPD.players[i].HP += int(self.POWER * GPD.players[my_index].ATK)
-        for i in range(0, 4):
+        for i in range(0, 3):
             GPD.monsters[i].hate[my_index] += (self.POWER * GPD.players[my_index].ATK)

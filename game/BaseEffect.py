@@ -10,25 +10,25 @@ class Effect():
     def draw(self, my_num, party_num):
         if self.id == 0:
             GPD.Attack.image.clip_draw(0+int(self.frame % 3)*192, 0, 192, 192, 200, 410 - 100 * party_num)
-        if self.id == 1:
+        elif self.id == 1 or self.id == 16 or self.id == 17:
             GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 3) - int(self.frame / 4) * 192, 192,
                                      192, 600, 420 - 75 * party_num, 72, 72)
-        if self.id == 2:
+        elif self.id == 2:
             GPD.Raise.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 6) * 192, 192,
                                      192, 600, 420 - 75 * party_num, 72, 72)
 
-        if self.id == 11:
+        elif self.id == 11:
             GPD.Provoke.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 1) - int(self.frame / 2) * 192, 192,
                                      192, 200, 410 - 100 * party_num,128,128)
 
-        if self.id == 12:
+        elif self.id == 12:
             GPD.OverPower.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 1) - int(self.frame / 2) * 192, 192,
                                         192, 120, 300, 400, 300)
 
-        if self.id == 13:
+        elif self.id == 13:
             GPD.Shield.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 5) * 192, 192,
                                      192, 500, 420 - 75 * my_num, 100, 100)
 
-        if self.id == 14:
+        elif self.id == 14:
             GPD.Fell_Cleave.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 3) - int(self.frame / 4) * 192, 192,
                                         192, 200, 410 - 100 * party_num)

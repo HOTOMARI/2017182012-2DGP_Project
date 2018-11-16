@@ -13,5 +13,5 @@ class Protect(Skill):
     def activate(self, my_index):
         for i in range(0, 4):
             GPD.players[i].SHIELD += self.POWER
-        for i in range(0, 4):
+        for i in range(0, 3):
             GPD.monsters[i].hate[my_index] += int(self.POWER/3)

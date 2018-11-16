@@ -12,5 +12,5 @@ class Cure(Skill):
 
     def activate(self, my_index, target_index):
         GPD.players[target_index].HP += int(self.POWER * (GPD.players[my_index].ATK / 2))
-        for i in range(0,4):
+        for i in range(0,3):
             GPD.monsters[i].hate[my_index] += (self.POWER * GPD.players[my_index].ATK)
