@@ -56,10 +56,10 @@ def Upload_data():
         Warrior.image = load_image('image\\player\\Warrior.png')
     if WhiteMage is None:
         WhiteMage = Player_sound_data()
-        WhiteMage.image = load_image('image\\player\\White Mage.png')
+        WhiteMage.image = load_image('image\\player\\WhiteMage.png')
     if BlackMage is None:
         BlackMage = Player_sound_data()
-        BlackMage.image = load_image('image\\player\\Black Mage.png')
+        BlackMage.image = load_image('image\\player\\BlackMage.png')
     if Thief is None:
         Thief = Player_sound_data()
         Thief.image = load_image('image\\player\\Thief.png')

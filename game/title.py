@@ -2,7 +2,7 @@ from pico2d import*
 import Game_Playing_Data as GPD
 import game_framework
 import overworld, dungeon, town
-import p_warrior
+import p_Warrior, p_WhiteMage, p_BlackMage, p_Thief
 import i_HPpotion, i_MPpotion, i_Curepotion, i_PhoenixDown
 
 import SAVE_Manager
@@ -89,11 +89,14 @@ def New_Game():
     GPD.money = 400
     GPD.now_map = 0  # 0 초원 1 던전 2 마을
     GPD.x, GPD.y = 506, 1109
-    for i in range(0, 4):
-        GPD.players[i] = p_warrior.Warrior(i)
 
-        GPD.items[0] = i_HPpotion.HPpotion()
-        GPD.items[1] = i_MPpotion.MPpotion()
-        GPD.items[2] = i_Curepotion.Curepotion()
-        GPD.items[3] = i_PhoenixDown.PhoenixDown()
+    GPD.players[0] = p_Warrior.Warrior(0)
+    GPD.players[1] = p_WhiteMage.WhiteMage(1)
+    GPD.players[2] = p_Warrior.Warrior(2)
+    GPD.players[3] = p_Warrior.Warrior(3)
+
+    GPD.items[0] = i_HPpotion.HPpotion()
+    GPD.items[1] = i_MPpotion.MPpotion()
+    GPD.items[2] = i_Curepotion.Curepotion()
+    GPD.items[3] = i_PhoenixDown.PhoenixDown()
     pass

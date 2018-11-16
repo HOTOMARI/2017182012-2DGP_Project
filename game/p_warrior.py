@@ -1,10 +1,10 @@
 from BasePlayer import*
 import json
 import Game_Playing_Data as GPD
-import s_Provoke
-import s_Defiance
-import s_Fell_Cleave
-import s_Overpower
+from s_Provoke import*
+from s_Defiance import*
+from s_Fell_Cleave import*
+from s_Overpower import*
 
 Warrior_data_file = open('json\\Player.json', 'r')
 Warrior_Data = json.load(Warrior_data_file)
@@ -29,7 +29,7 @@ class Warrior(Player):
 
         self.status_string = self.name + '  ' + 'HP: ' + str(self.HP) + '/' + str(self.MAX_HP) + ' ' + 'MP: ' + \
                              str(self.MP) + '/' + str(self.MAX_MP)
-        self.skill=[s_Provoke.Provoke(),s_Overpower.Overpower(),s_Defiance.Defiance(),s_Fell_Cleave.Fell_Cleave()]
+        self.skill=[Provoke(),Overpower(),Defiance(),Fell_Cleave()]
 
     def draw(self):
         if self.act_type == 0:
@@ -55,11 +55,12 @@ class Warrior(Player):
     def renew_status(self):
         self.status_string = self.name + '  ' + 'HP: ' + str(int(self.HP)) + '/' + str(self.MAX_HP) + ' ' + 'MP: ' + \
                              str(self.MP) + '/' + str(self.MAX_MP)
+
     def attack(self,my_index,target_index):
         if self.ATK - self.SHIELD > 0:
             GPD.monsters[target_index].HP -= (self.ATK - self.SHIELD)
         else:
             GPD.monsters[target_index].HP -= 1
-        print('전사' + str(my_index) + '가 '+ GPD.monsters[target_index].name + str(target_index) + '를 공격')
+        print(self.name + str(my_index) + '가 '+ GPD.monsters[target_index].name + str(target_index) + '를 공격')
         print(GPD.monsters[target_index].name + str(target_index) + '의 체력: ' + str(GPD.monsters[target_index].HP))
         GPD.monsters[target_index].hate[my_index] += self.ATK
