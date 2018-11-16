@@ -378,7 +378,8 @@ def handle_events():
                     if sel_menu_type == 1:
                         if GPD.players[player_turn_index].MP >= GPD.players[player_turn_index].skill[menu_index[sel_menu_type]].COST:
                             ID = GPD.players[player_turn_index].skill[menu_index[sel_menu_type]].ID
-                            if ID == 2 or ID == 3:
+                            # 대상 선택 미필요
+                            if ID == 2 or ID == 3 or ID == 7 or ID == 8:
                                 turn_queue.append([2, player_turn_index,menu_index[1]])
 
                                 GPD.players[player_turn_index].act_type = 1
@@ -398,8 +399,10 @@ def handle_events():
                                         if player_turn_index == 4:
                                             turn_end_sign = True
                                             break
-                            elif ID == 1 or ID == 4:
+                            # 대상 선택 : 적군
+                            elif ID == 1 or ID == 4 or ID == 5:
                                 sel_menu_type += 1
+                            # 대상 선택 : 아군
                             else:
                                 sel_menu_type += 2
                     # 대상선택
