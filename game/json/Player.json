@@ -1,3 +1,6 @@
 {
-	"Warrior" : {"HP":20, "MAX_HP":50, "MP":20, "MAX_MP":50, "LEVEL":1, "EXP":0, "MAX_EXP":20, "ATK":10, "DEF":5}
+	"Warrior" : {"HP":20, "MAX_HP":50, "MP":20, "MAX_MP":50, "LEVEL":1, "EXP":0, "MAX_EXP":20, "ATK":10, "DEF":5},
+	"WhiteMage" : {"HP":20, "MAX_HP":50, "MP":20, "MAX_MP":50, "LEVEL":1, "EXP":0, "MAX_EXP":20, "ATK":10, "DEF":5},
+	"BlackMage" : {"HP":20, "MAX_HP":50, "MP":20, "MAX_MP":50, "LEVEL":1, "EXP":0, "MAX_EXP":20, "ATK":10, "DEF":5},
+	"Thief" : {"HP":20, "MAX_HP":50, "MP":20, "MAX_MP":50, "LEVEL":1, "EXP":0, "MAX_EXP":20, "ATK":10, "DEF":5}
 }
