@@ -92,8 +92,8 @@ def New_Game():
 
     GPD.players[0] = p_Warrior.Warrior(0)
     GPD.players[1] = p_WhiteMage.WhiteMage(1)
-    GPD.players[2] = p_Warrior.Warrior(2)
-    GPD.players[3] = p_Warrior.Warrior(3)
+    GPD.players[2] = p_Thief.Thief(2)
+    GPD.players[3] = p_BlackMage.BlackMage(3)
 
     GPD.items[0] = i_HPpotion.HPpotion()
     GPD.items[1] = i_MPpotion.MPpotion()
