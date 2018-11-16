@@ -2,7 +2,7 @@ from pico2d import*
 import overworld_charactrer
 
 # 구별 id : 프레임 수
-skill_MAXframe ={0:3, 1:19, 2:29, 11:5, 12:6, 13:24, 14:16, 15:6, 16:19, 17:19, 18:0}
+skill_MAXframe ={0:3, 1:19, 2:29, 11:5, 12:6, 13:24, 14:16, 15:6, 16:19, 17:19, 18:22}
 
 players=[[]for i in range(4)]
 monsters=[[]for i in range(3)]
@@ -28,16 +28,17 @@ Thief = None
 Attack = None
 Heal = None # 각종 힐 스킬에 돌려막기
 Raise = None
-Shield = None # 각종 보호막 스킬에 돌려막기
+Defiance = None
 Provoke = None
 OverPower = None
 Fell_Cleave = None
 Stone = None
+Protect = None
 
 def Upload_data():
     global Menu, Ingame_font, Ingame_Big_font
     global Player, Warrior, WhiteMage, BlackMage, Thief
-    global Attack, Heal, Raise, Provoke, OverPower, Shield, Fell_Cleave, Stone
+    global Attack, Heal, Raise, Provoke, OverPower, Defiance, Fell_Cleave, Stone, Protect
 
     if Menu is None:
         Menu = Player_sound_data()
@@ -74,9 +75,9 @@ def Upload_data():
     if Raise is None:
         Raise = Player_sound_data()
         Raise.image = load_image('image\\effect\\Raise.png')
-    if Shield is None:
-        Shield = Player_sound_data()
-        Shield.image = load_image('image\\effect\\Shield.png')
+    if Defiance is None:
+        Defiance = Player_sound_data()
+        Defiance.image = load_image('image\\effect\\Shield.png')
     if Provoke is None:
         Provoke = Player_sound_data()
         Provoke.image = load_image('image\\effect\\Provoke.png')
@@ -89,6 +90,9 @@ def Upload_data():
     if Stone is None:
         Stone = Player_sound_data()
         Stone.image = load_image('image\\effect\\Stone.png')
+    if Protect is None:
+        Protect = Player_sound_data()
+        Protect.image = load_image('image\\effect\\Protect.png')
 
 class Image_data():
     def __init__(self):
