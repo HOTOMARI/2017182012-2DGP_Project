@@ -1,10 +1,10 @@
 from BasePlayer import*
-import json
-import Game_Playing_Data as GPD
 from s_Provoke import*
 from s_Defiance import*
 from s_Fell_Cleave import*
 from s_Overpower import*
+import json
+import Game_Playing_Data as GPD
 
 Warrior_data_file = open('json\\Player.json', 'r')
 Warrior_Data = json.load(Warrior_data_file)

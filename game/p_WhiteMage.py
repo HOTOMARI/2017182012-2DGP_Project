@@ -1,4 +1,8 @@
 from BasePlayer import*
+from s_Cure import*
+from s_SCure import*
+from s_Stone import*
+from s_Protect import*
 import json
 import Game_Playing_Data as GPD
 
@@ -26,7 +30,7 @@ class WhiteMage(Player):
 
         self.status_string = self.name + '  ' + 'HP: ' + str(self.HP) + '/' + str(self.MAX_HP) + ' ' + 'MP: ' + \
                              str(self.MP) + '/' + str(self.MAX_MP)
-        self.skill = [None,None,None,None]
+        self.skill = [Stone(),Cure(),SCure(),Protect()]
 
     def draw(self):
         if self.act_type == 0:

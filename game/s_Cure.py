@@ -1,0 +1,16 @@
+from BaseSkill import*
+import json
+import Game_Playing_Data as GPD
+
+Skill_data_file = open('json\\Skill.json', 'r')
+Skill_Data = json.load(Skill_data_file)
+Skill_data_file.close()
+
+class Cure(Skill):
+    def __init__(self):
+        super(Cure, self).__init__('케알', Skill_Data['Cure']['ID'], Skill_Data['Cure']['COST'], Skill_Data['Cure']['POWER'], Skill_Data['Cure']['UPGRADE'])
+
+    def activate(self, my_index, target_index):
+        GPD.players[target_index].HP += int(self.POWER * (GPD.players[my_index].ATK / 2))
+        for i in range(0,4):
+            GPD.monsters[i].hate[my_index] += (self.POWER * GPD.players[my_index].ATK)
