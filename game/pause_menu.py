@@ -91,6 +91,15 @@ def draw():
 
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 80, 35, 35)  # 손가락
     elif shop_mode is 4:
+        if sel_index is 0:
+            GPD.Ingame_Big_font.font.draw(100, 500, '최대 체력을 증가시킵니다.', White_font)
+        elif sel_index is 1:
+            GPD.Ingame_Big_font.font.draw(100, 500, '최대 마나를 증가시킵니다.', White_font)
+        elif sel_index is 2:
+            GPD.Ingame_Big_font.font.draw(100, 500, '공격력을 증가시킵니다.', White_font)
+        elif sel_index is 3:
+            GPD.Ingame_Big_font.font.draw(100, 500, '방어력을 증가시킵니다.', White_font)
+
         GPD.Ingame_Big_font.font.draw(100, 330, 'MAX HP', White_font)
         GPD.Ingame_Big_font.font.draw(250, 330, str(GPD.players[sel_player].MAX_HP), [255,0,0])
 
