@@ -5,10 +5,10 @@ import overworld_charactrer
 skill_MAXframe ={0: 3, 1: 19, 2: 29, 11: 15, 12: 6, 13: 24, 14: 16, 15: 6, 16: 19, 17: 19, 18: 22,
                  19: 21, 20: 10, 21: 22, 22: 22, 23: 15, 24: 28, 25: 20, 26: 26}
 
-players=[[]for i in range(4)]
-monsters=[[]for i in range(3)]
+players=[[None]for i in range(4)]
+monsters=[[None]for i in range(3)]
 # 체력물약 마나물약 만병통치약 불사조의 깃털
-items=[[]for i in range(4)]
+items=[[None]for i in range(4)]
 
 effects = None
 

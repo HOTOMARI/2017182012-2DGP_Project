@@ -5,7 +5,7 @@
   "RedBomb" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
   "ShieldMan" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
   "BlueBomb" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "PupleDragon" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
+  "Dragon" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
   "Bat" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
   "Snake" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
   "Mutalisk" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
