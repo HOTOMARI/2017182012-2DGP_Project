@@ -62,3 +62,15 @@ class Effect():
                                          192, 600, 420 - 75 * party_num, 72, 72)
             GPD.Convert.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192, 192,
                                         192, 500, 420 - 75 * 3, 72, 72)
+        elif self.id == 23:
+            GPD.GustSlash.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 2) - int(self.frame / 5) * 192, 192,
+                                         192, 200, 410 - 100 * party_num, 128, 128)
+
+        elif self.id == 24:
+            pass
+
+        elif self.id == 25:
+            pass
+
+        elif self.id == 26:
+            pass
