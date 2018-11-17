@@ -1,5 +1,8 @@
 from BasePlayer import*
-from s_Provoke import*
+from s_GustSlash import*
+from s_DeathBlossom import*
+from s_Assassinate import*
+from s_Diversion import*
 import json
 import GamePlayingData as GPD
 
@@ -27,7 +30,7 @@ class Thief(Player):
 
         self.status_string = self.name + '  ' + 'HP: ' + str(self.HP) + '/' + str(self.MAX_HP) + ' ' + 'MP: ' + \
                              str(self.MP) + '/' + str(self.MAX_MP)
-        self.skill = [Provoke(),Provoke(),Provoke(),Provoke()]
+        self.skill = [GustSlash(),DeathBlossom(),Assassinate(),Diversion()]
 
     def draw(self):
         if self.act_type == 0:
