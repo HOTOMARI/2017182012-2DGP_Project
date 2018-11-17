@@ -51,8 +51,8 @@ def draw():
         elif sel_index is 2:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 상태이상을 제거합니다.', White_font)
         elif sel_index is 3:
-            GPD.Ingame_Big_font.font.draw(100, 475, '대상 아군의 HP와 MP를 전부 채워줍니다.', White_font)
-            GPD.Ingame_Big_font.font.draw(100, 525, '대상이 죽어있었으면 부활시킵니다.', White_font)
+            GPD.Ingame_Big_font.font.draw(100, 525, '대상 아군의 HP와 MP를 전부 채워줍니다.', White_font)
+            GPD.Ingame_Big_font.font.draw(100, 475, '대상이 죽어있었으면 부활시킵니다.', White_font)
 
         GPD.Ingame_Big_font.font.draw(500, 500, "남은 골드: " + str(GPD.money), White_font)
         
@@ -82,8 +82,8 @@ def draw():
         elif sel_index is 2:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 상태이상을 제거합니다.', White_font)
         elif sel_index is 3:
-            GPD.Ingame_Big_font.font.draw(100, 475, '대상 아군의 HP와 MP를 전부 채워줍니다.', White_font)
-            GPD.Ingame_Big_font.font.draw(100, 525, '대상이 죽어있었으면 부활시킵니다.', White_font)
+            GPD.Ingame_Big_font.font.draw(100, 525, '대상 아군의 HP와 MP를 전부 채워줍니다.', White_font)
+            GPD.Ingame_Big_font.font.draw(100, 475, '대상이 죽어있었으면 부활시킵니다.', White_font)
 
         GPD.Ingame_Big_font.font.draw(500, 500, "남은 골드: " + str(GPD.money), White_font)
 

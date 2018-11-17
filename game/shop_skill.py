@@ -45,7 +45,13 @@ def draw():
         for i in range(0,4):
             if GPD.players[i].name == '전사':
                 GPD.Warrior.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
-                pass
+            elif GPD.players[i].name == '백마도사':
+                GPD.WhiteMage.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
+            elif GPD.players[i].name == '흑마도사':
+                GPD.BlackMage.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
+            elif GPD.players[i].name == '도적':
+                GPD.Thief.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
+
             GPD.Ingame_Big_font.font.draw(170, 330 - 80 * i, GPD.players[i].name, White_font)
             for j in range(0,4):
                 GPD.Ingame_font.font.draw(275 + 100 * j, 340 - 80 * i, GPD.players[i].skill[j].name, White_font)
@@ -55,15 +61,43 @@ def draw():
     # 구입메뉴
     elif shop_mode is 1:
         # 스킬 설명
-        if sel_index is 0:
-            GPD.Ingame_Big_font.font.draw(100, 500, 'HP를 50 회복합니다.', White_font)
-        elif sel_index is 1:
-            GPD.Ingame_Big_font.font.draw(100, 500, 'MP를 50 회복합니다.', White_font)
-        elif sel_index is 2:
-            GPD.Ingame_Big_font.font.draw(100, 500, '모든 상태이상을 제거합니다.', White_font)
-        elif sel_index is 3:
-            GPD.Ingame_Big_font.font.draw(100, 475, '대상 아군의 HP와 MP를 전부 채워줍니다.', White_font)
-            GPD.Ingame_Big_font.font.draw(100, 525, '대상이 죽어있었으면 부활시킵니다.', White_font)
+        ID = GPD.players[sel_player].skill[sel_index].ID
+        if ID is 1:
+            GPD.Ingame_Big_font.font.draw(100, 500, '대상 적의 공격대상을 자신으로 바꿉니다.', White_font)
+        elif ID is 2:
+            GPD.Ingame_Big_font.font.draw(100, 500, '모든 적에게 데미지를 줍니다.', White_font)
+        elif ID is 3:
+            GPD.Ingame_Big_font.font.draw(100, 500, '자신에게 방어막을 씌웁니다.', White_font)
+        elif ID is 4:
+            GPD.Ingame_Big_font.font.draw(100, 500, '대상 적에게 큰 데미지를 줍니다.', White_font)
+        elif ID is 5:
+            GPD.Ingame_Big_font.font.draw(100, 500, '대상 적에게 토속성 데미지를 줍니다.', White_font)
+        elif ID is 6:
+            GPD.Ingame_Big_font.font.draw(100, 500, '대상 아군의 체력을 회복시킵니다.', White_font)
+        elif ID is 7:
+            GPD.Ingame_Big_font.font.draw(100, 500, '모든 아군의 체력을 크게 회복시킵니다.', White_font)
+        elif ID is 8:
+            GPD.Ingame_Big_font.font.draw(100, 500, '모든 아군에게 방어막을 씌웁니다.', White_font)
+        elif ID is 9:
+            GPD.Ingame_Big_font.font.draw(100, 500, '대상 적에게 빙속성 데미지를 줍니다.', White_font)
+        elif ID is 10:
+            GPD.Ingame_Big_font.font.draw(100, 500, '모든 적에게 화속성 데미지를 줍니다.', White_font)
+        elif ID is 11:
+            GPD.Ingame_Big_font.font.draw(100, 525, '자신의 체력 20%를 감소시켜', White_font)
+            GPD.Ingame_Big_font.font.draw(100, 475, '마나를 회복합니다.', White_font)
+        elif ID is 12:
+            GPD.Ingame_Big_font.font.draw(100, 525, '자신의 현재 마나 30%를 감소시켜', White_font)
+            GPD.Ingame_Big_font.font.draw(100, 475, '대상 아군의 마나를 회복시킵니다.', White_font)
+        elif ID is 13:
+            GPD.Ingame_Big_font.font.draw(100, 500, '대상 적에게 데미지를 줍니다.', White_font)
+        elif ID is 14:
+            GPD.Ingame_Big_font.font.draw(100, 500, '모든 적에게 데미지를 줍니다.', White_font)
+        elif ID is 15:
+            GPD.Ingame_Big_font.font.draw(100, 545, '대상 적에게 데미지를 줍니다.', White_font)
+            GPD.Ingame_Big_font.font.draw(100, 495, '적의 체력이 자신의 공격력보다 낮으면', White_font)
+            GPD.Ingame_Big_font.font.draw(100, 445, '추가 데미지를 줍니다.', White_font)
+        elif ID is 16:
+            GPD.Ingame_Big_font.font.draw(100, 500, '모든 적의 자신에 대한 적개심을 낮춥니다.', White_font)
 
         GPD.Ingame_Big_font.font.draw(500, 500, "남은 골드: " + str(GPD.money), White_font)
 
