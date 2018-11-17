@@ -1,5 +1,6 @@
 from pico2d import*
 import GamePlayingData as GPD
+import subprocess
 import game_framework
 import overworld, dungeon, town
 import p_Warrior, p_WhiteMage, p_BlackMage, p_Thief
@@ -74,6 +75,7 @@ def handle_events():
                         GPD.now_map = -1
                         game_framework.change_state(town)
                 elif sel_index is 2:
+                    subprocess.call('howtoplay.bat')
                     pass
                 elif sel_index is 3:
                     game_framework.quit()
