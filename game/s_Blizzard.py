@@ -8,7 +8,7 @@ Skill_data_file.close()
 
 class Blizzard(Skill):
     def __init__(self):
-        super(Blizzard, self).__init__('블리자드', Skill_Data['Bllizzard']['ID'], Skill_Data['Bllizzard']['COST'], Skill_Data['Bllizzard']['POWER'], Skill_Data['Bllizzard']['UPGRADE'])
+        super(Blizzard, self).__init__('블리자드', Skill_Data['Blizzard']['ID'], Skill_Data['Blizzard']['COST'], Skill_Data['Blizzard']['POWER'], Skill_Data['Blizzard']['UPGRADE'])
 
     def activate(self, my_index, target_index):
         GPD.monsters[target_index].HP -= int(self.POWER * 3)

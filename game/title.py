@@ -1,11 +1,11 @@
 from pico2d import*
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 import game_framework
 import overworld, dungeon, town
 import p_Warrior, p_WhiteMage, p_BlackMage, p_Thief
 import i_HPpotion, i_MPpotion, i_Curepotion, i_PhoenixDown
 
-import SAVE_Manager
+import SAVEManager
 
 background = None
 logo = None
@@ -63,7 +63,7 @@ def handle_events():
                     game_framework.change_state(overworld)
                 elif sel_index is 1:
                     New_Game()
-                    SAVE_Manager.Load_game()
+                    SAVEManager.Load_game()
                     if GPD.now_map is 0:
                         GPD.now_map = -1
                         game_framework.change_state(overworld)

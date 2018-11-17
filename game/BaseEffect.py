@@ -46,3 +46,7 @@ class Effect():
                                         192, 600, 420 - 75 * 2, 72, 72)
             GPD.Protect.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192, 192,
                                         192, 600, 420 - 75 * 3, 72, 72)
+
+        elif self.id == 19:
+            GPD.Blizzard.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192, 192,
+                                      192, 200, 410 - 100 * party_num, 128, 128)

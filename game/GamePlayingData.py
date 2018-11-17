@@ -2,7 +2,8 @@ from pico2d import*
 import overworld_charactrer
 
 # 구별 id : 프레임 수
-skill_MAXframe ={0:3, 1:19, 2:29, 11:15, 12:6, 13:24, 14:16, 15:6, 16:19, 17:19, 18:22}
+skill_MAXframe ={0:3, 1:19, 2:29, 11:15, 12:6, 13:24, 14:16, 15:6, 16:19, 17:19, 18:22,
+                 19:21, 20:10, 21:22, 22:22}
 
 players=[[]for i in range(4)]
 monsters=[[]for i in range(3)]
@@ -34,11 +35,15 @@ OverPower = None
 Fell_Cleave = None
 Stone = None
 Protect = None
+Blizzard = None
+SFire = None
+Convert = None
 
 def Upload_data():
     global Menu, Ingame_font, Ingame_Big_font
     global Player, Warrior, WhiteMage, BlackMage, Thief
     global Attack, Heal, Raise, Provoke, OverPower, Defiance, Fell_Cleave, Stone, Protect
+    global Blizzard, SFire, Convert
 
     if Menu is None:
         Menu = Player_sound_data()
@@ -93,6 +98,15 @@ def Upload_data():
     if Protect is None:
         Protect = Player_sound_data()
         Protect.image = load_image('image\\effect\\Protect.png')
+    if Blizzard is None:
+        Blizzard = Player_sound_data()
+        Blizzard.image = load_image('image\\effect\\Blizzard.png')
+    if SFire is None:
+        SFire = Player_sound_data()
+        SFire.image = load_image('image\\effect\\SFire.png')
+    if Convert is None:
+        Convert = Player_sound_data()
+        Convert.image = load_image('image\\effect\\Convert.png')
 
 class Image_data():
     def __init__(self):

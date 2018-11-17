@@ -1,6 +1,6 @@
 from pico2d import*
 import game_framework
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 import gameover
 import battle_win
 
@@ -379,7 +379,7 @@ def handle_events():
                         if GPD.players[player_turn_index].MP >= GPD.players[player_turn_index].skill[menu_index[sel_menu_type]].COST:
                             ID = GPD.players[player_turn_index].skill[menu_index[sel_menu_type]].ID
                             # 대상 선택 미필요
-                            if ID == 2 or ID == 3 or ID == 7 or ID == 8:
+                            if ID == 2 or ID == 3 or ID == 7 or ID == 8 or ID == 10:
                                 turn_queue.append([2, player_turn_index,menu_index[1]])
 
                                 GPD.players[player_turn_index].act_type = 1
@@ -400,7 +400,7 @@ def handle_events():
                                             turn_end_sign = True
                                             break
                             # 대상 선택 : 적군
-                            elif ID == 1 or ID == 4 or ID == 5:
+                            elif ID == 1 or ID == 4 or ID == 5 or ID == 9:
                                 sel_menu_type += 1
                             # 대상 선택 : 아군
                             else:
