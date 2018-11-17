@@ -2,11 +2,11 @@ from pico2d import*
 import random
 from dungeon_load import FixedTileBackground as Background
 import pause_menu
-import SAVE_Manager
+import SAVEManager
 import game_framework
 import battle
 import overworld
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 import BaseEffect
 import Bounding_box
 import m_wolf
@@ -116,10 +116,10 @@ def handle_events():
             start_battle()
             # 데이터 로드 테스트
         elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
-            SAVE_Manager.Load_game()
+            SAVEManager.Load_game()
             # 데이터 세이브 테스트
         elif event.type == SDL_KEYDOWN and event.key == SDLK_2:
-            SAVE_Manager.Save_game()
+            SAVEManager.Save_game()
         else:
             GPD.Player.handle_events(event)
 

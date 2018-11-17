@@ -1,4 +1,4 @@
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 
 
 def Save_game():

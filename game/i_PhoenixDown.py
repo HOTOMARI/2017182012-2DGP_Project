@@ -1,6 +1,6 @@
 from BaseItem import*
 import json
-import Game_Playing_Data
+import GamePlayingData as GPD
 
 Phoenix_Down_data_file = open('json\\Item.json', 'r')
 Phoenix_Down_Data = json.load(Phoenix_Down_data_file)
@@ -11,7 +11,7 @@ class PhoenixDown(Item):
         super(PhoenixDown, self).__init__('부활의 깃털', Phoenix_Down_Data['Phoenix_Down']['NUM'], Phoenix_Down_Data['Phoenix_Down']['COST'])
 
     def use(self, target_index):
-        Game_Playing_Data.players[target_index].act_type = 0
-        Game_Playing_Data.players[target_index].HP = Game_Playing_Data.players[target_index].MAX_HP
-        Game_Playing_Data.players[target_index].MP = Game_Playing_Data.players[target_index].MAX_MP
+        GPD.players[target_index].act_type = 0
+        GPD.players[target_index].HP = GPD.players[target_index].MAX_HP
+        GPD.players[target_index].MP = GPD.players[target_index].MAX_MP
         print('플레이어'+str(target_index)+' 부활')

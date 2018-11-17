@@ -1,8 +1,8 @@
 from pico2d import *
-from SAVE_Manager import *
+from SAVEManager import *
 import game_framework
 import title
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 
 
 White_font = [255, 255, 255]

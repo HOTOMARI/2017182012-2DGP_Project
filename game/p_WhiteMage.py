@@ -4,7 +4,7 @@ from s_SCure import*
 from s_Stone import*
 from s_Protect import*
 import json
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 
 
 WhiteMage_data_file = open('json\\Player.json', 'r')

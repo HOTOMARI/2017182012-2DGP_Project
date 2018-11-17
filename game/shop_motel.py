@@ -1,7 +1,7 @@
 from pico2d import *
 import game_framework
-import Game_Playing_Data as GPD
-import SAVE_Manager
+import GamePlayingData as GPD
+import SAVEManager
 
 White_font = [255, 255, 255]
 Gray_font = [105, 105, 105]
@@ -82,7 +82,7 @@ def handle_events():
                             GPD.players[i].HP = GPD.players[i].MAX_HP
                             GPD.players[i].MP = GPD.players[i].MAX_MP
                         system_message = "데이터를 저장합니다."
-                        SAVE_Manager.Save_game()
+                        SAVEManager.Save_game()
                         system_message = "데이터 저장이 완료되었습니다."
                         shop_mode = 1
                 elif shop_mode is 1:

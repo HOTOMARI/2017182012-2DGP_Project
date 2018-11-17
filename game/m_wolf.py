@@ -1,7 +1,7 @@
 from BaseMonster import*
 import random
 import json
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 
 Wolf_data_file = open('json\\Monster.json', 'r')
 Wolf_Data = json.load(Wolf_data_file)

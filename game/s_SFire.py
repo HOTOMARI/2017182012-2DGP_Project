@@ -1,6 +1,6 @@
 from BaseSkill import*
 import json
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 
 Skill_data_file = open('json\\Skill.json', 'r')
 Skill_Data = json.load(Skill_data_file)

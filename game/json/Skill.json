@@ -2,7 +2,7 @@
   "Provoke" : {"ID":1, "COST":5, "POWER":1, "UPGRADE": 1},
   "Overpower" : {"ID":2, "COST":7, "POWER":10, "UPGRADE":15},
   "Defiance" : {"ID":3, "COST":7, "POWER":5, "UPGRADE": 5},
-  "Fell_Cleave" : {"ID":4, "COST":13, "POWER":30, "UPGRADE": 20},
+  "FellCleave" : {"ID":4, "COST":13, "POWER":30, "UPGRADE": 20},
 
   "Stone" : {"ID":5, "COST":7, "POWER":7, "UPGRADE": 5},
   "Cure" : {"ID":6, "COST":7, "POWER":5, "UPGRADE":10},
@@ -12,10 +12,10 @@
   "Blizzard" : {"ID":9, "COST":10, "POWER":10, "UPGRADE": 10},
   "SFire" : {"ID":10, "COST":20, "POWER":25, "UPGRADE":10},
   "Convert" : {"ID":11, "COST":0, "POWER":0, "UPGRADE": 1},
-  "Mana_Shift" : {"ID":12, "COST":0, "POWER":0, "UPGRADE": 1},
+  "ManaShift" : {"ID":12, "COST":0, "POWER":0, "UPGRADE": 1},
 
-  "Gust_Slash" : {"ID":13, "COST":5, "POWER":10, "UPGRADE": 15},
-  "Death Blossom" : {"ID":14, "COST":7, "POWER":15, "UPGRADE":15},
+  "GustSlash" : {"ID":13, "COST":5, "POWER":10, "UPGRADE": 15},
+  "DeathBlossom" : {"ID":14, "COST":7, "POWER":15, "UPGRADE":15},
   "Assassinate" : {"ID":15, "COST":14, "POWER":40, "UPGRADE": 20},
   "Diversion" : {"ID":16, "COST":5, "POWER":0, "UPGRADE": 1}
 }

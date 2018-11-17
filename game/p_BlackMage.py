@@ -2,9 +2,9 @@ from BasePlayer import*
 from s_Blizzard import*
 from s_SFire import*
 from s_Convert import*
-from s_Mana_Shift import*
+from s_ManaShift import*
 import json
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 
 
 BlackMage_data_file = open('json\\Player.json', 'r')

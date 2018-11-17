@@ -1,6 +1,6 @@
 from pico2d import*
 import game_framework
-import Game_Playing_Data as GPD
+import GamePlayingData as GPD
 import battle
 
 

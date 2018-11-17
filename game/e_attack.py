@@ -1,5 +1,5 @@
 from BaseEffect import*
-import Game_Playing_Data
+import GamePlayingData
 
 
 class E_attack(Effect):
