@@ -1,10 +1,9 @@
 from pico2d import*
 from town_load import FixedTileBackground as Background
-import SAVEManager
 import game_framework
 import GamePlayingData as GPD
 import Bounding_box
-import overworld
+import overworld, pause_menu
 import shop_potion, shop_skill, shop_motel
 
 
@@ -124,13 +123,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-                game_framework.quit()
-                # 데이터 로드 테스트
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
-            SAVEManager.Load_game()
-            # 데이터 세이브 테스트
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_2:
-            SAVEManager.Save_game()
+            game_framework.push_state(pause_menu)
         else:
             GPD.Player.handle_events(event)
 

@@ -59,6 +59,13 @@ def draw():
         for i in range(0,4):
             if GPD.players[i].name == '전사':
                 GPD.Warrior.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
+            elif GPD.players[i].name == '백마도사':
+                GPD.WhiteMage.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
+            elif GPD.players[i].name == '흑마도사':
+                GPD.BlackMage.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
+            elif GPD.players[i].name == '도적':
+                GPD.Thief.image.clip_draw(0, 0, 72, 72, 100, 330 - 80 * i)
+
             GPD.Ingame_Big_font.font.draw(170, 330 - 80 * i, GPD.players[i].name, White_font)
 
             GPD.Ingame_font.font.draw(275, 340 - 80 * i, 'HP', White_font)

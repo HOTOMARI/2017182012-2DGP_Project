@@ -2,9 +2,8 @@ from monster_spawner import*
 from pico2d import*
 import random
 from overworld_load import FixedTileBackground as Background
-import SAVEManager
 import game_framework
-import battle
+import battle, pause_menu
 import dungeon
 import town
 import GamePlayingData as GPD
@@ -123,16 +122,10 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-                game_framework.quit()
+            game_framework.push_state(pause_menu)
             # 강제 배틀 돌입
         elif event.type == SDL_KEYDOWN and event.key == SDLK_0:
             start_battle()
-            # 데이터 로드 테스트
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
-            SAVEManager.Load_game()
-            # 데이터 세이브 테스트
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_2:
-            SAVEManager.Save_game()
         else:
             GPD.Player.handle_events(event)
 
