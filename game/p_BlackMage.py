@@ -1,5 +1,8 @@
 from BasePlayer import*
-from s_Provoke import*
+from s_Blizzard import*
+from s_SFire import*
+from s_Convert import*
+from s_Mana_Shift import*
 import json
 import Game_Playing_Data as GPD
 
@@ -27,7 +30,7 @@ class BlackMage(Player):
 
         self.status_string = self.name + '  ' + 'HP: ' + str(self.HP) + '/' + str(self.MAX_HP) + ' ' + 'MP: ' + \
                              str(self.MP) + '/' + str(self.MAX_MP)
-        self.skill = [Provoke(),Provoke(),Provoke(),Provoke()]
+        self.skill = [Blizzard(),SFire(),Convert(),ManaShift()]
 
     def draw(self):
         if self.act_type == 0:
