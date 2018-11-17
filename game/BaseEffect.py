@@ -71,7 +71,8 @@ class Effect():
                                       192, 200, 300, 400, 400)
 
         elif self.id == 25:
-            pass
+            GPD.Assassinate.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 2) - int(self.frame / 5) * 192, 192,
+                                          192, 200, 410 - 100 * party_num, 128, 128)
 
         elif self.id == 26:
             pass
