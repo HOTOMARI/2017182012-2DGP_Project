@@ -379,7 +379,7 @@ def handle_events():
                         if GPD.players[player_turn_index].MP >= GPD.players[player_turn_index].skill[menu_index[sel_menu_type]].COST:
                             ID = GPD.players[player_turn_index].skill[menu_index[sel_menu_type]].ID
                             # 대상 선택 미필요
-                            if ID == 2 or ID == 3 or ID == 7 or ID == 8 or ID == 10:
+                            if ID == 2 or ID == 3 or ID == 7 or ID == 8 or ID == 10 or ID == 11:
                                 turn_queue.append([2, player_turn_index,menu_index[1]])
 
                                 GPD.players[player_turn_index].act_type = 1
