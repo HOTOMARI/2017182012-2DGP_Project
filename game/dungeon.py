@@ -9,7 +9,7 @@ import overworld
 import GamePlayingData as GPD
 import BaseEffect
 import Bounding_box
-import m_wolf
+import m_Wolf
 
 
 WIDTH=800
@@ -142,7 +142,7 @@ def start_battle():
     for i in range(0, 4):
         GPD.Player.move_dir[i] = 0
     for i in range(0, 3):
-        GPD.monsters[i] = m_wolf.Wolf(i)
+        GPD.monsters[i] = m_Wolf.Wolf(i)
     if GPD.effects == None:
         GPD.effects = BaseEffect.Effect()
     game_framework.push_state(battle)

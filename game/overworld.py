@@ -1,3 +1,4 @@
+from monster_spawner import*
 from pico2d import*
 import random
 from overworld_load import FixedTileBackground as Background
@@ -9,7 +10,7 @@ import town
 import GamePlayingData as GPD
 import BaseEffect
 import Bounding_box
-import m_wolf
+
 
 
 WIDTH=800
@@ -153,8 +154,7 @@ def collide(a, b):
 def start_battle():
     for i in range(0, 4):
         GPD.Player.move_dir[i] = 0
-    for i in range(0, 3):
-        GPD.monsters[i] = m_wolf.Wolf(i)
+    Generate_monster()
     if GPD.effects == None:
         GPD.effects = BaseEffect.Effect()
     game_framework.push_state(battle)

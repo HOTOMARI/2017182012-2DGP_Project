@@ -3,14 +3,14 @@ import random
 import json
 import GamePlayingData as GPD
 
-Wolf_data_file = open('json\\Monster.json', 'r')
-Wolf_Data = json.load(Wolf_data_file)
-Wolf_data_file.close()
+Monster_data_file = open('json\\Monster.json', 'r')
+Monster_Data = json.load(Monster_data_file)
+Monster_data_file.close()
 
 class Wolf(Monster):
     def __init__(self,party_num):
-        super(Wolf, self).__init__('늑대', Wolf_Data['Wolf']['HP'], Wolf_Data['Wolf']['EXP'],
-                                      Wolf_Data['Wolf']['ATK'], Wolf_Data['Wolf']['DEF'], Wolf_Data['Wolf']['MONEY'])
+        super(Wolf, self).__init__('늑대', Monster_Data['Wolf']['HP'], Monster_Data['Wolf']['EXP'],
+                                   Monster_Data['Wolf']['ATK'], Monster_Data['Wolf']['DEF'], Monster_Data['Wolf']['MONEY'])
         self.frame=random.randint(0,3)%4
         self.party_num=party_num
         self.image=load_image('image\\monster\\monster_001.png')
@@ -44,7 +44,7 @@ class Wolf(Monster):
             GPD.players[self.attack_target].act_type = 7
         elif GPD.players[self.attack_target].HP/GPD.players[self.attack_target].MAX_HP <= 0.2:
             GPD.players[self.attack_target].act_type = 5
-        print('늑대' + str(my_index) + '가 '+ GPD.players[self.attack_target].name + str(self.attack_target) + '를 공격')
+        print(self.name + str(my_index) + '가 '+ GPD.players[self.attack_target].name + str(self.attack_target) + '를 공격')
         print(GPD.players[self.attack_target].name + str(self.attack_target) + '의 체력: ' + str(GPD.players[self.attack_target].HP))
         
     def setting_target(self):
