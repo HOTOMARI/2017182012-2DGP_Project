@@ -34,8 +34,11 @@ def enter():
     player_turn_index = 0
     monster_turn_index = 0
 
+    for i in range(0,4):
+        GPD.players[i].act_type = 7
+
     # 앞의 플레이어가 죽었을 경우 턴 넘김
-    for i in range(0,3):
+    for i in range(0,4):
         if GPD.players[i].act_type == 7:
             player_turn_index += 1
         else:

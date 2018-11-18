@@ -1,14 +1,17 @@
 from pico2d import*
 import game_framework
+import GamePlayingData as GPD
+import title
 
+background = None
 
 def enter():
-    global font
-    font = load_font('font\\H2SA1M.TTF')
+    global background
+    if background is None:
+        background = load_image('image\\black_point.png')
+    GPD.Upload_data()
 
 def exit():
-    global font
-    del(font)
     pass
 
 def update():
@@ -16,7 +19,8 @@ def update():
 
 def draw():
     clear_canvas()
-    font.draw(75, 115, 'GAMEOVER', [255, 255, 255])
+    background.clip_draw(0, 0, 1, 1, 400, 300, 800, 600)
+    GPD.Ingame_Big_font.font.draw(325, 300, 'GAME OVER', [255, 0, 0])
     update_canvas()
 
 def pause(): pass
@@ -31,5 +35,4 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN:
-            if event.key == SDLK_ESCAPE:
-                game_framework.quit()
+            game_framework.change_state(title)
