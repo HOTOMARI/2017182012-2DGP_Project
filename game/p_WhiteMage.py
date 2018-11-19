@@ -59,7 +59,7 @@ class WhiteMage(Player):
 
     def attack(self,my_index,target_index):
         if self.ATK - self.SHIELD > 0:
-            GPD.monsters[target_index].HP -= (int(self.ATK/2) - self.SHIELD)
+            GPD.monsters[target_index].HP -= int(self.ATK/2)
         else:
             GPD.monsters[target_index].HP -= 1
         print(self.name + str(my_index) + '가 '+ GPD.monsters[target_index].name + str(target_index) + '를 공격')
