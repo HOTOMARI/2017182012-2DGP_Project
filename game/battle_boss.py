@@ -82,8 +82,8 @@ def update():
         else:
             for i in range(0, 4):
                 GPD.players[i].renew_status()
-                GPD.players[i].frame += 0.2
-            GPD.monsters[0].frame += 0.2
+                GPD.players[i].frame += game_framework.frame_time * 45
+            GPD.monsters[0].frame += game_framework.frame_time * 45
 
             if turn_end_sign and len(turn_queue) != 0:
                 do_player_animation()

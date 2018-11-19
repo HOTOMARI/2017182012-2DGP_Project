@@ -44,7 +44,7 @@ def update():
 
     if current_time - Prevtime > 1 / 60:
         for i in range (0,4):
-            GPD.players[i].frame += 0.05
+            GPD.players[i].frame += game_framework.frame_time * 45
 
         if message_index >= 7:
             game_framework.pop_state()

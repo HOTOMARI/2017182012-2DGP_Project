@@ -22,9 +22,15 @@ class Kefka(Monster):
         self.lim_attack = load_image('image\\monster\\Boss\\limit_atk.png')
         self.magic_attack = load_image('image\\monster\\Boss\\magic_atk.png')
 
+        self.f_idle = load_image('image\\monster\\Boss\\f_idle.png')
+        self.f_magic_idle = load_image('image\\monster\\Boss\\f_magic_standby.png')
+        self.f_attack = load_image('image\\monster\\Boss\\f_atk.png')
+        self.f_lim_attack = load_image('image\\monster\\Boss\\f_limit_atk.png')
+        self.f_magic_attack = load_image('image\\monster\\Boss\\f_magic_atk.png')
+
         # 0 common  1 attack 2 magic_ready 3 magic 4 lim_attack 5 die
-        self.act_type = 0
-        self.phase = 0
+        self.act_type = 4
+        self.phase = 1
         self.anistep = 0
 
         self.condition = 0
@@ -59,6 +65,32 @@ class Kefka(Monster):
             elif self.act_type is 4:
                 self.lim_attack.clip_composite_draw(int(self.frame % 3) * 261, int(298 * 16) - int(self.frame / 4) * 298, 261, 298,
                                                     0,'h', 250, 330, 522, 596 - self.die_animation)
+                if self.frame > 50:
+                    self.frame = 0
+        elif self.phase is 1:
+            if self.act_type is 0:
+                self.f_idle.clip_composite_draw(int(self.frame % 3) * 127, int(147 * 3) - int(self.frame / 4) * 147, 127, 147,
+                                              0,'h', 200, 370, 254, 294 - self.die_animation)
+                if self.frame > 13:
+                    self.frame = 0
+            elif self.act_type is 1:
+                self.f_attack.clip_composite_draw(int(self.frame % 3) * 313, int(147 * 9) - int(self.frame / 4) * 147, 313, 147,
+                                                0,'h', 400, 370, 626, 294 - self.die_animation)
+                if self.frame > 30:
+                    self.frame = 0
+            elif self.act_type is 2:
+                self.f_magic_idle.clip_composite_draw(int(self.frame % 3) * 127, int(147 * 3) - int(self.frame / 4) * 147, 127, 147,
+                                              0,'h', 200, 370, 254, 294 - self.die_animation)
+                if self.frame > 13:
+                    self.frame = 0
+            elif self.act_type is 3:
+                self.f_magic_attack.clip_composite_draw(int(self.frame % 3) * 127, int(148 * 3) - int(self.frame / 4) * 148, 127, 148,
+                                              0,'h', 200, 370, 254, 296 - self.die_animation)
+                if self.frame > 13:
+                    self.frame = 0
+            elif self.act_type is 4:
+                self.f_lim_attack.clip_composite_draw(int(self.frame % 3) * 252, int(267 * 16) - int(self.frame / 4) * 267, 252, 267,
+                                                    0,'h', 250, 330, 504, 534 - self.die_animation)
                 if self.frame > 50:
                     self.frame = 0
 
