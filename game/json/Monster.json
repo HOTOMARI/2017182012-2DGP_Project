@@ -9,5 +9,6 @@
   "Bat" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
   "Snake" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
   "Mutalisk" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "Flower" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15}
+  "Flower" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
+  "Kefka" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15}
 }

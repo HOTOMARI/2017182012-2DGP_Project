@@ -1,14 +1,15 @@
+from monster_spawner import*
 from pico2d import*
 import random
 from dungeon_load import FixedTileBackground as Background
 import pause_menu
 import game_framework
-import battle
+import battle, battle_boss
 import overworld
 import GamePlayingData as GPD
 import BaseEffect
 import Bounding_box
-import m_Wolf
+import m_Kefka
 
 
 WIDTH=800
@@ -78,6 +79,9 @@ def update():
         if collide(GPD.Player, Entrance_Tile[0]):
             game_framework.change_state(overworld)
 
+        if collide(GPD.Player, Entrance_Tile[1]):
+            start_Bossbattle()
+
         if GPD.Player.battle_counter <= 0:
             GPD.Player.battle_counter = 30  + random.randint(0,10)
             start_battle()
@@ -134,8 +138,16 @@ def collide(a, b):
 def start_battle():
     for i in range(0, 4):
         GPD.Player.move_dir[i] = 0
-    for i in range(0, 3):
-        GPD.monsters[i] = m_Wolf.Wolf(i)
+        Generate_monster()
     if GPD.effects == None:
         GPD.effects = BaseEffect.Effect()
     game_framework.push_state(battle)
+
+
+def start_Bossbattle():
+    for i in range(0, 4):
+        GPD.Player.move_dir[i] = 0
+    GPD.monsters[0] = m_Kefka.Kefka(0)
+    if GPD.effects == None:
+        GPD.effects = BaseEffect.Effect()
+    game_framework.push_state(battle_boss)
