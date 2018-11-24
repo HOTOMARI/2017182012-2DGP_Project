@@ -254,10 +254,11 @@ def draw():
 
     # 액션 선택 창
     GPD.Menu.image.clip_draw(0, 0, 240, 160, 400, 75, int(800 / 4), 150)
-    GPD.Menu.image.clip_draw(242, 84, 17, 16, 340, 115 - menu_index[0] * 40)  # 손가락
-    GPD.Ingame_font.font.draw(360, 115 - 0 * 40, '공격', [255, 255, 255])
-    GPD.Ingame_font.font.draw(360, 115 - 1 * 40, '스킬', [255, 255, 255])
-    GPD.Ingame_font.font.draw(360, 115 - 2 * 40, '아이템', [255, 255, 255])
+    GPD.Menu.image.clip_draw(242, 84, 17, 16, 340, 120 - menu_index[0] * 30)  # 손가락
+    GPD.Ingame_font.font.draw(360, 120 - 0 * 30, '공격', [255, 255, 255])
+    GPD.Ingame_font.font.draw(360, 120 - 1 * 30, '스킬', [255, 255, 255])
+    GPD.Ingame_font.font.draw(360, 120 - 2 * 30, '아이템', [255, 255, 255])
+    GPD.Ingame_font.font.draw(360, 120 - 3 * 30, '리미트브레이크', [255, 255, 255])
 
     # 아군 상태 출력
     GPD.Menu.image.clip_draw(0, 0, 240, 160, 650, 75, int(800 / 4 * 3 / 2), 150)
@@ -314,7 +315,7 @@ def handle_events():
                     if menu_index[sel_menu_type] > 0:
                         menu_index[sel_menu_type] -= 1
                 elif event.key == SDLK_DOWN:
-                    if menu_index[sel_menu_type] < 2:
+                    if menu_index[sel_menu_type] < 3:
                         menu_index[sel_menu_type] += 1
                 # a키로 선택
                 # 2차메뉴로 들어감
@@ -398,32 +399,28 @@ def handle_events():
                                             break
                             # 대상 선택 : 적군
                             elif ID == 1 or ID == 4 or ID == 5 or ID == 9 or ID == 13 or ID == 15:
-                                sel_menu_type += 1
+                                    turn_queue.append([3, player_turn_index, menu_index[1], 0])
+                                    GPD.players[player_turn_index].act_type = 1
+                                    sel_menu_type -= 1
+                                    sel_menu_mode = 0
+
+                                    initialize_menu_index(0, 2)
+
+                                    if player_turn_index == 3:
+                                        turn_end_sign = True
+                                    else:
+                                        player_turn_index += 1
+                                        # 앞에놈 죽었으면 턴 넘김
+                                        while GPD.players[player_turn_index].act_type == 7:
+                                            player_turn_index += 1
+                                            # 마지막놈이 죽었으면 그대로 턴 종료
+                                            if player_turn_index == 4:
+                                                turn_end_sign = True
+                                                break
                             # 대상 선택 : 아군
                             else:
                                 sel_menu_type += 2
                     # 대상선택
-                    elif sel_menu_type == 2:
-                        # 몬스터 죽은건 선택 못함
-                        if GPD.monsters[menu_index[2]].act_type != 2:
-                            turn_queue.append([3, player_turn_index, menu_index[1], menu_index[2]])
-                            GPD.players[player_turn_index].act_type = 1
-                            sel_menu_type -= 2
-                            sel_menu_mode = 0
-
-                            initialize_menu_index(0, 2)
-
-                            if player_turn_index == 3:
-                                turn_end_sign = True
-                            else:
-                                player_turn_index += 1
-                                # 앞에놈 죽었으면 턴 넘김
-                                while GPD.players[player_turn_index].act_type == 7:
-                                    player_turn_index += 1
-                                    # 마지막놈이 죽었으면 그대로 턴 종료
-                                    if player_turn_index == 4:
-                                        turn_end_sign = True
-                                        break
                     elif sel_menu_type == 3:
                         # 플레이어 죽은건 선택 못함
                         if GPD.players[menu_index[3]].act_type != 7:
@@ -495,6 +492,10 @@ def handle_events():
                     sel_menu_type -= 1
                     initialize_menu_index(2, 2)
 
+            # 리미트 브레이크
+            elif sel_menu_mode == 4:
+                pass
+
 
 def do_player_animation():
     global turn_queue
@@ -547,7 +548,7 @@ def do_player_animation():
         elif GPD.players[turn_queue[0][1]].anistep == 1:
             if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
                 if GPD.skill_MAXframe[GPD.effects.id] > 15:
-                    GPD.effects.frame += 10 * (current_time - Prevtime)
+                    GPD.effects.frame += 10 * game_framework.frame_time
                 else:
                     GPD.effects.frame += 4 * (current_time - Prevtime)
             elif GPD.effects.frame >= GPD.skill_MAXframe[GPD.effects.id]:

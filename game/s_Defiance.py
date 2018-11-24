@@ -12,6 +12,8 @@ class Defiance(Skill):
 
     def activate(self, my_index):
         GPD.players[my_index].SHIELD += self.POWER
-
-        for i in range(0, 3):
-            GPD.monsters[i].hate[my_index] += int(self.POWER/3)
+        if GPD.monsters[0].name is '케프카':
+            GPD.monsters[0].hate[my_index] += int(self.POWER / 3)
+        else:
+            for i in range(0, 3):
+                GPD.monsters[i].hate[my_index] += int(self.POWER/3)
