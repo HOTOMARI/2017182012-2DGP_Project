@@ -114,33 +114,32 @@ def update():
             if monster_turn_sign:
                 # 몬스터 체력 0 이하일시 사망처리
                 if monster_turn_step == 0:
-                    if GPD.monsters[monster_turn_index].HP <= 0 and GPD.monsters[monster_turn_index].act_type != 2:
-                        do_monster_animation(2, monster_turn_index)
+                    if GPD.monsters[0].HP <= 0 and GPD.monsters[0].act_type != 5:
+                        do_monster_animation(2, 0)
                         if animation_end:
-                            GPD.monsters[monster_turn_index].act_type = 2
-                            monster_turn_index += 1
+                            GPD.monsters[0].act_type = 2
                             animation_end = False
                             monster_turn_step = 1
+                    elif GPD.monsters[0].HP > 0 or GPD.monsters[0].act_type == 5:
+                        animation_end = False
+                        monster_turn_step = 1
 
                 # 몬스터가 모두 죽었으면 전투종료
                 elif monster_turn_step == 1:
-                    if GPD.monsters[0].act_type == 2 and \
-                            GPD.monsters[1].act_type == 2 and \
-                            GPD.monsters[2].act_type == 2:
+                    if GPD.monsters[0].act_type == 5:
                         game_framework.push_state(battle_win)
                         Battle_is_End = True
                     else:
                         monster_turn_step = 2
                 # 몬스터의 공격
                 elif monster_turn_step == 2:
-                    if GPD.monsters[monster_turn_index].act_type != 2:
+                    if GPD.monsters[0].act_type != 5:
                         if monster_NO_deadshot == False:
-                            GPD.monsters[monster_turn_index].setting_target()
+                            GPD.monsters[0].setting_target()
                             monster_NO_deadshot = True
-                        do_monster_animation(1, monster_turn_index)
+                        do_monster_animation(1, 0)
                         if animation_end:
-                            GPD.monsters[monster_turn_index].attack(monster_turn_index)
-                            monster_turn_index += 1
+                            GPD.monsters[0].attack_player()
                             animation_end = False
                             monster_NO_deadshot = False
 
@@ -151,14 +150,9 @@ def update():
                                     GPD.players[3].act_type == 7:
                                 game_framework.change_state(gameover)
 
-                            if monster_turn_index >= 3:
-                                monster_turn_index = 0
-                                monster_turn_step = 3
-                    else:
-                        monster_turn_index += 1
-                        if monster_turn_index >= 3:
-                            monster_turn_index = 0
                             monster_turn_step = 3
+                    else:
+                        monster_turn_step = 3
 
                 # 앞의 플레이어가 죽었을 경우 턴 넘김
                 elif monster_turn_step == 3:
@@ -192,17 +186,8 @@ def draw():
     GPD.Menu.image.clip_draw(0, 0, 240, 160, 75, 75, 150, 150)
     # 스킬 선택 창
     GPD.Menu.image.clip_draw(0, 0, 240, 160, 225, 75, 150, 150)
-    # 공격 선택시 적 목록 출력
-    if sel_menu_mode == 1:
-        GPD.Menu.image.clip_draw(242, 84, 17, 16, 20, 115 - menu_index[1] * 40)  # 손가락
-        for i in range(0, 3):
-            # 죽었으면 회색 그 외엔 흰색
-            if GPD.monsters[i].act_type == 2:
-                GPD.Ingame_font.font.draw(50, 115 - i * 40, GPD.monsters[i].name, [105, 105, 105])
-            else:
-                GPD.Ingame_font.font.draw(50, 115 - i * 40, GPD.monsters[i].name, [255, 255, 255])
     # 스킬 선택시 직업에 맞는 스킬 출력
-    elif sel_menu_mode == 2:
+    if sel_menu_mode == 2:
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 180, 120 - menu_index[1] * 30)  # 손가락
         for i in range(0, 4):
             # 마나가 부족하면 회색 그 외엔 흰색
@@ -322,20 +307,9 @@ def handle_events():
                 elif event.key == SDLK_a:
                     sel_menu_mode = menu_index[sel_menu_type] + 1
                     sel_menu_type = 1
-
-            # 공격 메뉴 일때
-            elif sel_menu_mode == 1:
-                # 방향키로 위아래
-                if event.key == SDLK_UP:
-                    if menu_index[sel_menu_type] > 0:
-                        menu_index[sel_menu_type] -= 1
-                elif event.key == SDLK_DOWN:
-                    if menu_index[sel_menu_type] < 2:
-                        menu_index[sel_menu_type] += 1
-                elif event.key == SDLK_a:
-                    # 몬스터 죽은건 선택 못함
-                    if GPD.monsters[menu_index[1]].act_type != 2:
-                        turn_queue.append([1, player_turn_index, menu_index[1]])
+                    # 공격 메뉴 일때
+                    if sel_menu_mode == 1:
+                        turn_queue.append([1, player_turn_index, 0])
                         GPD.players[player_turn_index].act_type = 1
                         sel_menu_type -= 1
                         sel_menu_mode = 0
@@ -344,6 +318,7 @@ def handle_events():
 
                         if player_turn_index == 3:
                             turn_end_sign = True
+                            player_turn_index = 0
                         else:
                             player_turn_index += 1
                             # 앞에놈 죽었으면 턴 넘김
@@ -353,12 +328,6 @@ def handle_events():
                                 if player_turn_index == 4:
                                     turn_end_sign = True
                                     break
-
-                # 뒤로가기
-                elif event.key == SDLK_s:
-                    sel_menu_mode = 0
-                    sel_menu_type -= 1
-                    initialize_menu_index(1, 2)
 
             # 스킬 메뉴 일때
             elif sel_menu_mode == 2:
@@ -622,7 +591,7 @@ def do_monster_animation(id, index):
             GPD.monsters[index].anistep = 1
 
         if GPD.monsters[index].anistep == 1:
-            if GPD.monsters[index].frame >= 2:
+            if GPD.monsters[index].frame >= 30:
                 GPD.monsters[index].anistep = 2
                 GPD.players[GPD.monsters[index].attack_target].act_type = 6
 

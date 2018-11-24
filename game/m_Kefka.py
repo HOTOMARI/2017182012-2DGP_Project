@@ -35,10 +35,12 @@ class Kefka(Monster):
         self.phase = 1
         # 0 common 1 fire 2 ice 3 reverseFIRE 4 reverseICE 5 Player_attack->DIE 6 Player_don't_attack->DIE
         self.next_skill = 0
+        # 1 직전스킬 fire 2 직전스킬 ice
+        self.FireorIce = 0
+        # 직전에 한대라도 맞았는지
+        self.isDamaged = False
 
         self.anistep = 0
-
-        self.condition = 0
 
         self.hate = [0, 0, 0, 0]
         self.attack_target = -1
@@ -105,7 +107,7 @@ class Kefka(Monster):
                 if self.frame > 50:
                     self.frame = 0
 
-    def attack(self, my_index):
+    def attack_player(self):
         GPD.players[self.attack_target].SHIELD -= self.ATK
         if GPD.players[self.attack_target].SHIELD < 0:
             GPD.players[self.attack_target].HP += GPD.players[self.attack_target].SHIELD
@@ -117,7 +119,7 @@ class Kefka(Monster):
         elif GPD.players[self.attack_target].HP / GPD.players[self.attack_target].MAX_HP <= 0.2:
             GPD.players[self.attack_target].act_type = 5
         print(
-            self.name + str(my_index) + '가 ' + GPD.players[self.attack_target].name + str(self.attack_target) + '를 공격')
+            self.name + '가 ' + GPD.players[self.attack_target].name + str(self.attack_target) + '를 공격')
         print(GPD.players[self.attack_target].name + str(self.attack_target) + '의 체력: ' + str(
             GPD.players[self.attack_target].HP))
 
