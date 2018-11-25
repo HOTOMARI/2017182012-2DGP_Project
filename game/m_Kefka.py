@@ -32,8 +32,8 @@ class Kefka(Monster):
 
         # 0 common  1 attack 2 magic_ready 3 magic 4 lim_attack 5 die
         self.act_type = 0
-        self.phase = 0
-        # 0 common 1 fire 2 ice 3 reverseFIRE 4 reverseICE 5 Player_attack->DIE 6 Player_don't_attack->DIE
+        self.phase = 1
+        # 0 common 1 fire 2 ice 3 reverseFIRE 4 reverseICE 5 Player_don't_attack->DIE 6 Player_attack->DIE
         self.next_skill = 0
         # 2 나올스킬 fire -2 나올스킬 ice
         # 플레이어는 반대로 마법 써야됨

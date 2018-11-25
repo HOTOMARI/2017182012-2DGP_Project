@@ -177,11 +177,14 @@ def update():
                     # 보스 다음 행동 정하기
                     if GPD.monsters[0].phase is 0:
                         dice = random.randint(0, 99)
+                        # 평타
                         if number_is_in(0, dice, 24):
                             GPD.monsters[0].act_type = 0
+                            # 스키일
                         elif number_is_in(25, dice, 49):
                             GPD.monsters[0].act_type = 2
                             GPD.monsters[0].next_skill = 0
+                            # 불 얼음
                         elif number_is_in(50, dice, 74):
                             GPD.monsters[0].act_type = 2
                             GPD.monsters[0].next_skill = 1
@@ -190,6 +193,39 @@ def update():
                             GPD.monsters[0].act_type = 2
                             GPD.monsters[0].next_skill = 2
                             GPD.monsters[0].FireorIce = -2
+                    elif GPD.monsters[0].phase is 1:
+                        dice = random.randint(0, 99)
+                        #평타
+                        if number_is_in(0, dice, 23):
+                            GPD.monsters[0].act_type = 0
+                            # 불 얼음
+                        elif number_is_in(24, dice, 35):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 1
+                            GPD.monsters[0].FireorIce = 2
+                        elif number_is_in(36, dice, 47):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 2
+                            GPD.monsters[0].FireorIce = -2
+                        elif number_is_in(48, dice, 59):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 3
+                            GPD.monsters[0].FireorIce = -2
+                        elif number_is_in(60, dice, 71):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 4
+                            GPD.monsters[0].FireorIce = 2
+                            # 눈
+                        elif number_is_in(72, dice, 83):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 5
+                        elif number_is_in(84, dice, 96):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 6
+                            # 거의 전멸기?
+                        elif number_is_in(97, dice, 99):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 0
 
                     player_turn_index = 0
                     for i in range(0, 4):
