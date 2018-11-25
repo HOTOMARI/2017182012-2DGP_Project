@@ -1,6 +1,7 @@
 from pico2d import *
 import game_framework
 import GamePlayingData as GPD
+import random
 import gameover
 import battle_win
 
@@ -137,9 +138,26 @@ def update():
                         if monster_NO_deadshot == False:
                             GPD.monsters[0].setting_target()
                             monster_NO_deadshot = True
-                        do_monster_animation(1, 0)
+
+                        if GPD.monsters[0].act_type is 0 or GPD.monsters[0].act_type is 1:
+                            do_monster_animation(1, 0)
+                        elif GPD.monsters[0].act_type is 2 or GPD.monsters[0].act_type is 3:
+                            do_monster_animation(3, 0)
+
                         if animation_end:
-                            GPD.monsters[0].attack_player()
+                            if GPD.monsters[0].act_type is 0:
+                                GPD.monsters[0].attack_player()
+
+                            elif GPD.monsters[0].act_type is 2:
+                                if GPD.monsters[0].next_skill is 1 or GPD.monsters[0].next_skill is 3:
+                                    GPD.monsters[0].FIRE()
+                                elif GPD.monsters[0].next_skill is 2 or GPD.monsters[0].next_skill is 4:
+                                    GPD.monsters[0].ICE()
+                                elif GPD.monsters[0].next_skill is 5 or GPD.monsters[0].next_skill is 6:
+                                    GPD.monsters[0].EYES()
+                                else:
+                                    GPD.monsters[0].COMMON_SKILL()
+
                             animation_end = False
                             monster_NO_deadshot = False
 
@@ -156,6 +174,23 @@ def update():
 
                 # 앞의 플레이어가 죽었을 경우 턴 넘김
                 elif monster_turn_step == 3:
+                    # 보스 다음 행동 정하기
+                    if GPD.monsters[0].phase is 0:
+                        dice = random.randint(0, 99)
+                        if number_is_in(0, dice, 24):
+                            GPD.monsters[0].act_type = 0
+                        elif number_is_in(25, dice, 49):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 0
+                        elif number_is_in(50, dice, 74):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 1
+                            GPD.monsters[0].FireorIce = 2
+                        elif number_is_in(75, dice, 99):
+                            GPD.monsters[0].act_type = 2
+                            GPD.monsters[0].next_skill = 2
+                            GPD.monsters[0].FireorIce = -2
+
                     player_turn_index = 0
                     for i in range(0, 4):
                         if GPD.players[i].act_type == 7:
@@ -607,13 +642,47 @@ def do_monster_animation(id, index):
             set_monster_acttype(index)
             GPD.monsters[index].anistep = 0
             animation_end = True
-
+    # 죽을때
     elif id == 2:
         if GPD.monsters[index].anistep == 0:
             if GPD.monsters[index].die_animation < 72:
                 GPD.monsters[index].die_animation += 180 * (current_time - Prevtime)
             elif GPD.monsters[index].die_animation >= 72:
                 animation_end = True
+    # 스킬
+    elif id == 3:
+        if GPD.monsters[index].anistep == 0:
+            GPD.monsters[index].act_type = 3
+            GPD.monsters[index].frame = 0
+            GPD.monsters[index].anistep = 1
+
+        if GPD.monsters[index].anistep == 1:
+            if GPD.monsters[index].frame >= 12:
+                print("step 1")
+                GPD.monsters[index].anistep = 2
+                if GPD.monsters[index].next_skill is 0:
+                    GPD.players[GPD.monsters[index].attack_target].act_type = 6
+                else:
+                    for i in range(0,4):
+                        GPD.players[i].act_type = 6
+
+        if GPD.monsters[index].anistep == 2:
+            if timer < 60:
+                timer += 1
+            else:
+                timer = 0
+                GPD.monsters[index].anistep = 3
+
+        if GPD.monsters[index].anistep == 3:
+            if GPD.monsters[index].next_skill is 0:
+                set_player_acttype(GPD.monsters[index].attack_target)
+            else:
+                for i in range(0, 4):
+                    set_player_acttype(i)
+            set_monster_acttype(index)
+            GPD.monsters[index].anistep = 0
+            animation_end = True
+
 
 
 def set_player_acttype(index):
@@ -624,7 +693,10 @@ def set_player_acttype(index):
 
 
 def set_monster_acttype(index):
-    GPD.monsters[index].act_type = 0
+    if GPD.monsters[index].act_type is 1:
+        GPD.monsters[index].act_type = 0
+    elif GPD.monsters[index].act_type is 3:
+        GPD.monsters[index].act_type = 2
 
 
 # 메뉴인덱스 초기화
@@ -632,3 +704,10 @@ def initialize_menu_index(start, end):
     global menu_index
     for i in range(start, end + 1):
         menu_index[i] = 0
+
+# @ 하고 # 사이 값이면 TRUE 리턴
+def number_is_in(start, number, end):
+    if number>=start and number <= end:
+        return True
+    else:
+        return False

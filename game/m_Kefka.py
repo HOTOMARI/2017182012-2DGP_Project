@@ -32,10 +32,11 @@ class Kefka(Monster):
 
         # 0 common  1 attack 2 magic_ready 3 magic 4 lim_attack 5 die
         self.act_type = 0
-        self.phase = 1
+        self.phase = 0
         # 0 common 1 fire 2 ice 3 reverseFIRE 4 reverseICE 5 Player_attack->DIE 6 Player_don't_attack->DIE
         self.next_skill = 0
-        # 1 직전스킬 fire 2 직전스킬 ice
+        # 2 나올스킬 fire -2 나올스킬 ice
+        # 플레이어는 반대로 마법 써야됨
         self.FireorIce = 0
         # 직전에 한대라도 맞았는지
         self.isDamaged = False
@@ -56,7 +57,7 @@ class Kefka(Monster):
                     self.frame = 0
             elif self.act_type is 1:
                 self.attack.clip_composite_draw(int(self.frame % 3) * 268, int(106 * 9) - int(self.frame / 4) * 106, 268, 106,
-                                                0,'h', 200, 300, 536, 212 - self.die_animation)
+                                                0,'h', 400, 300, 536, 212 - self.die_animation)
                 if self.frame > 30:
                     self.frame = 0
             elif self.act_type is 2:
@@ -141,13 +142,17 @@ class Kefka(Monster):
         self.attack_target = tmp
 
     def ICE(self):
+        print('얼음!')
         pass
 
     def FIRE(self):
+        print('불!')
         pass
 
     def EYES(self):
+        print('눈!')
         pass
 
-    def STRONGSKILLLL(self):
+    def COMMON_SKILL(self):
+        print('가아앙한스킬!')
         pass
