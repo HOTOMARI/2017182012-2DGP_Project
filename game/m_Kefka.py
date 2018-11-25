@@ -142,17 +142,49 @@ class Kefka(Monster):
         self.attack_target = tmp
 
     def ICE(self):
+        for i in range(0,4):
+            if self.next_skill is 2:
+                GPD.players[i].HP -= 1 * (-self.FireorIce)
+            else:
+                GPD.players[i].HP -= 1 * (self.FireorIce)
         print('얼음!')
-        pass
 
     def FIRE(self):
+        for i in range(0,4):
+            if self.next_skill is 1:
+                GPD.players[i].HP -= 1 * (self.FireorIce)
+            else:
+                GPD.players[i].HP -= 1 * (-self.FireorIce)
         print('불!')
-        pass
 
     def EYES(self):
+        for i in range(0,4):
+            if self.isDamaged is True and self.next_skill is 6:
+                GPD.players[i].HP -= 1
+            elif self.isDamaged is False and self.next_skill is 5:
+                GPD.players[i].HP -= 1
         print('눈!')
-        pass
 
     def COMMON_SKILL(self):
+        if self.phase is 0:
+            GPD.players[self.attack_target].SHIELD -= self.ATK
+            if GPD.players[self.attack_target].SHIELD < 0:
+                GPD.players[self.attack_target].HP += GPD.players[self.attack_target].SHIELD
+                GPD.players[self.attack_target].SHIELD = 0
+
+            if GPD.players[self.attack_target].HP <= 0:
+                GPD.players[self.attack_target].HP = 0
+                GPD.players[self.attack_target].act_type = 7
+            elif GPD.players[self.attack_target].HP / GPD.players[self.attack_target].MAX_HP <= 0.2:
+                GPD.players[self.attack_target].act_type = 5
+            print(
+                self.name + '가 ' + GPD.players[self.attack_target].name + str(self.attack_target) + '를 스킬')
+            print(GPD.players[self.attack_target].name + str(self.attack_target) + '의 체력: ' + str(
+                GPD.players[self.attack_target].HP))
+        elif self.phase is 1:
+            for i in range(0, 4):
+                if GPD.players[i].act_type is not 7:
+                    GPD.players[i].HP = 1
+
         print('가아앙한스킬!')
         pass
