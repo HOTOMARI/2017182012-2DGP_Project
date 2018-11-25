@@ -139,3 +139,15 @@ class Kefka(Monster):
                         tmp_hate = self.hate[i]
                         tmp = i
         self.attack_target = tmp
+
+    def ICE(self):
+        pass
+
+    def FIRE(self):
+        pass
+
+    def EYES(self):
+        pass
+
+    def STRONGSKILLLL(self):
+        pass
