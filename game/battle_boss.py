@@ -560,7 +560,7 @@ def do_player_animation():
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 2:
             if GPD.effects.frame < 2:
-                GPD.effects.frame += 4 * (current_time - Prevtime)
+                GPD.effects.frame += 10 * game_framework.frame_time
             elif GPD.effects.frame >= 2:
                 GPD.effects.frame = 0
                 GPD.effects.id = -1
@@ -587,10 +587,7 @@ def do_player_animation():
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 1:
             if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
-                if GPD.skill_MAXframe[GPD.effects.id] > 15:
-                    GPD.effects.frame += 10 * game_framework.frame_time
-                else:
-                    GPD.effects.frame += 4 * (current_time - Prevtime)
+                GPD.effects.frame += 20 * game_framework.frame_time
             elif GPD.effects.frame >= GPD.skill_MAXframe[GPD.effects.id]:
                 GPD.effects.frame = 0
                 GPD.effects.id = -1
