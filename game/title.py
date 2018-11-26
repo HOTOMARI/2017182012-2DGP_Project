@@ -18,15 +18,15 @@ def enter():
     GPD.Upload_data()
     background = load_image("image\\title\\background.png")
     logo = load_image("image\\title\\logo.png")
-    GPD.bgm = load_music("sound\\bgm\\Title.mp3")
-    GPD.bgm.set_volume(64)
-    GPD.bgm.repeat_play()
+    #GPD.bgm = load_music("sound\\bgm\\Title.mp3")
+    #GPD.bgm.set_volume(64)
+    #GPD.bgm.repeat_play()
     sel_index = 0
 
 def exit():
-    GPD.bgm.stop()
-    del(GPD.bgm)
-    GPD.bgm = None
+    #GPD.bgm.stop()
+    #del(GPD.bgm)
+    #GPD.bgm = None
     pass
 
 def update():

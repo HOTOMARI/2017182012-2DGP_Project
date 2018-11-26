@@ -44,4 +44,4 @@ def Generate_monster():
             elif dice is 10:
                 GPD.monsters.append(Snake(monster_num))
 
-
+        monster_num += 1

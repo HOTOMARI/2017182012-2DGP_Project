@@ -40,8 +40,8 @@ def enter():
     Entrance_Tile = [Bounding_box.BaseZone(background.tile_map.layers[2]['objects'][i],1600)
                      for i in range(len(background.tile_map.layers[2]['objects']))]
 
-    GPD.bgm = load_music("sound\\bgm\\Overworld.mp3")
-    GPD.bgm.repeat_play()
+    #GPD.bgm = load_music("sound\\bgm\\Overworld.mp3")
+    #GPD.bgm.repeat_play()
 
     # 캐릭터 초기 시작위치
     if GPD.now_map is -1:
@@ -68,10 +68,10 @@ def enter():
 
 
 def exit():
-    if GPD.bgm is not None:
-        GPD.bgm.stop()
-        del (GPD.bgm)
-        GPD.bgm = None
+    #if GPD.bgm is not None:
+     #   GPD.bgm.stop()
+      #  del (GPD.bgm)
+       # GPD.bgm = None
     pass
 
 
@@ -123,9 +123,9 @@ def pause():
 
 
 def resume():
-    if GPD.bgm is None:
-        GPD.bgm = load_music("sound\\bgm\\Overworld.mp3")
-        GPD.bgm.repeat_play()
+   # if GPD.bgm is None:
+    #    GPD.bgm = load_music("sound\\bgm\\Overworld.mp3")
+   #     GPD.bgm.repeat_play()
     pass
 
 
@@ -158,10 +158,10 @@ def collide(a, b):
 
 
 def start_battle():
-    if GPD.bgm is not None:
-        GPD.bgm.stop()
-        del (GPD.bgm)
-        GPD.bgm = None
+   # if GPD.bgm is not None:
+    #    GPD.bgm.stop()
+    #    del (GPD.bgm)
+    #    GPD.bgm = None
     for i in range(0, 4):
         GPD.Player.move_dir[i] = 0
     Generate_monster()

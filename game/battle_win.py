@@ -14,8 +14,8 @@ def enter():
     current_time = 0
     Prevtime = 0
     message_index = 0
-    GPD.bgm = load_music('sound\\bgm\\BattleWin.ogg')
-    GPD.bgm.repeat_play()
+  #  GPD.bgm = load_music('sound\\bgm\\BattleWin.ogg')
+  #  GPD.bgm.repeat_play()
 
     for i in range(0, 4):
         if GPD.players[i].act_type != 7:
@@ -36,10 +36,10 @@ def enter():
 def exit():
     for i in range(0, 4):
         GPD.players[i].act_type = 0
-    if GPD.bgm is not None:
-        GPD.bgm.stop()
-        del(GPD.bgm)
-        GPD.bgm= None
+   # if GPD.bgm is not None:
+   #     GPD.bgm.stop()
+   #     del(GPD.bgm)
+    #    GPD.bgm= None
 
 
 def update():

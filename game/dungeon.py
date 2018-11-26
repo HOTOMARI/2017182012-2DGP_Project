@@ -147,7 +147,7 @@ def start_battle():
 def start_Bossbattle():
     for i in range(0, 4):
         GPD.Player.move_dir[i] = 0
-    GPD.monsters[0] = m_Kefka.Kefka(0)
+    GPD.monsters.append(m_Kefka.Kefka(0))
     if GPD.effects == None:
         GPD.effects = BaseEffect.Effect()
     game_framework.push_state(battle_boss)
