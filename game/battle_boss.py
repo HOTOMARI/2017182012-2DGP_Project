@@ -587,7 +587,7 @@ def do_player_animation():
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 1:
             if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
-                GPD.effects.frame += 20 * game_framework.frame_time
+                GPD.effects.frame += 30 * game_framework.frame_time
             elif GPD.effects.frame >= GPD.skill_MAXframe[GPD.effects.id]:
                 GPD.effects.frame = 0
                 GPD.effects.id = -1

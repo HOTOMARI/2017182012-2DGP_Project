@@ -12,7 +12,7 @@ class Defiance(Skill):
 
     def activate(self, my_index):
         GPD.players[my_index].SHIELD += self.POWER
-        if GPD.monsters[0].name is '케프카':
+        if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].hate[my_index] += int(self.POWER / 3)
         else:
             for i in range(0, 3):

@@ -12,7 +12,7 @@ class Cure(Skill):
 
     def activate(self, my_index, target_index):
         GPD.players[target_index].HP += int(self.POWER * (GPD.players[my_index].ATK / 2))
-        if GPD.monsters[0].name is '케프카':
+        if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].hate[my_index] += (self.POWER * GPD.players[my_index].ATK)
         else:
             for i in range(0,3):

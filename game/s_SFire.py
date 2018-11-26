@@ -11,7 +11,7 @@ class SFire(Skill):
         super(SFire, self).__init__('파이가', Skill_Data['SFire']['ID'], Skill_Data['SFire']['COST'], Skill_Data['SFire']['POWER'], Skill_Data['SFire']['UPGRADE'])
 
     def activate(self, my_index):
-        if GPD.monsters[0].name is '케프카':
+        if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].HP -= int(self.POWER * (GPD.players[my_index].ATK / 10))
             GPD.monsters[0].hate[my_index] += self.POWER * 2
             print(GPD.monsters[0].name + '의 체력: ' + str(GPD.monsters[0].HP))

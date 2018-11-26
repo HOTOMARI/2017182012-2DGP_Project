@@ -14,7 +14,7 @@ class Effect():
                 GPD.Attack.image.clip_draw(0+int(self.frame % 3)*192, 0, 192, 192, 200, 410 - 100 * party_num)
             else:
                 GPD.Attack.image.clip_draw(0 + int(self.frame % 3) * 192, 0, 192, 192, 200, 320,256,256)
-        elif self.id == 1 or self.id == 16 or self.id == 17:
+        elif self.id == 1 or self.id == 16:
             GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 3) - int(self.frame / 4) * 192, 192,
                                      192, 600, 420 - 75 * party_num, 72, 72)
         elif self.id == 2:
@@ -52,6 +52,15 @@ class Effect():
             else:
                 GPD.Stone.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 1) - int(self.frame / 5) * 192, 192,
                                           192, 200, 320, 256, 256)
+        elif self.id == 17:
+            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 6) * 192, 192,
+                                        192, 600, 420 - 75 * 0, 72, 72)
+            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 6) * 192, 192,
+                                        192, 500, 420 - 75 * 1, 72, 72)
+            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 6) * 192, 192,
+                                        192, 600, 420 - 75 * 2, 72, 72)
+            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 6) * 192, 192,
+                                        192, 600, 420 - 75 * 3, 72, 72)
 
         elif self.id == 18:
             GPD.Protect.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192, 192,
@@ -64,8 +73,12 @@ class Effect():
                                         192, 600, 420 - 75 * 3, 72, 72)
 
         elif self.id == 19:
-            GPD.Blizzard.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192, 192,
+            if GPD.monsters[0].name != '케프카':
+                GPD.Blizzard.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192, 192,
                                       192, 200, 410 - 100 * party_num, 128, 128)
+            else:
+                GPD.Blizzard.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192,
+                                             192, 192, 200, 320, 256, 256)
         elif self.id == 20:
             GPD.SFire.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 1) - int(self.frame / 5) * 192, 192,
                                       192, 200, 300, 400, 300)
@@ -79,16 +92,23 @@ class Effect():
             GPD.Convert.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192, 192,
                                         192, 500, 420 - 75 * 3, 72, 72)
         elif self.id == 23:
-            GPD.GustSlash.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 2) - int(self.frame / 5) * 192, 192,
+            if GPD.monsters[0].name != '케프카':
+                GPD.GustSlash.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 2) - int(self.frame / 5) * 192, 192,
                                          192, 200, 410 - 100 * party_num, 128, 128)
-
+            else:
+                GPD.GustSlash.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 2) - int(self.frame / 5) * 192,
+                                              192, 192, 200, 320, 256, 256)
         elif self.id == 24:
             GPD.DeathBlossom.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 5) * 192, 192,
                                       192, 200, 300, 400, 400)
 
         elif self.id == 25:
-            GPD.Assassinate.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 2) - int(self.frame / 5) * 192, 192,
+            if GPD.monsters[0].name != '케프카':
+                GPD.Assassinate.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 2) - int(self.frame / 5) * 192, 192,
                                           192, 200, 410 - 100 * party_num, 128, 128)
+            else:
+                GPD.Assassinate.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 2) - int(self.frame / 5) * 192,
+                                                192, 192, 200, 320, 256, 256)
 
         elif self.id == 26:
             GPD.Diversion.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 5) * 192,

@@ -13,7 +13,9 @@ class SCure(Skill):
     def activate(self, my_index):
         for i in range(0, 4):
             GPD.players[i].HP += int(self.POWER * GPD.players[my_index].ATK)
-        if GPD.monsters[0].name is '케프카':
+            if GPD.players[i].HP > GPD.players[i].MAX_HP:
+                GPD.players[i].HP = GPD.players[i].MAX_HP
+        if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].hate[my_index] += (self.POWER * GPD.players[my_index].ATK)
         else:
             for i in range(0, 3):
