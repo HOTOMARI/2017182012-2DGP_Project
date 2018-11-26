@@ -6,6 +6,7 @@ class Effect():
         self.id = -1
         # 0 공격 1 힐 2 부활
         # over 10 is 플레이어 스킬
+        # over 100 is 몬스터 스킬
 
     def draw(self, my_num, party_num):
         if self.id == 0:
