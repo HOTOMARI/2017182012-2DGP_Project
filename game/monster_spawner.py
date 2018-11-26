@@ -17,32 +17,31 @@ def Generate_monster():
     average_level = (GPD.players[0].LEVEL + GPD.players[1].LEVEL + GPD.players[2].LEVEL + GPD.players[3].LEVEL) / 4
     monster_num = 0
 
-    while monster_num < 3:
+    while len(GPD.monsters) < 3:
         dice = random.randint(0, 10)
 
         if average_level < 5:
             if dice is 0:
-                GPD.monsters[monster_num] = Wolf(monster_num)
+                GPD.monsters.append(Wolf(monster_num))
             elif dice is 1:
-                GPD.monsters[monster_num] = Chocobo(monster_num)
+                GPD.monsters.append(Chocobo(monster_num))
             elif dice is 2:
-                GPD.monsters[monster_num] = Bat(monster_num)
+                GPD.monsters.append(Bat(monster_num))
             elif dice is 3:
-                GPD.monsters[monster_num] = BlueBomb(monster_num)
+                GPD.monsters.append(BlueBomb(monster_num))
             elif dice is 4:
-                GPD.monsters[monster_num] = Dragon(monster_num)
+                GPD.monsters.append(Dragon(monster_num))
             elif dice is 5:
-                GPD.monsters[monster_num] = Flower(monster_num)
+                GPD.monsters.append(Flower(monster_num))
             elif dice is 6:
-                GPD.monsters[monster_num] = Mutalisk(monster_num)
+                GPD.monsters.append(Mutalisk(monster_num))
             elif dice is 7:
-                GPD.monsters[monster_num] = RedBomb(monster_num)
+                GPD.monsters.append(RedBomb(monster_num))
             elif dice is 8:
-                GPD.monsters[monster_num] = ShieldMan(monster_num)
+                GPD.monsters.append(ShieldMan(monster_num))
             elif dice is 9:
-                GPD.monsters[monster_num] = Slime(monster_num)
+                GPD.monsters.append(Slime(monster_num))
             elif dice is 10:
-                GPD.monsters[monster_num] = Snake(monster_num)
+                GPD.monsters.append(Snake(monster_num))
 
-        monster_num += 1
 

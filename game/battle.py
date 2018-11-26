@@ -24,6 +24,9 @@ def enter():
 
     turn_image = load_image('image\\player\\select.png')
 
+    GPD.bgm = load_music('sound\\bgm\\Battle.mp3')
+    GPD.bgm.repeat_play()
+
     # 0 1차메뉴 1 2차메뉴 2 3차메뉴-1 3 3차메뉴-2
     sel_menu_type = 0
     # 0 None 1 attack 2 skill 3 item
@@ -60,8 +63,15 @@ def enter():
 
 def exit():
     global background, turn_image
-    del(background)
+    if GPD.bgm is not None:
+        GPD.bgm.stop()
+        del(GPD.bgm)
+        GPD.bgm = None
+    del (background)
     del (turn_image)
+    del GPD.monsters[2]
+    del GPD.monsters[1]
+    del GPD.monsters[0]
 
 
 def update():
@@ -293,10 +303,13 @@ def draw():
     update_canvas()
 
 
-def pause(): pass
+def pause():
+    GPD.bgm.stop()
+    pass
 
 
-def resume(): pass
+def resume():
+    pass
 
 
 def handle_events():

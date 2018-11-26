@@ -10,21 +10,23 @@ import SAVEManager
 
 background = None
 logo = None
-bgm = None
 time = 0
 
 def enter():
-    global background, logo, bgm
+    global background, logo
     global sel_index
     GPD.Upload_data()
     background = load_image("image\\title\\background.png")
     logo = load_image("image\\title\\logo.png")
-    bgm = load_music("sound\\bgm\\Title.mp3")
-    bgm.set_volume(64)
-    bgm.repeat_play()
+    GPD.bgm = load_music("sound\\bgm\\Title.mp3")
+    GPD.bgm.set_volume(64)
+    GPD.bgm.repeat_play()
     sel_index = 0
 
 def exit():
+    GPD.bgm.stop()
+    del(GPD.bgm)
+    GPD.bgm = None
     pass
 
 def update():
@@ -46,9 +48,11 @@ def draw():
 
     update_canvas()
 
-def pause(): pass
+def pause():
+    pass
 
-def resume(): pass
+def resume():
+    pass
 
 def handle_events():
     global sel_index
@@ -64,12 +68,10 @@ def handle_events():
             elif event.key == SDLK_a:
                 if sel_index is 0:
                     New_Game()
-                    bgm.stop()
                     GPD.now_map = 0
                     game_framework.change_state(overworld)
                 elif sel_index is 1:
                     New_Game()
-                    bgm.stop()
                     SAVEManager.Load_game()
                     if GPD.now_map is 0:
                         GPD.now_map = -1
@@ -84,7 +86,6 @@ def handle_events():
                     subprocess.call('howtoplay.bat')
                     pass
                 elif sel_index is 3:
-                    bgm.stop()
                     game_framework.quit()
             elif event.key == SDLK_UP:
                 GPD.Menu.sound.play()

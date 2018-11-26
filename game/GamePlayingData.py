@@ -6,11 +6,12 @@ skill_MAXframe ={0: 3, 1: 19, 2: 29, 11: 15, 12: 6, 13: 24, 14: 16, 15: 6, 16: 1
                  19: 21, 20: 10, 21: 22, 22: 22, 23: 15, 24: 28, 25: 20, 26: 26}
 
 players=[[None]for i in range(4)]
-monsters=[[None]for i in range(3)]
+monsters=list()
 # 체력물약 마나물약 만병통치약 불사조의 깃털
 items=[[None]for i in range(4)]
 
 effects = None
+#bgm = None
 
 money = 400
 now_map = 0 #0 초원 1 던전 2 마을
