@@ -52,6 +52,7 @@ def Upload_data():
     if Menu is None:
         Menu = Player_sound_data()
         Menu.image = load_image('image\\Menu.png')
+        Menu.sound = load_wav('sound\\fx\\FCMenuTing2.wav')
     if Ingame_font is None:
         Ingame_font = Player_sound_data()
         Ingame_font.font = load_font('font\\H2SA1M.TTF')

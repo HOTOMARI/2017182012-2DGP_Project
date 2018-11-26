@@ -16,12 +16,13 @@ WIDTH=800
 HEIGHT=600
 
 background = None
+bgm = None
 Cant_Move_Tile = []
 Entrance_Tile = []
 
 def enter():
     global current_time, Prevtime
-    global background, Cant_Move_Tile, Entrance_Tile
+    global background, Cant_Move_Tile, Entrance_Tile, bgm
 
     current_time = 0
     Prevtime = 0
@@ -38,6 +39,9 @@ def enter():
                      for i in range(len(background.tile_map.layers[1]['objects']))]
     Entrance_Tile = [Bounding_box.BaseZone(background.tile_map.layers[2]['objects'][i],1600)
                      for i in range(len(background.tile_map.layers[2]['objects']))]
+
+    bgm = load_music("sound\\bgm\\Overworld.mp3")
+    bgm.repeat_play()
 
     # 캐릭터 초기 시작위치
     if GPD.now_map is -1:
@@ -85,11 +89,14 @@ def update():
                 break
 
         if collide(GPD.Player, Entrance_Tile[0]):
+            bgm.stop()
             game_framework.change_state(town)
         elif collide(GPD.Player, Entrance_Tile[1]):
+            bgm.stop()
             game_framework.change_state(dungeon)
 
         if GPD.Player.battle_counter <= 0:
+            bgm.stop()
             GPD.Player.battle_counter = 30 + random.randint(0,10)
             start_battle()
 
