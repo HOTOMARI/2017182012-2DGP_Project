@@ -18,15 +18,10 @@ def enter():
     GPD.Upload_data()
     background = load_image("image\\title\\background.png")
     logo = load_image("image\\title\\logo.png")
-    #GPD.bgm = load_music("sound\\bgm\\Title.mp3")
-    #GPD.bgm.set_volume(64)
-    #GPD.bgm.repeat_play()
+    GPD.bgm.title.repeat_play()
     sel_index = 0
 
 def exit():
-    #GPD.bgm.stop()
-    #del(GPD.bgm)
-    #GPD.bgm = None
     pass
 
 def update():
@@ -49,7 +44,7 @@ def draw():
     update_canvas()
 
 def pause():
-    pass
+    GPD.bgm.title.repeat_play()
 
 def resume():
     pass
@@ -63,6 +58,7 @@ def handle_events():
 
         # a 선택 s 뒤로가기
         elif event.type == SDL_KEYDOWN:
+            GPD.Menu.sound.play()
             if event.key == SDLK_ESCAPE:
                 game_framework.quit()
             elif event.key == SDLK_a:
@@ -88,11 +84,9 @@ def handle_events():
                 elif sel_index is 3:
                     game_framework.quit()
             elif event.key == SDLK_UP:
-                GPD.Menu.sound.play()
                 if sel_index > 0:
                     sel_index -= 1
             elif event.key == SDLK_DOWN:
-                GPD.Menu.sound.play()
                 if sel_index < 3:
                     sel_index += 1
 

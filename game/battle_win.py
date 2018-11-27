@@ -14,8 +14,7 @@ def enter():
     current_time = 0
     Prevtime = 0
     message_index = 0
-  #  GPD.bgm = load_music('sound\\bgm\\BattleWin.ogg')
-  #  GPD.bgm.repeat_play()
+    GPD.bgm.battlewin.repeat_play()
 
     for i in range(0, 4):
         if GPD.players[i].act_type != 7:
@@ -36,10 +35,6 @@ def enter():
 def exit():
     for i in range(0, 4):
         GPD.players[i].act_type = 0
-   # if GPD.bgm is not None:
-   #     GPD.bgm.stop()
-   #     del(GPD.bgm)
-    #    GPD.bgm= None
 
 
 def update():
@@ -106,6 +101,7 @@ def handle_events():
             pass
         # a 선택 s 뒤로가기
         elif event.type == SDL_KEYDOWN:
+            GPD.Menu.sound.play()
             if event.key == SDLK_ESCAPE:
                 # game_framework.change_state(map)
                 game_framework.pop_state()

@@ -11,13 +11,14 @@ monsters=list()
 items=[[None]for i in range(4)]
 
 effects = None
-#bgm = None
+bgm = None
 
 money = 400
 now_map = 0 #0 초원 1 던전 2 마을
 x, y = 506, 1109
 
 Menu = None
+isMenunow = False
 Ingame_font = None
 Ingame_Big_font = None
 
@@ -49,6 +50,7 @@ def Upload_data():
     global Player, Warrior, WhiteMage, BlackMage, Thief
     global Attack, Heal, Raise, Provoke, OverPower, Defiance, Fell_Cleave, Stone, Protect
     global Blizzard, SFire, Convert, GustSlash, DeathBlossom, Assassinate, Diversion
+    global bgm
 
     if Menu is None:
         Menu = Player_sound_data()
@@ -126,6 +128,9 @@ def Upload_data():
         Diversion = Player_sound_data()
         Diversion.image = load_image('image\\effect\\Diversion.png')
 
+    if bgm is None:
+        bgm = BGM()
+
 class Image_data():
     def __init__(self):
         self.image = None
@@ -134,3 +139,12 @@ class Player_sound_data:
     def __init__(self):
         super(Player_sound_data, self).__init__()
         self.sound = None
+
+class BGM():
+    def __init__(self):
+        self.title = load_music('sound\\bgm\\Title.ogg')
+        self.title.set_volume(64)
+        self.overworld = load_music('sound\\bgm\\Overworld.ogg')
+        self.battle = load_music('sound\\bgm\\Battle.ogg')
+        self.battlewin = load_music('sound\\bgm\\BattleWin.ogg')
+        pass
