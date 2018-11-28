@@ -86,9 +86,11 @@ def Upload_data():
     if Heal is None:
         Heal = Player_sound_data()
         Heal.image = load_image('image\\effect\\Heal.png')
+        Heal.sound = load_wav('sound\\fx\\02WhiteMagic.wav')
     if Raise is None:
         Raise = Player_sound_data()
         Raise.image = load_image('image\\effect\\Raise.png')
+        Raise.sound = load_wav('sound\\fx\\34CurativeItem.wav')
     if Defiance is None:
         Defiance = Player_sound_data()
         Defiance.image = load_image('image\\effect\\Shield.png')

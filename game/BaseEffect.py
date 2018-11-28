@@ -121,9 +121,9 @@ class Effect():
         if self.id == 0:
             GPD.Attack.sound.play()
         elif self.id == 1 or self.id == 16:
-            GPD.Attack.sound.play()
+            GPD.Heal.sound.play()
         elif self.id == 2:
-            GPD.Attack.sound.play()
+            GPD.Raise.sound.play()
 
         elif self.id == 11:
             GPD.Attack.sound.play()
