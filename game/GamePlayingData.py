@@ -82,6 +82,7 @@ def Upload_data():
     if Attack is None:
         Attack = Player_sound_data()
         Attack.image = load_image('image\\effect\\Attack.png')
+        Attack.sound = load_wav('sound\\fx\\A4SwordSlash.wav')
     if Heal is None:
         Heal = Player_sound_data()
         Heal.image = load_image('image\\effect\\Heal.png')

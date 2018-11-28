@@ -532,6 +532,7 @@ def do_player_animation():
                 GPD.effects.frame = 0
                 GPD.effects.id = 0
                 GPD.players[turn_queue[0][1]].anistep = 2
+                GPD.effects.playFX()
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 2:
             if GPD.effects.frame < 3:
@@ -559,6 +560,7 @@ def do_player_animation():
                 GPD.effects.frame = 0
                 GPD.effects.id = 10 + GPD.players[turn_queue[0][1]].skill[turn_queue[0][2]].ID
                 GPD.players[turn_queue[0][1]].anistep = 1
+                GPD.effects.playFX()
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 1:
             if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
@@ -594,23 +596,18 @@ def do_player_animation():
         # 이펙트
         if GPD.players[turn_queue[0][1]].anistep == 2:
             GPD.effects.frame = 0
-            GPD.players[turn_queue[0][1]].anistep = 3
-
-        if GPD.players[turn_queue[0][1]].anistep == 3:
-            # 부활템 일떄
             if turn_queue[0][2] == 3:
                 GPD.effects.id = 2
-                if GPD.effects.frame < 29:
-                    GPD.effects.frame += 5 * (current_time - Prevtime)
-                elif GPD.effects.frame >= 29:
-                    GPD.players[turn_queue[0][1]].anistep = 4
-            #그 외의 경우
             else:
                 GPD.effects.id = 1
-                if GPD.effects.frame < 20:
-                    GPD.effects.frame += 15  * (current_time - Prevtime)
-                if GPD.effects.frame >= 20:
-                    GPD.players[turn_queue[0][1]].anistep = 4
+            GPD.players[turn_queue[0][1]].anistep = 3
+            GPD.effects.playFX()
+
+        if GPD.players[turn_queue[0][1]].anistep == 3:
+            if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
+                GPD.effects.frame += 30 * game_framework.frame_time
+            elif GPD.effects.frame >= GPD.skill_MAXframe[GPD.effects.id]:
+                GPD.players[turn_queue[0][1]].anistep = 4
 
         if GPD.players[turn_queue[0][1]].anistep == 4:
             GPD.effects.frame = 0
@@ -638,6 +635,7 @@ def do_monster_animation(id, index):
                 GPD.effects.id = 100
                 GPD.monsters[index].anistep = 2
                 GPD.players[GPD.monsters[index].attack_target].act_type = 6
+                GPD.effects.playFX()
 
         if GPD.monsters[index].anistep == 2:
             if GPD.effects.frame < 3:

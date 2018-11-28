@@ -116,3 +116,45 @@ class Effect():
 
         elif self.id == 100:
             GPD.Attack.image.clip_draw(0 + int(self.frame % 3) * 192, 0, 192, 192, 600, 420 - 75 * party_num)
+
+    def playFX(self):
+        if self.id == 0:
+            GPD.Attack.sound.play()
+        elif self.id == 1 or self.id == 16:
+            GPD.Attack.sound.play()
+        elif self.id == 2:
+            GPD.Attack.sound.play()
+
+        elif self.id == 11:
+            GPD.Attack.sound.play()
+        elif self.id == 12:
+            GPD.Attack.sound.play()
+        elif self.id == 13:
+            GPD.Attack.sound.play()
+        elif self.id == 14:
+            GPD.Attack.sound.play()
+        elif self.id == 15:
+            GPD.Attack.sound.play()
+        elif self.id == 17:
+            GPD.Attack.sound.play()
+        elif self.id == 18:
+            GPD.Attack.sound.play()
+        elif self.id == 19:
+            GPD.Attack.sound.play()
+        elif self.id == 20:
+            GPD.Attack.sound.play()
+        elif self.id == 21:
+            GPD.Attack.sound.play()
+        elif self.id == 22:
+            GPD.Attack.sound.play()
+        elif self.id == 23:
+            GPD.Attack.sound.play()
+        elif self.id == 24:
+            GPD.Attack.sound.play()
+        elif self.id == 25:
+            GPD.Attack.sound.play()
+        elif self.id == 26:
+            GPD.Attack.sound.play()
+
+        elif self.id == 100:
+            GPD.Attack.sound.play()
