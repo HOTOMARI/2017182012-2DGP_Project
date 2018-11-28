@@ -113,3 +113,6 @@ class Effect():
         elif self.id == 26:
             GPD.Diversion.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 5) * 192,
                                              192, 192, 200, 300, 400, 400)
+
+        elif self.id == 100:
+            GPD.Attack.image.clip_draw(0 + int(self.frame % 3) * 192, 0, 192, 192, 600, 420 - 75 * party_num)

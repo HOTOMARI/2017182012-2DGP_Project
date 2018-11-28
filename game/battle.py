@@ -295,6 +295,9 @@ def draw():
         else:
             GPD.effects.draw(turn_queue[0][1], turn_queue[0][3])
 
+    if monster_turn_sign:
+        GPD.effects.draw(monster_turn_index, GPD.monsters[monster_turn_index].attack_target)
+
     update_canvas()
 
 
@@ -531,9 +534,9 @@ def do_player_animation():
                 GPD.players[turn_queue[0][1]].anistep = 2
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 2:
-            if GPD.effects.frame < 2:
-                GPD.effects.frame += 4 * (current_time - Prevtime)
-            elif GPD.effects.frame >= 2:
+            if GPD.effects.frame < 3:
+                GPD.effects.frame += 10 * game_framework.frame_time
+            elif GPD.effects.frame >= 3:
                 GPD.effects.frame = 0
                 GPD.effects.id = -1
                 GPD.players[turn_queue[0][1]].act_type = 0
@@ -559,10 +562,7 @@ def do_player_animation():
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 1:
             if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
-                if GPD.skill_MAXframe[GPD.effects.id] > 15:
-                    GPD.effects.frame += 10 * (current_time - Prevtime)
-                else:
-                    GPD.effects.frame += 4 * (current_time - Prevtime)
+                GPD.effects.frame += 30 * game_framework.frame_time
             elif GPD.effects.frame >= GPD.skill_MAXframe[GPD.effects.id]:
                 GPD.effects.frame = 0
                 GPD.effects.id = -1
@@ -635,14 +635,16 @@ def do_monster_animation(id, index):
 
         if GPD.monsters[index].anistep == 1:
             if GPD.monsters[index].frame >= 2:
+                GPD.effects.id = 100
                 GPD.monsters[index].anistep = 2
                 GPD.players[GPD.monsters[index].attack_target].act_type = 6
 
         if GPD.monsters[index].anistep == 2:
-            if timer < 60:
-                timer += 1
-            else:
-                timer = 0
+            if GPD.effects.frame < 3:
+                GPD.effects.frame += 10 * game_framework.frame_time
+            elif GPD.effects.frame >= 3:
+                GPD.effects.frame = 0
+                GPD.effects.id = -1
                 GPD.monsters[index].anistep = 3
 
         if GPD.monsters[index].anistep == 3:
