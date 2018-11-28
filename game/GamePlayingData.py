@@ -94,42 +94,55 @@ def Upload_data():
     if Defiance is None:
         Defiance = Player_sound_data()
         Defiance.image = load_image('image\\effect\\Shield.png')
+        Defiance.sound = load_wav('sound\\fx\\A0BlockShield.wav')
     if Provoke is None:
         Provoke = Player_sound_data()
         Provoke.image = load_image('image\\effect\\Provoke.png')
+        Provoke.sound = load_wav('sound\\fx\\B8Whistle.wav')
     if OverPower is None:
         OverPower = Player_sound_data()
         OverPower.image = load_image('image\\effect\\OverPower.png')
+        OverPower.sound = load_wav('sound\\fx\\8BClawSlash.wav')
     if Fell_Cleave is None:
         Fell_Cleave = Player_sound_data()
         Fell_Cleave.image = load_image('image\\effect\\Fell_Cleave.png')
+        Fell_Cleave.sound = load_wav('sound\\fx\\DAFlailHit.wav')
     if Stone is None:
         Stone = Player_sound_data()
         Stone.image = load_image('image\\effect\\Stone.png')
+        Stone.sound = load_wav('sound\\fx\\8ADirkSlash.wav')
     if Protect is None:
         Protect = Player_sound_data()
         Protect.image = load_image('image\\effect\\Protect.png')
+        Protect.sound = load_wav('sound\\fx\\45Shell.wav')
     if Blizzard is None:
         Blizzard = Player_sound_data()
         Blizzard.image = load_image('image\\effect\\Blizzard.png')
+        Blizzard.sound = load_wav('sound\\fx\\36Ice2.wav')
     if SFire is None:
         SFire = Player_sound_data()
         SFire.image = load_image('image\\effect\\SFire.png')
+        SFire.sound = load_wav('sound\\fx\\42Fire2.wav')
     if Convert is None:
         Convert = Player_sound_data()
         Convert.image = load_image('image\\effect\\Convert.png')
+        Convert.sound = load_wav('sound\\fx\\AAHealingWind.wav')
     if GustSlash is None:
         GustSlash = Player_sound_data()
         GustSlash.image = load_image('image\\effect\\GustSlash.png')
+        GustSlash.sound = load_wav('sound\\fx\\6EWind.wav')
     if DeathBlossom is None:
         DeathBlossom = Player_sound_data()
         DeathBlossom.image = load_image('image\\effect\\DeathBlossom.png')
+        DeathBlossom.sound = load_wav('sound\\fx\\2ESwordSlashLong.wav')
     if Assassinate is None:
         Assassinate = Player_sound_data()
         Assassinate.image = load_image('image\\effect\\Assassinate.png')
+        Assassinate.sound = load_wav('sound\\fx\\F5FightTing.wav')
     if Diversion is None:
         Diversion = Player_sound_data()
         Diversion.image = load_image('image\\effect\\Diversion.png')
+        Diversion.sound = load_wav('sound\\fx\\C9SwdTech.wav')
 
     if bgm is None:
         bgm = BGM()
@@ -148,6 +161,10 @@ class BGM():
         self.title = load_music('sound\\bgm\\Title.ogg')
         self.title.set_volume(64)
         self.overworld = load_music('sound\\bgm\\Overworld.ogg')
+        self.dungeon = load_music('sound\\bgm\\Dungeon.ogg')
+        self.town = load_music('sound\\bgm\\Town.ogg')
         self.battle = load_music('sound\\bgm\\Battle.ogg')
         self.battlewin = load_music('sound\\bgm\\BattleWin.ogg')
+        self.firstboss = load_music('sound\\bgm\\Boss1.ogg')
+        self.secondboss = load_music('sound\\bgm\\Boss2.ogg')
         pass
