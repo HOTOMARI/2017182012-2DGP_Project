@@ -8,15 +8,14 @@ import battle_win
 Battle_is_End = False
 background = None
 background_final = None
-scroll = 0
-scroll_up = True
+Phase_Change = False
 
 
 def enter():
     global current_time, Prevtime
     global background, background_final, turn_image
     global sel_menu_type, sel_menu_mode, menu_index, turn_queue, player_turn_index, monster_turn_index, monster_NO_deadshot
-    global turn_end_sign, monster_turn_sign, monster_turn_step, turn_queue_index, animation_end, timer
+    global turn_end_sign, monster_turn_sign, monster_turn_step, turn_queue_index, animation_end, timer, Phase_Change
     # open_canvas()
     current_time = 0
     Prevtime = 0
@@ -59,6 +58,7 @@ def enter():
     animation_end = False
     monster_NO_deadshot = False
     timer = 0
+    Phase_Change = False
 
 
 def exit():
@@ -361,7 +361,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             pass
         # a 선택 s 뒤로가기
-        elif event.type == SDL_KEYDOWN:
+        elif event.type == SDL_KEYDOWN and turn_end_sign is False:
             GPD.Menu.sound.play()
             if event.key == SDLK_ESCAPE:
                 # game_framework.change_state(map)
@@ -721,7 +721,6 @@ def do_monster_animation(id, index):
             animation_end = True
 
 
-
 def set_player_acttype(index):
     if GPD.players[index].HP / GPD.players[index].MAX_HP <= 0.2:
         GPD.players[index].act_type = 5
@@ -742,9 +741,10 @@ def initialize_menu_index(start, end):
     for i in range(start, end + 1):
         menu_index[i] = 0
 
+
 # @ 하고 # 사이 값이면 TRUE 리턴
 def number_is_in(start, number, end):
-    if number>=start and number <= end:
+    if number >= start and number <= end:
         return True
     else:
         return False
