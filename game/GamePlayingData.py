@@ -94,7 +94,7 @@ def Upload_data():
     if Defiance is None:
         Defiance = Player_sound_data()
         Defiance.image = load_image('image\\effect\\Shield.png')
-        Defiance.sound = load_wav('sound\\fx\\A0BlockShield.wav')
+        Defiance.sound = load_wav('sound\\fx\\45Shell.wav')
     if Provoke is None:
         Provoke = Player_sound_data()
         Provoke.image = load_image('image\\effect\\Provoke.png')

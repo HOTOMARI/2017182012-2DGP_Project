@@ -126,13 +126,13 @@ class Effect():
             GPD.Raise.sound.play()
 
         elif self.id == 11:
-            GPD.Attack.sound.play()
+            GPD.Provoke.sound.play()
         elif self.id == 12:
-            GPD.Attack.sound.play()
+            GPD.OverPower.sound.play()
         elif self.id == 13:
-            GPD.Attack.sound.play()
+            GPD.Defiance.sound.play()
         elif self.id == 14:
-            GPD.Attack.sound.play()
+            GPD.Fell_Cleave.sound.play(3)
         elif self.id == 15:
             GPD.Attack.sound.play()
         elif self.id == 17:
