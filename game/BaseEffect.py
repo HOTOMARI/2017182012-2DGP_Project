@@ -140,13 +140,14 @@ class Effect():
         elif self.id == 18:
             GPD.Protect.sound.play()
         elif self.id == 19:
-            GPD.Attack.sound.play()
+            GPD.Blizzard.sound.play()
         elif self.id == 20:
-            GPD.Attack.sound.play()
+            GPD.SFire.sound.play()
         elif self.id == 21:
-            GPD.Attack.sound.play()
+            GPD.Convert.sound.play()
         elif self.id == 22:
-            GPD.Attack.sound.play()
+            GPD.Heal.sound.play()
+            GPD.Convert.sound.play()
         elif self.id == 23:
             GPD.Attack.sound.play()
         elif self.id == 24:
