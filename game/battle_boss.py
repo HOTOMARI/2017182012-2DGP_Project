@@ -67,6 +67,8 @@ def exit():
     del (background)
     del (turn_image)
 
+    GPD.monsters.pop()
+
 
 def update():
     global Battle_is_End
@@ -137,7 +139,7 @@ def update():
 
                 # 몬스터가 모두 죽었으면 전투종료
                 elif monster_turn_step == 1:
-                    if GPD.monsters[0].act_type == 5:
+                    if GPD.monsters[0].HP < 0:
                         game_framework.push_state(battle_win)
                         Battle_is_End = True
                     else:

@@ -1,7 +1,7 @@
 from pico2d import*
 import game_framework
 import GamePlayingData as GPD
-import battle
+import battle, battle_boss
 
 
 def enter():
@@ -10,7 +10,10 @@ def enter():
     global message_index
     global total_money, total_exp
     #open_canvas()
-    background = battle.background
+    if GPD.monsters[0].name != '케프카':
+        background = battle.background
+    else:
+        background = battle_boss.background_final
     current_time = 0
     Prevtime = 0
     message_index = 0
@@ -22,9 +25,13 @@ def enter():
 
     total_money = 0
     total_exp = 0
-    for i in range(0, 3):
-        total_money += GPD.monsters[i].MONEY
-        total_exp += GPD.monsters[i].EXP
+    if GPD.monsters[0].name != '케프카':
+        for i in range(0, 3):
+            total_money += GPD.monsters[i].MONEY
+            total_exp += GPD.monsters[i].EXP
+    else:
+        total_money += GPD.monsters[0].MONEY
+        total_exp += GPD.monsters[0].EXP
 
     GPD.money += total_money
     for i in range(0,4):
