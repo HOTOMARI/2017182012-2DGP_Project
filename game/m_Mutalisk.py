@@ -37,19 +37,32 @@ class Mutalisk(Monster):
             self.image.clip_draw(576 + 144 * int(self.frame % 2), 0, 144, 72, 200, 410 - 100 * self.party_num)
 
     def attack(self, my_index):
-        GPD.players[self.attack_target].SHIELD -= self.ATK
-        if GPD.players[self.attack_target].SHIELD < 0:
-            GPD.players[self.attack_target].HP += GPD.players[self.attack_target].SHIELD
-            GPD.players[self.attack_target].SHIELD = 0
+        dmg = self.ATK
+
+        if GPD.players[self.attack_target].SHIELD > 0:
+            GPD.players[self.attack_target].SHIELD -= self.ATK
+            if GPD.players[self.attack_target].SHIELD < 0:
+                dmg = -GPD.players[self.attack_target].SHIELD
+                GPD.players[self.attack_target].SHIELD = 0
+            if dmg - GPD.players[self.attack_target].DEF > 0:
+                GPD.players[self.attack_target].HP -= dmg - GPD.players[self.attack_target].DEF
+                dmg = dmg - GPD.players[self.attack_target].DEF
+            else:
+                dmg = 0
+        else:
+            if dmg - GPD.players[self.attack_target].DEF > 0:
+                GPD.players[self.attack_target].HP -= dmg - GPD.players[self.attack_target].DEF
+                dmg = dmg - GPD.players[self.attack_target].DEF
+            else:
+                dmg = 0
 
         if GPD.players[self.attack_target].HP <= 0:
             GPD.players[self.attack_target].HP = 0
             GPD.players[self.attack_target].act_type = 7
         elif GPD.players[self.attack_target].HP / GPD.players[self.attack_target].MAX_HP <= 0.2:
             GPD.players[self.attack_target].act_type = 5
-        print(self.name + str(my_index) + '가 ' + GPD.players[self.attack_target].name + str(self.attack_target) + '를 공격')
-        print(GPD.players[self.attack_target].name + str(self.attack_target) + '의 체력: ' + str(
-            GPD.players[self.attack_target].HP))
+
+        print(self.name + '가 ' + GPD.players[self.attack_target].name + '에게 ' + str(dmg) + '만큼의 피해')
 
     def setting_target(self):
         global tmp, tmp_hate

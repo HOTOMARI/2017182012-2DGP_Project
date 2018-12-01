@@ -183,9 +183,11 @@ def update():
                             turn_end_sign = False
                             break
 
-            # 플레이어가 전부 죽으면 밖으로 나감
-            if player_turn_index == 4:
-                game_framework.change_state(gameover)
+                    # 플레이어가 전부 죽으면 밖으로 나감
+                    if player_turn_index == 4:
+                        game_framework.change_state(gameover)
+
+
 
             Prevtime = current_time
 
@@ -278,7 +280,8 @@ def draw():
             GPD.Ingame_font.font.draw(550, 120 - i * 30, GPD.players[i].status_string, [255, 255, 255])
 
 
-    turn_image.clip_draw(0,0,72,72, 600, 420 - 75 * player_turn_index)
+    if monster_turn_sign == True and turn_end_sign == True:
+        turn_image.clip_draw(0, 0, 72, 72, 600, 420 - 75 * player_turn_index)
     # 플레이어 출력
     for i in range(0, 4):
         GPD.players[i].draw()
