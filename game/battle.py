@@ -6,11 +6,11 @@ import battle_win
 
 Battle_is_End = False
 background = None
-
+BattlelogBack = None
 
 def enter():
     global current_time, Prevtime
-    global background,turn_image
+    global background,turn_image, BattlelogBack
     global sel_menu_type, sel_menu_mode, menu_index,turn_queue, player_turn_index, monster_turn_index, monster_NO_deadshot
     global turn_end_sign,monster_turn_sign,monster_turn_step, turn_queue_index, animation_end, timer
     #open_canvas()
@@ -23,6 +23,7 @@ def enter():
         background = load_image('image\\battlebacks\\Dungeon.png')
 
     turn_image = load_image('image\\player\\select.png')
+    BattlelogBack = load_image('image\\black_point.png')
 
     GPD.bgm.battle.repeat_play()
 
