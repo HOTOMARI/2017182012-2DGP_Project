@@ -240,8 +240,8 @@ def update():
                             break
 
             # 플레이어가 전부 죽으면 밖으로 나감
-            if player_turn_index == 4:
-                game_framework.change_state(gameover)
+                    if player_turn_index == 4:
+                        game_framework.change_state(gameover)
 
             Prevtime = current_time
 
@@ -326,7 +326,8 @@ def draw():
         else:
             GPD.Ingame_font.font.draw(550, 120 - i * 30, GPD.players[i].status_string, [255, 255, 255])
 
-    turn_image.clip_draw(0, 0, 72, 72, 600, 420 - 75 * player_turn_index)
+    if monster_turn_sign == True and turn_end_sign == True:
+        turn_image.clip_draw(0, 0, 72, 72, 600, 420 - 75 * player_turn_index)
     # 플레이어 출력
     for i in range(0, 4):
         GPD.players[i].draw()
@@ -361,6 +362,7 @@ def handle_events():
             pass
         # a 선택 s 뒤로가기
         elif event.type == SDL_KEYDOWN:
+            GPD.Menu.sound.play()
             if event.key == SDLK_ESCAPE:
                 # game_framework.change_state(map)
                 game_framework.pop_state()
@@ -555,6 +557,7 @@ def do_player_animation():
                 GPD.effects.frame = 0
                 GPD.effects.id = 0
                 GPD.players[turn_queue[0][1]].anistep = 2
+                GPD.effects.playFX()
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 2:
             if GPD.effects.frame < 2:
@@ -582,6 +585,7 @@ def do_player_animation():
                 GPD.effects.frame = 0
                 GPD.effects.id = 10 + GPD.players[turn_queue[0][1]].skill[turn_queue[0][2]].ID
                 GPD.players[turn_queue[0][1]].anistep = 1
+                GPD.effects.playFX()
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 1:
             if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
@@ -618,6 +622,7 @@ def do_player_animation():
         if GPD.players[turn_queue[0][1]].anistep == 2:
             GPD.effects.frame = 0
             GPD.players[turn_queue[0][1]].anistep = 3
+            GPD.effects.playFX()
 
         if GPD.players[turn_queue[0][1]].anistep == 3:
             # 부활템 일떄
@@ -660,6 +665,7 @@ def do_monster_animation(id, index):
             if GPD.monsters[index].frame >= 30:
                 GPD.monsters[index].anistep = 2
                 GPD.players[GPD.monsters[index].attack_target].act_type = 6
+                GPD.effects.playFX()
 
         if GPD.monsters[index].anistep == 2:
             if timer < 60:
