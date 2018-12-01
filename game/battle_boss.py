@@ -86,6 +86,8 @@ def update():
             GPD.monsters[0].phase = 1
             GPD.monsters[0].act_type = 2
             GPD.monsters[0].next_skill = 0
+
+            GPD.bgm.secondboss.repeat_play()
             Phase_Change = False
             pass
         else:

@@ -111,35 +111,35 @@ def handle_events():
                 if message_index is 3:
                     if GPD.players[0].EXP >= GPD.players[0].MAX_EXP and GPD.players[0].act_type != 7:
                         GPD.players[0].EXP -= GPD.players[0].MAX_EXP
-                        GPD.players[0].MAX_EXP += GPD.players[0].LEVEL * 5
+                        GPD.players[0].MAX_EXP += GPD.players[0].MAX_EXP * 2
                         GPD.players[0].LEVEL += 1
-                        GPD.players[0].AP += 5
+                        GPD.players[0].AP += 10
                     else:
                         message_index += 1
 
                 if message_index is 4:
                     if GPD.players[1].EXP >= GPD.players[1].MAX_EXP and GPD.players[1].act_type != 7:
                         GPD.players[1].EXP -= GPD.players[1].MAX_EXP
-                        GPD.players[0].MAX_EXP += GPD.players[1].LEVEL * 5
+                        GPD.players[1].MAX_EXP += GPD.players[1].MAX_EXP * 2
                         GPD.players[1].LEVEL += 1
-                        GPD.players[1].AP += 5
+                        GPD.players[1].AP += 10
                     else:
                         message_index += 1
 
                 if message_index is 5:
                     if GPD.players[2].EXP >= GPD.players[2].MAX_EXP and GPD.players[2].act_type != 7:
                         GPD.players[2].EXP -= GPD.players[2].MAX_EXP
-                        GPD.players[0].MAX_EXP += GPD.players[2].LEVEL * 5
+                        GPD.players[2].MAX_EXP += GPD.players[2].MAX_EXP * 2
                         GPD.players[2].LEVEL += 1
-                        GPD.players[2].AP += 5
+                        GPD.players[2].AP += 10
                     else:
                         message_index += 1
 
                 if message_index is 6:
                     if GPD.players[3].EXP >= GPD.players[3].MAX_EXP and GPD.players[3].act_type != 7:
                         GPD.players[3].EXP -= GPD.players[3].MAX_EXP
-                        GPD.players[0].MAX_EXP += GPD.players[3].LEVEL * 5
+                        GPD.players[3].MAX_EXP += GPD.players[3].MAX_EXP * 2
                         GPD.players[3].LEVEL += 1
-                        GPD.players[3].AP += 5
+                        GPD.players[3].AP += 10
                     else:
                         message_index += 1
