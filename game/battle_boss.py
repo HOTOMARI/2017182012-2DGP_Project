@@ -91,6 +91,8 @@ def update():
 
             GPD.bgm.secondboss.repeat_play()
             Phase_Change = False
+            turn_end_sign = False
+            monster_turn_sign = False
             pass
         else:
             for i in range(0, 4):

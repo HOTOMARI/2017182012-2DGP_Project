@@ -1,7 +1,8 @@
 from pico2d import*
+from SAVEManager import*
 import game_framework
 import GamePlayingData as GPD
-import battle, battle_boss
+import battle, battle_boss, title
 
 
 def enter():
@@ -43,6 +44,12 @@ def exit():
     for i in range(0, 4):
         GPD.players[i].act_type = 0
 
+    if GPD.monsters[0].name == '케프카':
+        GPD.now_map = 0
+        GPD.Player.x = 461
+        GPD.Player.y = 353
+        Save_game()
+
 
 def update():
     global current_time, Prevtime
@@ -55,7 +62,10 @@ def update():
             GPD.players[i].frame += game_framework.frame_time * 45
 
         if message_index >= 7:
-            game_framework.pop_state()
+            if GPD.monsters[0].name == '케프카':
+                game_framework.change_state(title)
+            else:
+                game_framework.pop_state()
         Prevtime = current_time
 
 
