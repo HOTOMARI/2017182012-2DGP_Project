@@ -326,7 +326,7 @@ def draw():
         else:
             GPD.Ingame_font.font.draw(550, 120 - i * 30, GPD.players[i].status_string, [255, 255, 255])
 
-    if monster_turn_sign == True and turn_end_sign == True:
+    if monster_turn_sign == False and turn_end_sign == False:
         turn_image.clip_draw(0, 0, 72, 72, 600, 420 - 75 * player_turn_index)
     # 플레이어 출력
     for i in range(0, 4):
