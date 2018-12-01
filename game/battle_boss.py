@@ -718,26 +718,23 @@ def do_monster_animation(id, index):
         if GPD.monsters[index].anistep == 1:
             if GPD.monsters[index].frame >= 12:
                 GPD.effects.id = 200 + GPD.monsters[index].next_skill
+                GPD.effects.playFX()
                 GPD.monsters[index].anistep = 2
-                if GPD.monsters[index].next_skill is 0:
-                    GPD.players[GPD.monsters[index].attack_target].act_type = 6
-                else:
-                    for i in range(0,4):
+                for i in range(0,4):
+                    if GPD.players[i].HP > 0:
                         GPD.players[i].act_type = 6
 
         if GPD.monsters[index].anistep == 2:
-            if timer < 60:
-                timer += 1
-            else:
-                timer = 0
+            if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
+                GPD.effects.frame += 30 * game_framework.frame_time
+            elif GPD.effects.frame >= GPD.skill_MAXframe[GPD.effects.id]:
+                GPD.effects.frame = 0
+                GPD.effects.id = -1
                 GPD.monsters[index].anistep = 3
 
         if GPD.monsters[index].anistep == 3:
-            if GPD.monsters[index].next_skill is 0:
-                set_player_acttype(GPD.monsters[index].attack_target)
-            else:
-                for i in range(0, 4):
-                    set_player_acttype(i)
+            for i in range(0, 4):
+                set_player_acttype(i)
             set_monster_acttype(index)
             GPD.monsters[index].anistep = 0
             animation_end = True
@@ -748,6 +745,8 @@ def set_player_acttype(index):
         GPD.players[index].act_type = 5
     else:
         GPD.players[index].act_type = 0
+    if GPD.players[index].HP <= 0:
+        GPD.players[index].act_type = 7
 
 
 def set_monster_acttype(index):

@@ -159,6 +159,7 @@ def Upload_data():
     if HyperDrive is None:
         HyperDrive = Player_sound_data()
         HyperDrive.image = load_image('image\\effect\\HyperDrive.png')
+
     if bgm is None:
         bgm = BGM()
 

@@ -119,19 +119,29 @@ class Effect():
             GPD.Attack.image.clip_draw(0 + int(self.frame % 3) * 192, 0, 192, 192, 600, 420 - 75 * party_num)
 
         elif self.id == 200:
-            pass
+            GPD.HyperDrive.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 5) * 192,
+                                          192, 192, 600, 420 - 75 * 0, 72, 72)
+            GPD.HyperDrive.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 5) * 192,
+                                           192, 192, 600, 420 - 75 * 1, 72, 72)
+            GPD.HyperDrive.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 5) * 192,
+                                           192, 192, 600, 420 - 75 * 2, 72, 72)
+            GPD.HyperDrive.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 5) * 192,
+                                           192, 192, 600, 420 - 75 * 3, 72, 72)
         elif self.id == 201:
-            pass
+            GPD.SFire.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 1) - int(self.frame / 5) * 192, 192,
+                                      192, 600, 300, 400, 300)
         elif self.id == 202:
-            pass
+            GPD.Blizzard.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192, 192,
+                                         192, 600, 300, 400, 300)
         elif self.id == 203:
-            pass
+            GPD.R_FIRE.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 1) - int(self.frame / 5) * 192, 192,
+                                       192, 600, 300, 400, 300)
         elif self.id == 204:
-            pass
-        elif self.id == 205:
-            pass
-        elif self.id == 206:
-            pass
+            GPD.R_ICE.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 4) - int(self.frame / 5) * 192, 192,
+                                      192, 600, 300, 400, 300)
+        elif self.id == 205 or self.id == 206:
+            GPD.Diversion.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 5) * 192,
+                                          192, 192, 600, 300, 400, 400)
 
     def playFX(self):
         if self.id == 0:
@@ -175,3 +185,18 @@ class Effect():
 
         elif self.id == 100:
             GPD.Attack.sound.play()
+
+        elif self.id == 200:
+            GPD.Attack.sound.play()
+        elif self.id == 201:
+            GPD.SFire.sound.play()
+        elif self.id == 202:
+            GPD.Blizzard.sound.play()
+        elif self.id == 203:
+            GPD.SFire.sound.play()
+        elif self.id == 204:
+            GPD.Blizzard.sound.play()
+        elif self.id == 205:
+            GPD.Diversion.sound.play()
+        elif self.id == 206:
+            GPD.Diversion.sound.play()
