@@ -35,6 +35,8 @@ def enter():
     Entrance_Tile = [Bounding_box.BaseZone(background.tile_map.layers[2]['objects'][i],960)
                      for i in range(len(background.tile_map.layers[2]['objects']))]
 
+    GPD.bgm.town.repeat_play()
+
     # 캐릭터 초기  시작위치
     GPD.Player.x = GPD.x
     GPD.Player.y = GPD.y
@@ -72,18 +74,21 @@ def update():
 
         # 스킬상점
         if collide(GPD.Player, Entrance_Tile[0]):
+            GPD.isMenunow = True
             game_framework.push_state(shop_skill)
             GPD.Player.y -= 50
             GPD.Player.move_dir = [0, 0, 0, 0]
             GPD.Player.state = 0
         # 잡화상점
         elif collide(GPD.Player, Entrance_Tile[1]):
+            GPD.isMenunow = True
             game_framework.push_state(shop_potion)
             GPD.Player.y -= 50
             GPD.Player.move_dir = [0, 0, 0, 0]
             GPD.Player.state = 0
         # 여관
         elif collide(GPD.Player, Entrance_Tile[2]):
+            GPD.isMenunow = True
             game_framework.push_state(shop_motel)
             GPD.Player.y -= 50
             GPD.Player.move_dir = [0, 0, 0, 0]
@@ -114,7 +119,10 @@ def draw():
 def pause(): pass
 
 
-def resume(): pass
+def resume():
+    if GPD.isMenunow == False:
+        GPD.bgm.town.repeat_play()
+    GPD.isMenunow=False
 
 
 def handle_events():
@@ -123,6 +131,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            GPD.isMenunow = True
             game_framework.push_state(pause_menu)
         else:
             GPD.Player.handle_events(event)

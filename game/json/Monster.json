@@ -1,14 +1,14 @@
 {
   "Wolf" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "Slime" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "Chocobo" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "RedBomb" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "ShieldMan" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "BlueBomb" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "Dragon" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "Bat" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "Snake" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "Mutalisk" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "Flower" : {"HP":15, "EXP":5, "ATK":5, "DEF":3, "MONEY":15},
-  "Kefka" : {"HP":5000, "EXP":5, "ATK":5, "DEF":3, "MONEY":15}
+  "Slime" : {"HP":30, "EXP":10, "ATK":10, "DEF":6, "MONEY":30},
+  "Chocobo" : {"HP":60, "EXP":20, "ATK":20, "DEF":12, "MONEY":50},
+  "RedBomb" : {"HP":120, "EXP":30, "ATK":40, "DEF":24, "MONEY":100},
+  "ShieldMan" : {"HP":240, "EXP":50, "ATK":80, "DEF":48, "MONEY":252},
+  "BlueBomb" : {"HP":480, "EXP":70, "ATK":160, "DEF":60, "MONEY":500},
+  "Dragon" : {"HP":960, "EXP":90, "ATK":200, "DEF":80, "MONEY":1500},
+  "Bat" : {"HP":1920, "EXP":100, "ATK":240, "DEF":100, "MONEY":700},
+  "Snake" : {"HP":3840, "EXP":300, "ATK":500, "DEF":150, "MONEY":200},
+  "Mutalisk" : {"HP":7680, "EXP":500, "ATK":450, "DEF":200, "MONEY":2000},
+  "Flower" : {"HP":15360, "EXP":1000, "ATK":700, "DEF":400, "MONEY":3000},
+  "Kefka" : {"HP":50000, "EXP":1, "ATK":1500, "DEF":777, "MONEY":25252}
 }

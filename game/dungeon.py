@@ -38,6 +38,8 @@ def enter():
     Entrance_Tile = [Bounding_box.BaseZone(background.tile_map.layers[2]['objects'][i],1440)
                      for i in range(len(background.tile_map.layers[2]['objects']))]
 
+    GPD.bgm.dungeon.repeat_play()
+
     # 캐릭터 초기 시작위치
     GPD.Player.x = GPD.x
     GPD.Player.y = GPD.y
@@ -104,7 +106,10 @@ def draw():
 def pause(): pass
 
 
-def resume(): pass
+def resume():
+    if GPD.isMenunow == False:
+        GPD.bgm.dungeon.repeat_play()
+    GPD.isMenunow=False
 
 
 def handle_events():
@@ -113,6 +118,7 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            GPD.isMenunow = True
             game_framework.push_state(pause_menu)
             # 강제 배틀 돌입
         elif event.type == SDL_KEYDOWN and event.key == SDLK_0:

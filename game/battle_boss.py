@@ -26,6 +26,8 @@ def enter():
 
     turn_image = load_image('image\\player\\select.png')
 
+    GPD.bgm.firstboss.repeat_play()
+
     # 0 1차메뉴 1 2차메뉴 2 3차메뉴-1 3 3차메뉴-2
     sel_menu_type = 0
     # 0 None 1 attack 2 skill 3 item
@@ -310,11 +312,10 @@ def draw():
 
     # 액션 선택 창
     GPD.Menu.image.clip_draw(0, 0, 240, 160, 400, 75, int(800 / 4), 150)
-    GPD.Menu.image.clip_draw(242, 84, 17, 16, 340, 120 - menu_index[0] * 30)  # 손가락
-    GPD.Ingame_font.font.draw(360, 120 - 0 * 30, '공격', [255, 255, 255])
-    GPD.Ingame_font.font.draw(360, 120 - 1 * 30, '스킬', [255, 255, 255])
-    GPD.Ingame_font.font.draw(360, 120 - 2 * 30, '아이템', [255, 255, 255])
-    GPD.Ingame_font.font.draw(360, 120 - 3 * 30, '리미트브레이크', [255, 255, 255])
+    GPD.Menu.image.clip_draw(242, 84, 17, 16, 340, 115 - menu_index[0] * 40)  # 손가락
+    GPD.Ingame_font.font.draw(360, 115 - 0 * 40, '공격', [255, 255, 255])
+    GPD.Ingame_font.font.draw(360, 115 - 1 * 40, '스킬', [255, 255, 255])
+    GPD.Ingame_font.font.draw(360, 115 - 2 * 40, '아이템', [255, 255, 255])
 
     # 아군 상태 출력
     GPD.Menu.image.clip_draw(0, 0, 240, 160, 650, 75, int(800 / 4 * 3 / 2), 150)
@@ -371,7 +372,7 @@ def handle_events():
                     if menu_index[sel_menu_type] > 0:
                         menu_index[sel_menu_type] -= 1
                 elif event.key == SDLK_DOWN:
-                    if menu_index[sel_menu_type] < 3:
+                    if menu_index[sel_menu_type] < 2:
                         menu_index[sel_menu_type] += 1
                 # a키로 선택
                 # 2차메뉴로 들어감
@@ -532,9 +533,6 @@ def handle_events():
                     sel_menu_type -= 1
                     initialize_menu_index(2, 2)
 
-            # 리미트 브레이크
-            elif sel_menu_mode == 4:
-                pass
 
 
 def do_player_animation():
