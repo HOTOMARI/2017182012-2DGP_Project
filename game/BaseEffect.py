@@ -53,13 +53,13 @@ class Effect():
                 GPD.Stone.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 1) - int(self.frame / 5) * 192, 192,
                                           192, 200, 320, 256, 256)
         elif self.id == 17:
-            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 6) * 192, 192,
+            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 3) - int(self.frame / 4) * 192, 192,
                                         192, 600, 420 - 75 * 0, 72, 72)
-            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 6) * 192, 192,
+            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 3) - int(self.frame / 4) * 192, 192,
                                         192, 500, 420 - 75 * 1, 72, 72)
-            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 6) * 192, 192,
+            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 3) - int(self.frame / 4) * 192, 192,
                                         192, 600, 420 - 75 * 2, 72, 72)
-            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 5) - int(self.frame / 6) * 192, 192,
+            GPD.Heal.image.clip_draw(0 + int(self.frame % 5) * 192, int(192 * 3) - int(self.frame / 4) * 192, 192,
                                         192, 600, 420 - 75 * 3, 72, 72)
 
         elif self.id == 18:
@@ -134,11 +134,11 @@ class Effect():
         elif self.id == 14:
             GPD.Fell_Cleave.sound.play(3)
         elif self.id == 15:
-            GPD.Attack.sound.play()
+            GPD.Stone.sound.play()
         elif self.id == 17:
-            GPD.Attack.sound.play()
+            GPD.Heal.sound.play()
         elif self.id == 18:
-            GPD.Attack.sound.play()
+            GPD.Protect.sound.play()
         elif self.id == 19:
             GPD.Attack.sound.play()
         elif self.id == 20:
