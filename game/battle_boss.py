@@ -15,7 +15,8 @@ def enter():
     global current_time, Prevtime
     global background, background_final, turn_image
     global sel_menu_type, sel_menu_mode, menu_index, turn_queue, player_turn_index, monster_turn_index, monster_NO_deadshot
-    global turn_end_sign, monster_turn_sign, monster_turn_step, turn_queue_index, animation_end, timer, Phase_Change
+    global turn_end_sign, monster_turn_sign, monster_turn_step, turn_queue_index, animation_end, timer
+    global Phase_Change
     # open_canvas()
     current_time = 0
     Prevtime = 0
@@ -72,7 +73,7 @@ def update():
     global turn_queue, turn_queue_index, turn_end_sign, player_turn_index, animation_end
     global monster_turn_sign, monster_turn_index, monster_turn_step, monster_NO_deadshot
     global current_time, Prevtime
-    global scroll, scroll_up
+    global Phase_Change
 
     current_time = get_time()
 
@@ -81,7 +82,12 @@ def update():
         if Battle_is_End:
             Battle_is_End = False
             game_framework.pop_state()
-
+        elif Phase_Change is True:
+            GPD.monsters[0].phase = 1
+            GPD.monsters[0].act_type = 2
+            GPD.monsters[0].next_skill = 0
+            Phase_Change = False
+            pass
         else:
             for i in range(0, 4):
                 GPD.players[i].renew_status()
@@ -239,9 +245,11 @@ def update():
                             turn_end_sign = False
                             break
 
-            # 플레이어가 전부 죽으면 밖으로 나감
+                # 플레이어가 전부 죽으면 밖으로 나감
                     if player_turn_index == 4:
                         game_framework.change_state(gameover)
+                    if GPD.monsters[0].phase is 0 and GPD.monsters[0].HP <= 25000:
+                        Phase_Change = True
 
             Prevtime = current_time
 
@@ -253,6 +261,8 @@ def draw():
     global sel_menu_mode, sel_menu_type, player_turn_index
 
     # 배경 출력
+    background_final.clip_draw(0, 0, 1000, 740, 400, 400, 800, 500)
+    background.opacify(clamp(0, (GPD.monsters[0].HP - 25000) / 25000, 1.0))
     background.clip_draw(0, 0, 1000, 740, 400, 400, 800, 500)
 
     # 대상 선택 창

@@ -32,7 +32,7 @@ class Kefka(Monster):
 
         # 0 common  1 attack 2 magic_ready 3 magic 4 lim_attack 5 die
         self.act_type = 0
-        self.phase = 1
+        self.phase = 0
         # 0 common 1 fire 2 ice 3 reverseFIRE 4 reverseICE 5 Player_don't_attack->DIE 6 Player_attack->DIE
         self.next_skill = 0
         # 2 나올스킬 fire -2 나올스킬 ice
@@ -155,48 +155,84 @@ class Kefka(Monster):
 
     def ICE(self):
         for i in range(0,4):
-            if self.next_skill is 2:
-                GPD.players[i].HP -= 1 * (-self.FireorIce)
-            else:
-                GPD.players[i].HP -= 1 * (self.FireorIce)
+            if GPD.players[i].HP > 0:
+                if self.next_skill is 2:
+                    GPD.players[i].HP -= 1 * (-self.FireorIce)
+                else:
+                    GPD.players[i].HP -= 1 * (self.FireorIce)
+
+                if GPD.players[i].HP <= 0:
+                    GPD.players[i].HP = 0
+                    GPD.players[i].act_type = 7
+                elif GPD.players[i].HP / GPD.players[i].MAX_HP <= 0.2:
+                    GPD.players[i].act_type = 5
         print('얼음!')
 
     def FIRE(self):
         for i in range(0,4):
-            if self.next_skill is 1:
-                GPD.players[i].HP -= 1 * (self.FireorIce)
-            else:
-                GPD.players[i].HP -= 1 * (-self.FireorIce)
+            if GPD.players[i].HP > 0:
+                if self.next_skill is 1:
+                    GPD.players[i].HP -= 1 * (self.FireorIce)
+                else:
+                    GPD.players[i].HP -= 1 * (-self.FireorIce)
+
+                if GPD.players[i].HP <= 0:
+                    GPD.players[i].HP = 0
+                    GPD.players[i].act_type = 7
+                elif GPD.players[i].HP / GPD.players[i].MAX_HP <= 0.2:
+                    GPD.players[i].act_type = 5
         print('불!')
 
     def EYES(self):
         for i in range(0,4):
-            if self.isDamaged is True and self.next_skill is 6:
-                GPD.players[i].HP -= 1
-            elif self.isDamaged is False and self.next_skill is 5:
-                GPD.players[i].HP -= 1
+            if GPD.players[i].HP > 0:
+                if self.isDamaged is True and self.next_skill is 6:
+                    GPD.players[i].HP -= 1
+                elif self.isDamaged is False and self.next_skill is 5:
+                    GPD.players[i].HP -= 1
+
+                if GPD.players[i].HP <= 0:
+                    GPD.players[i].HP = 0
+                    GPD.players[i].act_type = 7
+                elif GPD.players[i].HP / GPD.players[i].MAX_HP <= 0.2:
+                    GPD.players[i].act_type = 5
         print('눈!')
 
     def COMMON_SKILL(self):
-        if self.phase is 0:
-            GPD.players[self.attack_target].SHIELD -= self.ATK
-            if GPD.players[self.attack_target].SHIELD < 0:
-                GPD.players[self.attack_target].HP += GPD.players[self.attack_target].SHIELD
-                GPD.players[self.attack_target].SHIELD = 0
+        if self.phase == 0:
+            dmg = self.ATK
+
+            if GPD.players[self.attack_target].SHIELD > 0:
+                GPD.players[self.attack_target].SHIELD -= self.ATK
+                if GPD.players[self.attack_target].SHIELD < 0:
+                    dmg = -GPD.players[self.attack_target].SHIELD
+                    GPD.players[self.attack_target].SHIELD = 0
+                if dmg - GPD.players[self.attack_target].DEF > 0:
+                    GPD.players[self.attack_target].HP -= dmg - GPD.players[self.attack_target].DEF
+                    dmg = dmg - GPD.players[self.attack_target].DEF
+                else:
+                    dmg = 0
+            else:
+                if dmg - GPD.players[self.attack_target].DEF > 0:
+                    GPD.players[self.attack_target].HP -= dmg - GPD.players[self.attack_target].DEF
+                    dmg = dmg - GPD.players[self.attack_target].DEF
+                else:
+                    dmg = 0
 
             if GPD.players[self.attack_target].HP <= 0:
                 GPD.players[self.attack_target].HP = 0
                 GPD.players[self.attack_target].act_type = 7
             elif GPD.players[self.attack_target].HP / GPD.players[self.attack_target].MAX_HP <= 0.2:
                 GPD.players[self.attack_target].act_type = 5
-            print(
-                self.name + '가 ' + GPD.players[self.attack_target].name + str(self.attack_target) + '를 스킬')
-            print(GPD.players[self.attack_target].name + str(self.attack_target) + '의 체력: ' + str(
-                GPD.players[self.attack_target].HP))
-        elif self.phase is 1:
+
+            print(self.name + '가 ' + GPD.players[self.attack_target].name + '에게 ' + str(dmg) + '만큼의 피해')
+
+        elif self.phase == 1:
             for i in range(0, 4):
-                if GPD.players[i].act_type is not 7:
+                if GPD.players[i].HP > 0:
                     GPD.players[i].HP = 1
+                if GPD.players[i].HP / GPD.players[i].MAX_HP <= 0.2:
+                    GPD.players[i].act_type = 5
 
         print('가아앙한스킬!')
         pass

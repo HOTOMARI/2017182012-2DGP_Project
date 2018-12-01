@@ -10,5 +10,5 @@
   "Snake" : {"HP":3840, "EXP":300, "ATK":500, "DEF":150, "MONEY":200},
   "Mutalisk" : {"HP":7680, "EXP":500, "ATK":450, "DEF":200, "MONEY":2000},
   "Flower" : {"HP":15360, "EXP":1000, "ATK":700, "DEF":400, "MONEY":3000},
-  "Kefka" : {"HP":50000, "EXP":1, "ATK":1500, "DEF":777, "MONEY":25252}
+  "Kefka" : {"HP":25001, "EXP":1, "ATK":1500, "DEF":0, "MONEY":25252}
 }
