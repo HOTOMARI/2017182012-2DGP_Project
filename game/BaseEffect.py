@@ -149,13 +149,13 @@ class Effect():
             GPD.Heal.sound.play()
             GPD.Convert.sound.play()
         elif self.id == 23:
-            GPD.Attack.sound.play()
+            GPD.GustSlash.sound.play()
         elif self.id == 24:
-            GPD.Attack.sound.play()
+            GPD.DeathBlossom.sound.play(2)
         elif self.id == 25:
-            GPD.Attack.sound.play()
+            GPD.Assassinate.sound.play()
         elif self.id == 26:
-            GPD.Attack.sound.play()
+            GPD.Diversion.sound.play()
 
         elif self.id == 100:
             GPD.Attack.sound.play()
