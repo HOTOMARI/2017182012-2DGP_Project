@@ -14,7 +14,7 @@ def enter():
     shop_mode = 0
     sel_index = 0
     sel_player = 0
-    system_message = "TEST"
+    system_message = ""
 
 
 def exit():
@@ -136,6 +136,7 @@ def handle_events():
             pass
         # a 선택 s 뒤로가기
         elif event.type == SDL_KEYDOWN:
+            GPD.Menu.sound.play()
             if event.key == SDLK_ESCAPE:
                 # game_framework.change_state(map)
                 game_framework.pop_state()

@@ -14,7 +14,7 @@ def enter():
     current_time = 0
     Prevtime = 0
     shop_mode = 0
-    system_message = "TEST"
+    system_message = ""
 
     if background is None:
         background = load_image('image\\black_point.png')
@@ -69,6 +69,7 @@ def handle_events():
             pass
         # a 선택 s 뒤로가기
         elif event.type == SDL_KEYDOWN:
+            GPD.Menu.sound.play()
             if event.key == SDLK_ESCAPE:
                 # game_framework.change_state(map)
                 game_framework.pop_state()
