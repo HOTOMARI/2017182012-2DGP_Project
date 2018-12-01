@@ -9,6 +9,7 @@ Monster_data_file.close()
 
 
 class Kefka(Monster):
+    sound = None
     def __init__(self, party_num):
         super(Kefka, self).__init__('케프카', Monster_Data['Kefka']['HP'], Monster_Data['Kefka']['EXP'],
                                    Monster_Data['Kefka']['ATK'], Monster_Data['Kefka']['DEF'],
@@ -27,6 +28,9 @@ class Kefka(Monster):
         self.f_attack = load_image('image\\monster\\Boss\\f_atk.png')
         self.f_lim_attack = load_image('image\\monster\\Boss\\f_limit_atk.png')
         self.f_magic_attack = load_image('image\\monster\\Boss\\f_magic_atk.png')
+
+        if self.sound is None:
+            self.sound = load_wav('sound\\fx\\KefkaLaugh.wav')
 
         self.magic_effect = load_image('image\\effect\\Boss_skill.png')
 

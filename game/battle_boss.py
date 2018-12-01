@@ -357,6 +357,9 @@ def draw():
         else:
             GPD.effects.draw(turn_queue[0][1], turn_queue[0][3])
 
+    if monster_turn_sign:
+        GPD.effects.draw(0, GPD.monsters[0].attack_target)
+
     update_canvas()
 
 
@@ -674,18 +677,21 @@ def do_monster_animation(id, index):
             GPD.monsters[index].act_type = 1
             GPD.monsters[index].frame = 0
             GPD.monsters[index].anistep = 1
+            GPD.monsters[index].sound.play()
 
         if GPD.monsters[index].anistep == 1:
             if GPD.monsters[index].frame >= 30:
+                GPD.effects.id = 100
                 GPD.monsters[index].anistep = 2
                 GPD.players[GPD.monsters[index].attack_target].act_type = 6
                 GPD.effects.playFX()
 
         if GPD.monsters[index].anistep == 2:
-            if timer < 60:
-                timer += 1
-            else:
-                timer = 0
+            if GPD.effects.frame < 3:
+                GPD.effects.frame += 10 * game_framework.frame_time
+            elif GPD.effects.frame >= 3:
+                GPD.effects.frame = 0
+                GPD.effects.id = -1
                 GPD.monsters[index].anistep = 3
 
         if GPD.monsters[index].anistep == 3:
@@ -697,12 +703,14 @@ def do_monster_animation(id, index):
     elif id == 2:
         if GPD.monsters[index].anistep == 0:
             if GPD.monsters[index].die_animation < 72:
-                GPD.monsters[index].die_animation += 180 * (current_time - Prevtime)
+                GPD.monsters[index].die_animation += 200 * (current_time - Prevtime)
             elif GPD.monsters[index].die_animation >= 72:
+                GPD.monsters[index].sound.play()
                 animation_end = True
     # 스킬
     elif id == 3:
         if GPD.monsters[index].anistep == 0:
+            GPD.monsters[index].sound.play()
             GPD.monsters[index].act_type = 3
             GPD.monsters[index].frame = 0
             GPD.monsters[index].anistep = 1
