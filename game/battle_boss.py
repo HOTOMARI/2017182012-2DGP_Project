@@ -687,9 +687,9 @@ def do_monster_animation(id, index):
                 GPD.effects.playFX()
 
         if GPD.monsters[index].anistep == 2:
-            if GPD.effects.frame < 3:
+            if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
                 GPD.effects.frame += 10 * game_framework.frame_time
-            elif GPD.effects.frame >= 3:
+            elif GPD.effects.frame >= GPD.skill_MAXframe[GPD.effects.id]:
                 GPD.effects.frame = 0
                 GPD.effects.id = -1
                 GPD.monsters[index].anistep = 3
@@ -717,7 +717,7 @@ def do_monster_animation(id, index):
 
         if GPD.monsters[index].anistep == 1:
             if GPD.monsters[index].frame >= 12:
-                print("step 1")
+                GPD.effects.id = 200 + GPD.monsters[index].next_skill
                 GPD.monsters[index].anistep = 2
                 if GPD.monsters[index].next_skill is 0:
                     GPD.players[GPD.monsters[index].attack_target].act_type = 6

@@ -3,7 +3,8 @@ import overworld_charactrer
 
 # 구별 id : 프레임 수
 skill_MAXframe ={0: 3, 1: 19, 2: 29, 11: 15, 12: 6, 13: 24, 14: 16, 15: 6, 16: 19, 17: 19, 18: 22,
-                 19: 21, 20: 10, 21: 22, 22: 22, 23: 15, 24: 28, 25: 20, 26: 26}
+                 19: 21, 20: 10, 21: 22, 22: 22, 23: 15, 24: 28, 25: 20, 26: 26,
+                 100: 3, 200: 21, 201: 10, 202: 21, 203: 10, 204: 21, 205: 26, 206: 26}
 
 players=[[None]for i in range(4)]
 monsters=list()
@@ -45,11 +46,16 @@ DeathBlossom = None
 Assassinate = None
 Diversion = None
 
+HyperDrive = None
+R_ICE = None
+R_FIRE = None
+
 def Upload_data():
     global Menu, Ingame_font, Ingame_Big_font
     global Player, Warrior, WhiteMage, BlackMage, Thief
     global Attack, Heal, Raise, Provoke, OverPower, Defiance, Fell_Cleave, Stone, Protect
     global Blizzard, SFire, Convert, GustSlash, DeathBlossom, Assassinate, Diversion
+    global R_ICE, R_FIRE, HyperDrive
     global bgm
 
     if Menu is None:
@@ -144,6 +150,15 @@ def Upload_data():
         Diversion.image = load_image('image\\effect\\Diversion.png')
         Diversion.sound = load_wav('sound\\fx\\C9SwdTech.wav')
 
+    if R_ICE is None:
+        R_ICE = Player_sound_data()
+        R_ICE.image = load_image('image\\effect\\RBlizzard.png')
+    if R_FIRE is None:
+        R_FIRE = Player_sound_data()
+        R_FIRE.image = load_image('image\\effect\\RSFire.png')
+    if HyperDrive is None:
+        HyperDrive = Player_sound_data()
+        HyperDrive.image = load_image('image\\effect\\HyperDrive.png')
     if bgm is None:
         bgm = BGM()
 

@@ -6,7 +6,8 @@ class Effect():
         self.id = -1
         # 0 공격 1 힐 2 부활
         # over 10 is 플레이어 스킬
-        # over 100 is 몬스터 스킬
+        # 1XX is 몬스터 스킬
+        # 2XX is 보스 스킬
 
     def draw(self, my_num, party_num):
         if self.id == 0:
@@ -116,6 +117,21 @@ class Effect():
 
         elif self.id == 100:
             GPD.Attack.image.clip_draw(0 + int(self.frame % 3) * 192, 0, 192, 192, 600, 420 - 75 * party_num)
+
+        elif self.id == 200:
+            pass
+        elif self.id == 201:
+            pass
+        elif self.id == 202:
+            pass
+        elif self.id == 203:
+            pass
+        elif self.id == 204:
+            pass
+        elif self.id == 205:
+            pass
+        elif self.id == 206:
+            pass
 
     def playFX(self):
         if self.id == 0:
