@@ -12,4 +12,4 @@ class Curepotion(Item):
 
     def use(self, target_index):
         GPD.players[target_index].condition = 0
-        print('플레이어'+str(target_index)+'의 상태이상 제거')
+        GPD.Battlelog.append(GPD.players[target_index].name + '의 상태이상 제거')

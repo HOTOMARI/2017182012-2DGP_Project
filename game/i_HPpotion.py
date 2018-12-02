@@ -14,7 +14,5 @@ class HPpotion(Item):
         GPD.players[target_index].HP += 50
         if GPD.players[target_index].HP > GPD.players[target_index].MAX_HP:
             GPD.players[target_index].HP = GPD.players[target_index].MAX_HP
-        print('플레이어'+str(target_index)+'에게 HP회복 50')
-        print('플레이어' + str(target_index) + 'HP: ' +
-              str(GPD.players[target_index].HP)+'/' + str(GPD.players[target_index].HP))
+            GPD.Battlelog.append(GPD.players[target_index].name + '의 HP 50 회복')
 
