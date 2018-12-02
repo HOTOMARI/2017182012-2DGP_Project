@@ -83,21 +83,28 @@ def draw():
 
     # 하단 메뉴 출력
         GPD.Menu.image.clip_draw(0, 0, 240, 160, 400, 75, 800, 150)
-
-    if message_index == 0:
-        GPD.Ingame_font.font.draw(360, 75, '전투 승리', [255, 255, 255])
-    elif message_index == 1:
-        GPD.Ingame_font.font.draw(300, 75, '골드 ' + str(total_money) + '를 획득하였습니다.', [255, 255, 255])
-    elif message_index == 2:
-        GPD.Ingame_font.font.draw(300, 75, '경험치 ' + str(total_exp) + '를 획득하였습니다.', [255, 255, 255])
-    elif message_index == 3:
-        GPD.Ingame_font.font.draw(300, 75, GPD.players[0].name + '가 레벨업 하였습니다.', [255, 255, 255])
-    elif message_index == 4:
-        GPD.Ingame_font.font.draw(300, 75, GPD.players[1].name + '가 레벨업 하였습니다.', [255, 255, 255])
-    elif message_index == 5:
-        GPD.Ingame_font.font.draw(300, 75, GPD.players[2].name + '가 레벨업 하였습니다.', [255, 255, 255])
-    elif message_index == 6:
-        GPD.Ingame_font.font.draw(300, 75, GPD.players[3].name + '가 레벨업 하였습니다.', [255, 255, 255])
+    if GPD.monsters[0].name == '케프카':
+        if message_index == 0:
+            GPD.Ingame_font.font.draw(360, 75, '전투 승리', [255, 255, 255])
+        elif message_index == 1:
+            GPD.Ingame_font.font.draw(300, 75, '마지막 보스를 물리치셨습니다..', [255, 255, 255])
+        elif message_index == 2:
+            GPD.Ingame_font.font.draw(300, 75, '데이터를 저장하고 타이틀로 이동합니다.', [255, 255, 255])
+    else:
+        if message_index == 0:
+            GPD.Ingame_font.font.draw(360, 75, '전투 승리', [255, 255, 255])
+        elif message_index == 1:
+            GPD.Ingame_font.font.draw(300, 75, '골드 ' + str(total_money) + '를 획득하였습니다.', [255, 255, 255])
+        elif message_index == 2:
+            GPD.Ingame_font.font.draw(300, 75, '경험치 ' + str(total_exp) + '를 획득하였습니다.', [255, 255, 255])
+        elif message_index == 3:
+            GPD.Ingame_font.font.draw(300, 75, GPD.players[0].name + '가 레벨업 하였습니다.', [255, 255, 255])
+        elif message_index == 4:
+            GPD.Ingame_font.font.draw(300, 75, GPD.players[1].name + '가 레벨업 하였습니다.', [255, 255, 255])
+        elif message_index == 5:
+            GPD.Ingame_font.font.draw(300, 75, GPD.players[2].name + '가 레벨업 하였습니다.', [255, 255, 255])
+        elif message_index == 6:
+            GPD.Ingame_font.font.draw(300, 75, GPD.players[3].name + '가 레벨업 하였습니다.', [255, 255, 255])
 
     update_canvas()
 

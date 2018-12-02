@@ -23,7 +23,7 @@ def enter():
 
 
 def exit():
-    GPD.isMenunow = False
+    pass
 
 
 def update():
