@@ -11,7 +11,7 @@ class Protect(Skill):
         super(Protect, self).__init__('프로테스', Skill_Data['Protect']['ID'], Skill_Data['Protect']['COST'], Skill_Data['Protect']['POWER'], Skill_Data['Protect']['UPGRADE'])
 
     def activate(self, my_index):
-        GPD.Battlelog.append(self.name + '의 프로테스')
+        GPD.Battlelog.append(GPD.players[my_index].name + '의 프로테스')
         for i in range(0, 4):
             GPD.players[i].SHIELD += (self.POWER+GPD.players[my_index].DEF)
             GPD.Battlelog.append(GPD.players[i].name + '의 실드' + str(int((self.POWER + GPD.players[my_index].DEF))) + '증가')

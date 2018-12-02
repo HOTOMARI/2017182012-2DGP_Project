@@ -11,7 +11,7 @@ class Diversion(Skill):
         super(Diversion, self).__init__('주의전환', Skill_Data['Diversion']['ID'], Skill_Data['Diversion']['COST'], Skill_Data['Diversion']['POWER'], Skill_Data['Diversion']['UPGRADE'])
 
     def activate(self, my_index):
-        GPD.Battlelog.append(self.name + '의 주의전환')
+        GPD.Battlelog.append(GPD.players[my_index].name + '의 주의전환')
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].hate[my_index] -= int((self.POWER+GPD.players[my_index].DEF) * 3)
         else:

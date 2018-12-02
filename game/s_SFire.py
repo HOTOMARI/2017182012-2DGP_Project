@@ -11,10 +11,10 @@ class SFire(Skill):
         super(SFire, self).__init__('파이가', Skill_Data['SFire']['ID'], Skill_Data['SFire']['COST'], Skill_Data['SFire']['POWER'], Skill_Data['SFire']['UPGRADE'])
 
     def activate(self, my_index):
-        GPD.Battlelog.append(self.name + '의 파이가')
+        GPD.Battlelog.append(GPD.players[my_index].name + '의 파이가')
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].HP -= int((self.POWER+GPD.players[my_index].ATK))
-            GPD.Battlelog.append(self.name + '이 ' + GPD.monsters[0].name + '에게 ' + str(
+            GPD.Battlelog.append(GPD.players[my_index].name + '가 ' + GPD.monsters[0].name + '에게 ' + str(
                 int((self.POWER + GPD.players[my_index].ATK))) + '피해')
             GPD.monsters[0].hate[my_index] += self.POWER * 2
             print(GPD.monsters[0].name + '의 체력: ' + str(GPD.monsters[0].HP))
@@ -22,7 +22,7 @@ class SFire(Skill):
         else:
             for target_index in range(0,3):
                 GPD.monsters[target_index].HP -= int((self.POWER+GPD.players[my_index].ATK))
-                GPD.Battlelog.append(self.name + '이 ' + GPD.monsters[target_index].name + '에게 ' + str(
+                GPD.Battlelog.append(GPD.players[my_index].name + '가 ' + GPD.monsters[target_index].name + '에게 ' + str(
                     int((self.POWER + GPD.players[my_index].ATK))) + '피해')
                 GPD.monsters[target_index].hate[my_index] += self.POWER * 2
                 print(GPD.monsters[target_index].name + str(target_index) + '의 체력: ' + str(GPD.monsters[target_index].HP))

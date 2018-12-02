@@ -11,7 +11,7 @@ class SCure(Skill):
         super(SCure, self).__init__('케알가', Skill_Data['SCure']['ID'], Skill_Data['SCure']['COST'], Skill_Data['SCure']['POWER'], Skill_Data['SCure']['UPGRADE'])
 
     def activate(self, my_index):
-        GPD.Battlelog.append(self.name + '의 케알가')
+        GPD.Battlelog.append(GPD.players[my_index].name + '의 케알가')
         for i in range(0, 4):
             GPD.players[i].HP += int(self.POWER * GPD.players[my_index].DEF)
             GPD.Battlelog.append(GPD.players[i].name + '의 HP ' + str(int((self.POWER + GPD.players[my_index].DEF))) + '회복')
