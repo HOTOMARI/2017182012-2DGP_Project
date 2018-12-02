@@ -12,8 +12,8 @@ class Assassinate(Skill):
 
     def activate(self, my_index, target_index):
         if GPD.monsters[target_index].HP < GPD.players[my_index].ATK:
-            GPD.monsters[target_index].HP -= int(self.POWER * 4)
+            GPD.monsters[target_index].HP -= int((self.POWER+GPD.players[my_index].ATK) * 4)
             GPD.monsters[target_index].hate[my_index] += int(self.POWER * 2)
         else:
-            GPD.monsters[target_index].HP -= int(self.POWER)
+            GPD.monsters[target_index].HP -= int((self.POWER+GPD.players[my_index].ATK))
             GPD.monsters[target_index].hate[my_index] += self.POWER

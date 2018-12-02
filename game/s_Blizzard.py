@@ -13,6 +13,10 @@ class Blizzard(Skill):
     def activate(self, my_index, target_index):
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].FireorIce = GPD.monsters[0].FireorIce + 1
-        GPD.monsters[target_index].HP -= int(self.POWER * 3)
-        GPD.monsters[target_index].hate[my_index] += self.POWER
-        print(GPD.monsters[0].name + '의 체력: ' + str(GPD.monsters[0].HP))
+            GPD.monsters[0].HP -= int((self.POWER + GPD.players[my_index].ATK) * 3)
+            GPD.monsters[0].hate[my_index] += self.POWER
+            print(GPD.monsters[0].name + '의 체력: ' + str(GPD.monsters[0].HP))
+        else:
+            GPD.monsters[target_index].HP -= int((self.POWER+GPD.players[my_index].ATK) * 3)
+            GPD.monsters[target_index].hate[my_index] += self.POWER
+            print(GPD.monsters[target_index].name + '의 체력: ' + str(GPD.monsters[target_index].HP))

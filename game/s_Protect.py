@@ -12,7 +12,7 @@ class Protect(Skill):
 
     def activate(self, my_index):
         for i in range(0, 4):
-            GPD.players[i].SHIELD += self.POWER
+            GPD.players[i].SHIELD += (self.POWER+GPD.players[my_index].DEF)
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].hate[my_index] += int(self.POWER / 3)
         else:

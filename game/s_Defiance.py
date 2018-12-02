@@ -11,7 +11,7 @@ class Defiance(Skill):
         super(Defiance, self).__init__('수비 태세', Skill_Data['Defiance']['ID'], Skill_Data['Defiance']['COST'], Skill_Data['Defiance']['POWER'], Skill_Data['Defiance']['UPGRADE'])
 
     def activate(self, my_index):
-        GPD.players[my_index].SHIELD += self.POWER
+        GPD.players[my_index].SHIELD += (self.POWER+GPD.players[my_index].DEF)
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].hate[my_index] += int(self.POWER / 3)
         else:

@@ -12,7 +12,7 @@ class Overpower(Skill):
 
     def activate(self, my_index):
         for target_index in range(0,3):
-            GPD.monsters[target_index].HP -= int(self.POWER * (GPD.players[my_index].ATK / 10))
+            GPD.monsters[target_index].HP -= int((self.POWER+GPD.players[my_index].ATK))
             if GPD.monsters[0].name == '케프카':
                 GPD.monsters[0].hate[my_index] += self.POWER * 2
             else:
