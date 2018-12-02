@@ -308,7 +308,6 @@ def draw():
         GPD.effects.draw(monster_turn_index, GPD.monsters[monster_turn_index].attack_target)
 
     # 배틀로그출력
-    #BattlelogBack.opacify(0.2)
     BattlelogBack.clip_draw(0, 0, 1, 1, 400, 150 + 15 * len(GPD.Battlelog), 250, 30 * len(GPD.Battlelog))
     for i in range(0,len(GPD.Battlelog)):
         GPD.Ingame_font.font.draw(275, (130 + len(GPD.Battlelog) * 30) - i * 30, GPD.Battlelog[i],

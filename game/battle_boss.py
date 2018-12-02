@@ -9,11 +9,12 @@ Battle_is_End = False
 background = None
 background_final = None
 Phase_Change = False
+BattlelogBack = None
 
 
 def enter():
     global current_time, Prevtime
-    global background, background_final, turn_image
+    global background, background_final, turn_image, BattlelogBack
     global sel_menu_type, sel_menu_mode, menu_index, turn_queue, player_turn_index, monster_turn_index, monster_NO_deadshot
     global turn_end_sign, monster_turn_sign, monster_turn_step, turn_queue_index, animation_end, timer
     global Phase_Change
@@ -28,6 +29,7 @@ def enter():
     background_final = load_image('image\\battlebacks\\Boss_Final.png')
 
     turn_image = load_image('image\\player\\select.png')
+    BattlelogBack = load_image('image\\battlelog.png')
 
     GPD.bgm.firstboss.repeat_play()
 
@@ -364,6 +366,11 @@ def draw():
 
     if monster_turn_sign:
         GPD.effects.draw(0, GPD.monsters[0].attack_target)
+
+    BattlelogBack.clip_draw(0, 0, 1, 1, 400, 150 + 15 * len(GPD.Battlelog), 250, 30 * len(GPD.Battlelog))
+    for i in range(0, len(GPD.Battlelog)):
+        GPD.Ingame_font.font.draw(275, (130 + len(GPD.Battlelog) * 30) - i * 30, GPD.Battlelog[i],
+                                  [255, 255, 255])
 
     update_canvas()
 
