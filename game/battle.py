@@ -309,9 +309,9 @@ def draw():
 
     # 배틀로그출력
     #BattlelogBack.opacify(0.2)
-    BattlelogBack.clip_draw(0, 0, 1, 1, 400, 150 + 15 * len(GPD.Battlelog), 200, 30 * len(GPD.Battlelog))
+    BattlelogBack.clip_draw(0, 0, 1, 1, 400, 150 + 15 * len(GPD.Battlelog), 250, 30 * len(GPD.Battlelog))
     for i in range(0,len(GPD.Battlelog)):
-        GPD.Ingame_font.font.draw(305, (130 + len(GPD.Battlelog) * 30) - i * 30, GPD.Battlelog[i],
+        GPD.Ingame_font.font.draw(275, (130 + len(GPD.Battlelog) * 30) - i * 30, GPD.Battlelog[i],
                                   [255, 255, 255])
 
     update_canvas()

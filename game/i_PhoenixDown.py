@@ -14,6 +14,6 @@ class PhoenixDown(Item):
         GPD.players[target_index].act_type = 0
         GPD.players[target_index].HP = GPD.players[target_index].MAX_HP
         GPD.players[target_index].MP = GPD.players[target_index].MAX_MP
-        while len(GPD.Battlelog) >= 5:
-            GPD.Battlelog.pop()
+
+        GPD.CleanLog()
         GPD.Battlelog.append(GPD.players[target_index].name + '부활')

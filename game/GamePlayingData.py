@@ -186,3 +186,10 @@ class BGM():
         self.firstboss = load_music('sound\\bgm\\Boss1.ogg')
         self.secondboss = load_music('sound\\bgm\\Boss2.ogg')
         pass
+
+def CleanLog():
+    global Battlelog
+    Battlelog.reverse()
+    while len(Battlelog) >= 5:
+        Battlelog.pop()
+    Battlelog.reverse()
