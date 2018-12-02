@@ -121,8 +121,8 @@ def handle_events():
             GPD.isMenunow = True
             game_framework.push_state(pause_menu)
             # 강제 배틀 돌입
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_0:
-            start_battle()
+        #elif event.type == SDL_KEYDOWN and event.key == SDLK_0:
+            #start_battle()
         else:
             GPD.Player.handle_events(event)
 

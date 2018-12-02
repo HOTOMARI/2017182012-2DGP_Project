@@ -339,9 +339,9 @@ def handle_events():
         # a 선택 s 뒤로가기
         elif event.type == SDL_KEYDOWN and turn_end_sign is False:
             GPD.Menu.sound.play()
-            if event.key == SDLK_ESCAPE:
+            #if event.key == SDLK_ESCAPE:
                 #game_framework.change_state(map)
-                game_framework.pop_state()
+                #game_framework.pop_state()
 
             # 기본 메뉴 일때
             if sel_menu_mode == 0:
