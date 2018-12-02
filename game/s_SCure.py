@@ -14,7 +14,7 @@ class SCure(Skill):
         GPD.Battlelog.append(GPD.players[my_index].name + '의 케알가')
         GPD.players[my_index].MP -= self.COST
         for i in range(0, 4):
-            GPD.players[i].HP += int(self.POWER * GPD.players[my_index].DEF)
+            GPD.players[i].HP += int(self.POWER + GPD.players[my_index].DEF)
             GPD.Battlelog.append(GPD.players[i].name + '의 HP ' + str(int((self.POWER + GPD.players[my_index].DEF))) + '회복')
             if GPD.players[i].HP > GPD.players[i].MAX_HP:
                 GPD.players[i].HP = GPD.players[i].MAX_HP

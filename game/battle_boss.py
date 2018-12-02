@@ -516,11 +516,9 @@ def handle_events():
                                         break
                 # 뒤로가기
                 elif event.key == SDLK_s:
-                    if sel_menu_type == 1:
-                        sel_menu_mode = 0
-                        initialize_menu_index(1, 2)
-                    sel_menu_type = 1
-                    initialize_menu_index(2, 2)
+                    sel_menu_mode = 0
+                    sel_menu_type = 0
+                    initialize_menu_index(1, 2)
 
             # 아이템 메뉴 일때
             elif sel_menu_mode == 3:
