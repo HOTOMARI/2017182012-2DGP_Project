@@ -2,7 +2,10 @@ import GamePlayingData as GPD
 
 
 def Save_game():
-    f = open('test.txt', mode='wt')
+    if GPD.Cheat:
+        f = open('cheat.sav', mode='wt')
+    else:
+        f = open('save.sav', mode='wt')
     # 캐릭터 위치
     f.write(str(GPD.now_map) + '\n' + str(int(GPD.Player.x)) + '\n' + str(int(GPD.Player.y)) + '\n')
     # 아이템 정보
@@ -25,7 +28,10 @@ def Save_game():
 
 
 def Load_game():
-    f = open('test.txt', mode='rt')
+    if GPD.Cheat:
+        f = open('cheat.sav', mode='rt')
+    else:
+        f = open('save.sav', mode='rt')
     # 캐릭터 위치
     GPD.now_map = int(f.readline())
     GPD.x = int(f.readline())

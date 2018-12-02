@@ -35,10 +35,15 @@ def draw():
     background.clip_draw(0,0,1,1,400,300,800,600)
     logo.clip_draw(0,0,509,120,400,400)
 
+    if GPD.Cheat:
+        GPD.Ingame_Big_font.font.draw(300, 500, 'CHEAT MODE', [255, 0, 0])
+
     GPD.Ingame_Big_font.font.draw(340, 250, 'NEW GAME', [0, 0, 0])
     GPD.Ingame_Big_font.font.draw(340, 200, 'LOAD GAME', [0, 0, 0])
     GPD.Ingame_Big_font.font.draw(340, 150, 'HELP', [0, 0, 0])
     GPD.Ingame_Big_font.font.draw(340, 100, 'EXIT', [0, 0, 0])
+
+    GPD.Ingame_Big_font.font.draw(300, 50, '확인 : A | 취소: S', [0, 0, 0])
 
     GPD.Menu.image.clip_draw(242, 84, 17, 16, 310, 250 - sel_index * 50, 35, 35)  # 손가락
 
@@ -90,6 +95,11 @@ def handle_events():
             elif event.key == SDLK_DOWN:
                 if sel_index < 3:
                     sel_index += 1
+            elif event.key == SDLK_F8:
+                if GPD.Cheat is False:
+                    GPD.Cheat = True
+                else:
+                    GPD.Cheat = False
 
 
 def New_Game():

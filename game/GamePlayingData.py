@@ -16,6 +16,8 @@ items=[[None]for i in range(4)]
 effects = None
 bgm = None
 
+Cheat = False
+
 money = 400
 now_map = 0 #0 초원 1 던전 2 마을
 x, y = 506, 1109
