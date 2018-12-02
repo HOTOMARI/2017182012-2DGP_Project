@@ -12,4 +12,6 @@ class Curepotion(Item):
 
     def use(self, target_index):
         GPD.players[target_index].condition = 0
+        while len(GPD.Battlelog) >= 5:
+            GPD.Battlelog.pop()
         GPD.Battlelog.append(GPD.players[target_index].name + '의 상태이상 제거')

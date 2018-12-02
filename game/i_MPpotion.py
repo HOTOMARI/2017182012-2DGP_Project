@@ -14,4 +14,6 @@ class MPpotion(Item):
         GPD.players[target_index].MP += 50
         if GPD.players[target_index].MP > GPD.players[target_index].MAX_MP:
             GPD.players[target_index].MP = GPD.players[target_index].MAX_MP
-            GPD.Battlelog.append(GPD.players[target_index].name + '의 MP 50 회복')
+        while len(GPD.Battlelog) >= 5:
+            GPD.Battlelog.pop()
+        GPD.Battlelog.append(GPD.players[target_index].name + '의 MP 50 회복')
