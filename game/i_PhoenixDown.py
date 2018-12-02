@@ -15,5 +15,5 @@ class PhoenixDown(Item):
         GPD.players[target_index].HP = GPD.players[target_index].MAX_HP
         GPD.players[target_index].MP = GPD.players[target_index].MAX_MP
 
-        GPD.CleanLog()
         GPD.Battlelog.append(GPD.players[target_index].name + '부활')
+        GPD.CleanLog()

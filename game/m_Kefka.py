@@ -138,8 +138,8 @@ class Kefka(Monster):
         elif GPD.players[self.attack_target].HP / GPD.players[self.attack_target].MAX_HP <= 0.2:
             GPD.players[self.attack_target].act_type = 5
 
+        GPD.Battlelog.append(self.name + '가 ' + GPD.players[self.attack_target].name + '에게 ' + str(dmg) + '피해')
         GPD.CleanLog()
-        GPD.Battlelog.append(self.name + '가 ' + GPD.players[self.attack_target].name + '에게 ' + str(dmg) + '만큼의 피해')
 
     def setting_target(self):
         global tmp, tmp_hate
@@ -159,48 +159,58 @@ class Kefka(Monster):
         self.attack_target = tmp
 
     def ICE(self):
+        GPD.Battlelog.append(self.name + '의 블리자가')
         for i in range(0,4):
             if GPD.players[i].HP > 0:
                 if self.next_skill is 2:
                     GPD.players[i].HP -= 1000 * (-self.FireorIce)
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1000 * (-self.FireorIce)) + '피해')
                 else:
                     GPD.players[i].HP -= 1000 * (self.FireorIce)
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1000 * (self.FireorIce)) + '피해')
 
                 if GPD.players[i].HP <= 0:
                     GPD.players[i].HP = 0
                     GPD.players[i].act_type = 7
                 elif GPD.players[i].HP / GPD.players[i].MAX_HP <= 0.2:
                     GPD.players[i].act_type = 5
-        GPD.Battlelog.append(self.name + '의 블리자가')
+
         GPD.CleanLog()
 
     def FIRE(self):
+        GPD.Battlelog.append(self.name + '의 파이가')
         for i in range(0,4):
             if GPD.players[i].HP > 0:
                 if self.next_skill is 1:
                     GPD.players[i].HP -= 1000 * (self.FireorIce)
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1000 * (self.FireorIce)) + '피해')
                 else:
                     GPD.players[i].HP -= 1000 * (-self.FireorIce)
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1000 * (-self.FireorIce)) + '피해')
 
                 if GPD.players[i].HP <= 0:
                     GPD.players[i].HP = 0
                     GPD.players[i].act_type = 7
                 elif GPD.players[i].HP / GPD.players[i].MAX_HP <= 0.2:
                     GPD.players[i].act_type = 5
-        GPD.Battlelog.append(self.name + '의 파이가')
         GPD.CleanLog()
 
     def EYES(self):
+        if self.isDamaged is True and self.next_skill is 6:
+            GPD.Battlelog.append(self.name + '의 아베・마리아')
+        elif self.isDamaged is False and self.next_skill is 5:
+            GPD.Battlelog.append(self.name + '의 태만의 신기')
+
         for i in range(0,4):
             if GPD.players[i].HP > 0:
                 if self.isDamaged is True and self.next_skill is 6:
                     GPD.players[i].HP -= 2500
-                    GPD.Battlelog.append(self.name + '의 아베・마리아')
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(2500) + '피해')
                     GPD.CleanLog()
                 elif self.isDamaged is False and self.next_skill is 5:
                     GPD.players[i].HP -= 2500
-                    GPD.Battlelog.append(self.name + '의 태만의 신기')
-                    GPD.CleanLog()
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(2500) + '피해')
+
 
                 if GPD.players[i].HP <= 0:
                     GPD.players[i].HP = 0
@@ -208,26 +218,29 @@ class Kefka(Monster):
                 elif GPD.players[i].HP / GPD.players[i].MAX_HP <= 0.2:
                     GPD.players[i].act_type = 5
 
+        GPD.CleanLog()
+
     def COMMON_SKILL(self):
         if self.phase == 0:
+            GPD.Battlelog.append(self.name + '의 하이퍼드라이브')
             for i in range(0, 4):
                 if GPD.players[i].HP > 0:
                     GPD.players[i].HP -= 1500
-
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1500) + '피해')
                     if GPD.players[i].HP <= 0:
                         GPD.players[i].HP = 0
                         GPD.players[i].act_type = 7
                     elif GPD.players[i].HP / GPD.players[i].MAX_HP <= 0.2:
                         GPD.players[i].act_type = 5
 
-            GPD.Battlelog.append(self.name + '의 하이퍼드라이브')
             GPD.CleanLog()
 
         elif self.phase == 1:
+            GPD.Battlelog.append(self.name + '의 비정한 천사')
             for i in range(0, 4):
                 if GPD.players[i].HP > 0:
                     GPD.players[i].HP = 1
+                    GPD.Battlelog.append(GPD.players[i].name + '의 HP 1로 감소')
                     if GPD.players[i].HP / GPD.players[i].MAX_HP <= 0.2:
                         GPD.players[i].act_type = 5
-            GPD.Battlelog.append(self.name + '의 비정한 천사')
             GPD.CleanLog()

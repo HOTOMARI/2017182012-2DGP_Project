@@ -62,8 +62,8 @@ class RedBomb(Monster):
         elif GPD.players[self.attack_target].HP / GPD.players[self.attack_target].MAX_HP <= 0.2:
             GPD.players[self.attack_target].act_type = 5
 
+        GPD.Battlelog.append(self.name + '가 ' + GPD.players[self.attack_target].name + '에게 ' + str(dmg) + '피해')
         GPD.CleanLog()
-        GPD.Battlelog.append(self.name + '가 ' + GPD.players[self.attack_target].name + '에게 ' + str(dmg) + '만큼의 피해')
 
     def setting_target(self):
         global tmp, tmp_hate

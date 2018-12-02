@@ -190,6 +190,6 @@ class BGM():
 def CleanLog():
     global Battlelog
     Battlelog.reverse()
-    while len(Battlelog) >= 5:
+    while len(Battlelog) > 5:
         Battlelog.pop()
     Battlelog.reverse()

@@ -3,6 +3,7 @@ import game_framework
 import GamePlayingData as GPD
 import gameover
 import battle_win
+import random
 
 Battle_is_End = False
 background = None
@@ -21,7 +22,10 @@ def enter():
         GPD.Battlelog.pop()
 
     if GPD.now_map == 0:
-        background = load_image('image\\battlebacks\\Grassland.png')
+        if random.randint(0,1) == 1:
+            background = load_image('image\\battlebacks\\Grassland.png')
+        else:
+            background = load_image('image\\battlebacks\\Meadow.png')
     if GPD.now_map == 1:
         background = load_image('image\\battlebacks\\Dungeon.png')
 

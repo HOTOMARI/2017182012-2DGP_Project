@@ -58,10 +58,11 @@ class BlackMage(Player):
                              str(self.MP) + '/' + str(self.MAX_MP)
 
     def attack(self,my_index,target_index):
-        if self.ATK - GPD.monsters[target_index].DEF > 0:
-            GPD.monsters[target_index].HP -= int(self.ATK / 2 - GPD.monsters[target_index].DEF)
+        if self.ATK / 2 - GPD.monsters[target_index].DEF > 0:
+            dmg = int(self.ATK / 2 - GPD.monsters[target_index].DEF)
+            GPD.monsters[target_index].HP -= dmg
+            GPD.Battlelog.append(self.name + '가 ' + GPD.monsters[target_index].name + '에게 ' + str(dmg) + '피해')
         else:
-            pass
-        print(self.name + str(my_index) + '가 '+ GPD.monsters[target_index].name + str(target_index) + '를 공격')
-        print(GPD.monsters[target_index].name + str(target_index) + '의 체력: ' + str(GPD.monsters[target_index].HP))
-        GPD.monsters[target_index].hate[my_index] += self.ATK
+            GPD.Battlelog.append(self.name + '의 공격이 빗나감')
+
+        GPD.CleanLog()

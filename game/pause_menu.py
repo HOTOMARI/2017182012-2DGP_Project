@@ -23,7 +23,7 @@ def enter():
 
 
 def exit():
-    pass
+    GPD.isMenunow = False
 
 
 def update():
@@ -178,19 +178,19 @@ def handle_events():
                 elif shop_mode is 4:
                     if GPD.players[sel_player].AP > 0:
                         if sel_index is 0:
-                            GPD.players[sel_player].MAX_HP += 3
+                            GPD.players[sel_player].MAX_HP += 5
                             GPD.players[sel_player].AP -= 1
                             pass
                         elif sel_index is 1:
-                            GPD.players[sel_player].MAX_MP += 2
+                            GPD.players[sel_player].MAX_MP += 5
                             GPD.players[sel_player].AP -= 1
                             pass
                         elif sel_index is 2:
-                            GPD.players[sel_player].ATK += 1
+                            GPD.players[sel_player].ATK += 2
                             GPD.players[sel_player].AP -= 1
                             pass
                         elif sel_index is 3:
-                            GPD.players[sel_player].DEF += 1
+                            GPD.players[sel_player].DEF += 2
                             GPD.players[sel_player].AP -= 1
                             pass
                     pass
