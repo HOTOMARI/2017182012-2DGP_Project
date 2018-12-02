@@ -21,6 +21,9 @@ def enter():
     current_time = 0
     Prevtime = 0
 
+    while len(GPD.Battlelog) != 0:
+        GPD.Battlelog.pop()
+
     background = load_image('image\\battlebacks\\Boss.png')
     background_final = load_image('image\\battlebacks\\Boss_Final.png')
 

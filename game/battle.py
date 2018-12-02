@@ -17,6 +17,9 @@ def enter():
     current_time = 0
     Prevtime = 0
 
+    while len(GPD.Battlelog) != 0:
+        GPD.Battlelog.pop()
+
     if GPD.now_map == 0:
         background = load_image('image\\battlebacks\\Grassland.png')
     if GPD.now_map == 1:

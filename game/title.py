@@ -17,12 +17,6 @@ def enter():
     global sel_index
     GPD.Upload_data()
 
-    GPD.Battlelog.append('This is Test String 1')
-    #GPD.Battlelog.append('This is Test String 2')
-    #GPD.Battlelog.append('This is Test String 3')
-    #GPD.Battlelog.append('This is Test String 4')
-    GPD.Battlelog.append('This is Test String 5')
-
     background = load_image("image\\title\\background.png")
     logo = load_image("image\\title\\logo.png")
     GPD.bgm.title.repeat_play()
