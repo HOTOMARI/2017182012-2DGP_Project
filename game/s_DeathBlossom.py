@@ -12,6 +12,7 @@ class DeathBlossom(Skill):
 
     def activate(self, my_index):
         GPD.Battlelog.append(GPD.players[my_index].name + '의 피의 비')
+        GPD.players[my_index].MP -= self.COST
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].HP -= int((self.POWER+GPD.players[my_index].ATK))
             GPD.monsters[0].hate[my_index] += self.POWER * 2

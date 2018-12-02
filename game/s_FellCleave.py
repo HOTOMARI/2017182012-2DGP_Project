@@ -12,6 +12,7 @@ class FellCleave(Skill):
 
     def activate(self, my_index, target_index):
         GPD.Battlelog.append(GPD.players[my_index].name + '의 참수')
+        GPD.players[my_index].MP -= self.COST
         GPD.monsters[target_index].HP -= int((self.POWER+GPD.players[my_index].ATK)*2)
         GPD.Battlelog.append(GPD.players[my_index].name + '가 ' + GPD.monsters[target_index].name + '에게 ' + str(
             int((self.POWER + GPD.players[my_index].ATK) * 2)) + '피해')

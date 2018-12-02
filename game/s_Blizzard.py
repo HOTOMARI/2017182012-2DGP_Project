@@ -12,6 +12,7 @@ class Blizzard(Skill):
 
     def activate(self, my_index, target_index):
         GPD.Battlelog.append(GPD.players[my_index].name + '의 블리자드')
+        GPD.players[my_index].MP -= self.COST
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].FireorIce = GPD.monsters[0].FireorIce + 1
             GPD.monsters[0].HP -= int((self.POWER + GPD.players[my_index].ATK) * 3)

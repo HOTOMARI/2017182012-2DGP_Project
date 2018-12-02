@@ -12,6 +12,7 @@ class SFire(Skill):
 
     def activate(self, my_index):
         GPD.Battlelog.append(GPD.players[my_index].name + '의 파이가')
+        GPD.players[my_index].MP -= self.COST
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].HP -= int((self.POWER+GPD.players[my_index].ATK))
             GPD.Battlelog.append(GPD.players[my_index].name + '가 ' + GPD.monsters[0].name + '에게 ' + str(

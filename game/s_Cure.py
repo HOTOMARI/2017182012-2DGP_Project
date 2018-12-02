@@ -12,6 +12,7 @@ class Cure(Skill):
 
     def activate(self, my_index, target_index):
         GPD.Battlelog.append(GPD.players[my_index].name + '의 케알')
+        GPD.players[my_index].MP -= self.COST
         GPD.players[target_index].HP += int((self.POWER+GPD.players[my_index].DEF))
         GPD.Battlelog.append(GPD.players[target_index].name + '의 HP ' + str(int((self.POWER+GPD.players[my_index].DEF))) + '회복')
         if GPD.monsters[0].name == '케프카':

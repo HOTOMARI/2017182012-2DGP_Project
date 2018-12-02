@@ -12,6 +12,7 @@ class Defiance(Skill):
 
     def activate(self, my_index):
         GPD.Battlelog.append(GPD.players[my_index].name + '의 수비 태세')
+        GPD.players[my_index].MP -= self.COST
         GPD.players[my_index].SHIELD += (self.POWER+GPD.players[my_index].DEF)
         GPD.Battlelog.append(GPD.players[my_index].name + '의 실드' + str(int((self.POWER+GPD.players[my_index].DEF))) + '증가')
         if GPD.monsters[0].name == '케프카':

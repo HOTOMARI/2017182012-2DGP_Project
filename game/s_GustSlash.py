@@ -12,6 +12,7 @@ class GustSlash(Skill):
 
     def activate(self, my_index, target_index):
         GPD.Battlelog.append(GPD.players[my_index].name + '의 돌풍베기')
+        GPD.players[my_index].MP -= self.COST
         GPD.monsters[target_index].HP -= int((self.POWER+GPD.players[my_index].ATK))
         GPD.Battlelog.append(GPD.players[my_index].name + '이 ' + GPD.monsters[target_index].name + '에게 ' + str(
             int((self.POWER + GPD.players[my_index].ATK))) + '피해')

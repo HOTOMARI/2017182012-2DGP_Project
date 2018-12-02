@@ -12,6 +12,7 @@ class Provoke(Skill):
 
     def activate(self, my_index, target_index):
         GPD.Battlelog.append(GPD.players[my_index].name + '의 도발')
+        GPD.players[my_index].MP -= self.COST
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].hate[my_index] = GPD.monsters[0].hate[my_index] + (self.POWER * 10)
         else:
