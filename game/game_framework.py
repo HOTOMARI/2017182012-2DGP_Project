@@ -82,6 +82,7 @@ def quit():
     running = False
 
 import time
+frame_time = 0
 
 def run(start_state):
     global running, stack
