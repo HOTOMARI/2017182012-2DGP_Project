@@ -1,1 +1,2 @@
-start test.txt
+@echo off
+start Readme.pdf

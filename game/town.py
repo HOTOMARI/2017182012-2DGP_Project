@@ -109,7 +109,7 @@ def draw():
     clear_canvas()
     background.draw()
     GPD.Player.draw()
-    GPD.Player.draw_bb()
+    #GPD.Player.draw_bb()
     #for Zone in Cant_Move_Tile:
         #Zone.draw_bb(background)
     #GPD.Ingame_font.font.draw(75, 115, str(GPD.Player.battle_counter), [255, 255, 255])

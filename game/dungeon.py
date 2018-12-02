@@ -96,7 +96,7 @@ def draw():
     clear_canvas()
     background.draw()
     GPD.Player.draw()
-    GPD.Player.draw_bb()
+    #GPD.Player.draw_bb()
     #for Zone in Cant_Move_Tile:
         #Zone.draw_bb(background)
     #GPD.Ingame_font.font.draw(75, 115, str(GPD.Player.battle_counter), [255, 255, 255])
@@ -144,7 +144,8 @@ def collide(a, b):
 def start_battle():
     for i in range(0, 4):
         GPD.Player.move_dir[i] = 0
-        Generate_monster()
+        GPD.players[i].SHIELD = 0
+    Generate_monster()
     if GPD.effects == None:
         GPD.effects = BaseEffect.Effect()
     game_framework.push_state(battle)
@@ -153,6 +154,7 @@ def start_battle():
 def start_Bossbattle():
     for i in range(0, 4):
         GPD.Player.move_dir[i] = 0
+        GPD.players[i].SHIELD = 0
     GPD.monsters.append(m_Kefka.Kefka(0))
     if GPD.effects == None:
         GPD.effects = BaseEffect.Effect()
