@@ -116,4 +116,6 @@ def New_Game():
     GPD.items[1] = i_MPpotion.MPpotion()
     GPD.items[2] = i_Curepotion.Curepotion()
     GPD.items[3] = i_PhoenixDown.PhoenixDown()
-    pass
+
+    while len(GPD.monsters) > 0:
+        GPD.monsters.pop()

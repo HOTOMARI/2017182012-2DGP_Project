@@ -72,7 +72,8 @@ def exit():
     del (background)
     del (turn_image)
 
-    GPD.monsters.pop()
+    while len(GPD.monsters) > 0:
+        GPD.monsters.pop()
 
 
 def update():
