@@ -52,21 +52,16 @@ def exit():
 
 
 def update():
-    global current_time, Prevtime
     global message_index
 
-    current_time = get_time()
+    for i in range (0,4):
+        GPD.players[i].frame += game_framework.frame_time * 8
 
-    if current_time - Prevtime > 1 / 60:
-        for i in range (0,4):
-            GPD.players[i].frame += game_framework.frame_time * 45
-
-        if message_index >= 7:
-            if GPD.monsters[0].name == '케프카':
-                game_framework.change_state(title)
-            else:
-                game_framework.pop_state()
-        Prevtime = current_time
+    if message_index >= 7:
+        if GPD.monsters[0].name == '케프카':
+            game_framework.change_state(title)
+        else:
+            game_framework.pop_state()
 
 
 def draw():

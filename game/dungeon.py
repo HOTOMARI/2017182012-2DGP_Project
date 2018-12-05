@@ -63,32 +63,26 @@ def exit():
 
 def update():
     global Cant_Move_Tile, Entrance_Tile
-    global current_time, Prevtime
 
-    current_time = get_time()
+    background.update()
+    backup_x, backup_y = GPD.Player.x, GPD.Player.y
+    GPD.Player.update()
 
-    if current_time - Prevtime > 1 / 60:
-        background.update()
-        backup_x, backup_y = GPD.Player.x, GPD.Player.y
-        GPD.Player.update()
+    for Zone in Cant_Move_Tile:
+        if collide(GPD.Player, Zone):
+            GPD.Player.x = backup_x
+            GPD.Player.y = backup_y
+            break
 
-        for Zone in Cant_Move_Tile:
-           if collide(GPD.Player, Zone):
-                GPD.Player.x = backup_x
-                GPD.Player.y = backup_y
-                break
+    if collide(GPD.Player, Entrance_Tile[0]):
+        game_framework.change_state(overworld)
 
-        if collide(GPD.Player, Entrance_Tile[0]):
-            game_framework.change_state(overworld)
+    if collide(GPD.Player, Entrance_Tile[1]):
+        start_Bossbattle()
 
-        if collide(GPD.Player, Entrance_Tile[1]):
-            start_Bossbattle()
-
-        if GPD.Player.battle_counter <= 0:
-            GPD.Player.battle_counter = 30  + random.randint(0,10)
-            start_battle()
-
-        Prevtime = current_time
+    if GPD.Player.battle_counter <= 0:
+        GPD.Player.battle_counter = 30 + random.randint(0,10)
+        start_battle()
 
 
 def draw():
