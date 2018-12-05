@@ -57,51 +57,45 @@ def exit():
 
 def update():
     global Cant_Move_Tile, Entrance_Tile
-    global current_time, Prevtime
 
-    current_time = get_time()
+    background.update()
+    backup_x, backup_y = GPD.Player.x, GPD.Player.y
+    GPD.Player.update()
 
-    if current_time - Prevtime > 1 / 60:
-        background.update()
-        backup_x, backup_y = GPD.Player.x, GPD.Player.y
-        GPD.Player.update()
+    for Zone in Cant_Move_Tile:
+        if collide(GPD.Player, Zone):
+            GPD.Player.x = backup_x
+            GPD.Player.y = backup_y
+            break
 
-        for Zone in Cant_Move_Tile:
-            if collide(GPD.Player, Zone):
-                GPD.Player.x = backup_x
-                GPD.Player.y = backup_y
-                break
+    # 스킬상점
+    if collide(GPD.Player, Entrance_Tile[0]):
+        GPD.isMenunow = True
+        game_framework.push_state(shop_skill)
+        GPD.Player.y -= 50
+        GPD.Player.move_dir = [0, 0, 0, 0]
+        GPD.Player.state = 0
+    # 잡화상점
+    elif collide(GPD.Player, Entrance_Tile[1]):
+        GPD.isMenunow = True
+        game_framework.push_state(shop_potion)
+        GPD.Player.y -= 50
+        GPD.Player.move_dir = [0, 0, 0, 0]
+        GPD.Player.state = 0
+    # 여관
+    elif collide(GPD.Player, Entrance_Tile[2]):
+        GPD.isMenunow = True
+        game_framework.push_state(shop_motel)
+        GPD.Player.y -= 50
+        GPD.Player.move_dir = [0, 0, 0, 0]
+        GPD.Player.state = 0
+    # 출구
+    elif collide(GPD.Player, Entrance_Tile[3]):
+        game_framework.change_state(overworld)
 
-        # 스킬상점
-        if collide(GPD.Player, Entrance_Tile[0]):
-            GPD.isMenunow = True
-            game_framework.push_state(shop_skill)
-            GPD.Player.y -= 50
-            GPD.Player.move_dir = [0, 0, 0, 0]
-            GPD.Player.state = 0
-        # 잡화상점
-        elif collide(GPD.Player, Entrance_Tile[1]):
-            GPD.isMenunow = True
-            game_framework.push_state(shop_potion)
-            GPD.Player.y -= 50
-            GPD.Player.move_dir = [0, 0, 0, 0]
-            GPD.Player.state = 0
-        # 여관
-        elif collide(GPD.Player, Entrance_Tile[2]):
-            GPD.isMenunow = True
-            game_framework.push_state(shop_motel)
-            GPD.Player.y -= 50
-            GPD.Player.move_dir = [0, 0, 0, 0]
-            GPD.Player.state = 0
-            pass
-        # 출구
-        elif collide(GPD.Player, Entrance_Tile[3]):
-            game_framework.change_state(overworld)
+    if GPD.Player.battle_counter <= 0:
+        GPD.Player.battle_counter = 40
 
-        if GPD.Player.battle_counter <= 0:
-            GPD.Player.battle_counter = 40
-
-        Prevtime = current_time
 
 
 def draw():
