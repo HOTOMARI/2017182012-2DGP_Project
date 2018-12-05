@@ -68,26 +68,25 @@ def handle_events():
             if event.key == SDLK_ESCAPE:
                 game_framework.quit()
             elif event.key == SDLK_a:
-                if sel_index is 0:
+                if sel_index == 0:
                     New_Game()
                     GPD.now_map = 0
                     game_framework.change_state(overworld)
-                elif sel_index is 1:
+                elif sel_index == 1:
                     New_Game()
                     SAVEManager.Load_game()
-                    if GPD.now_map is 0:
+                    if GPD.now_map == 0:
                         GPD.now_map = -1
                         game_framework.change_state(overworld)
-                    elif GPD.now_map is 1:
+                    elif GPD.now_map == 1:
                         GPD.now_map = -1
                         game_framework.change_state(dungeon)
-                    elif GPD.now_map is 2:
+                    elif GPD.now_map == 2:
                         GPD.now_map = -1
                         game_framework.change_state(town)
-                elif sel_index is 2:
+                elif sel_index == 2:
                     subprocess.call('howtoplay.bat')
-                    pass
-                elif sel_index is 3:
+                elif sel_index == 3:
                     game_framework.quit()
             elif event.key == SDLK_UP:
                 if sel_index > 0:

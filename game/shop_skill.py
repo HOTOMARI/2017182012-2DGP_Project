@@ -40,7 +40,7 @@ def draw():
 
     GPD.Menu.image.clip_draw(1, 1, 240, 160, 400, 500, 800, 200)
     # 초기메뉴
-    if shop_mode is 0:
+    if shop_mode == 0:
         GPD.Ingame_Big_font.font.draw(100, 500, '스킬 상점입니다.', White_font)
         for i in range(0,4):
             if GPD.players[i].name == '전사':
@@ -59,44 +59,44 @@ def draw():
                 pass
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 50, 330 - sel_index * 80, 35, 35)  # 손가락
     # 구입메뉴
-    elif shop_mode is 1:
+    elif shop_mode == 1:
         # 스킬 설명
         ID = GPD.players[sel_player].skill[sel_index].ID
-        if ID is 1:
+        if ID == 1:
             GPD.Ingame_Big_font.font.draw(100, 500, '대상 적의 공격대상을 자신으로 바꿉니다.', White_font)
-        elif ID is 2:
+        elif ID == 2:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 적에게 데미지를 줍니다.', White_font)
-        elif ID is 3:
+        elif ID == 3:
             GPD.Ingame_Big_font.font.draw(100, 500, '자신에게 방어막을 씌웁니다.', White_font)
-        elif ID is 4:
+        elif ID == 4:
             GPD.Ingame_Big_font.font.draw(100, 500, '대상 적에게 큰 데미지를 줍니다.', White_font)
-        elif ID is 5:
+        elif ID == 5:
             GPD.Ingame_Big_font.font.draw(100, 500, '대상 적에게 토속성 데미지를 줍니다.', White_font)
-        elif ID is 6:
+        elif ID == 6:
             GPD.Ingame_Big_font.font.draw(100, 500, '대상 아군의 체력을 회복시킵니다.', White_font)
-        elif ID is 7:
+        elif ID == 7:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 아군의 체력을 크게 회복시킵니다.', White_font)
-        elif ID is 8:
+        elif ID == 8:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 아군에게 방어막을 씌웁니다.', White_font)
-        elif ID is 9:
+        elif ID == 9:
             GPD.Ingame_Big_font.font.draw(100, 500, '대상 적에게 빙속성 데미지를 줍니다.', White_font)
-        elif ID is 10:
+        elif ID == 10:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 적에게 화속성 데미지를 줍니다.', White_font)
-        elif ID is 11:
+        elif ID == 11:
             GPD.Ingame_Big_font.font.draw(100, 525, '자신의 체력 20%를 감소시켜', White_font)
             GPD.Ingame_Big_font.font.draw(100, 475, '마나를 회복합니다.', White_font)
-        elif ID is 12:
+        elif ID == 12:
             GPD.Ingame_Big_font.font.draw(100, 525, '자신의 현재 마나 30%를 감소시켜', White_font)
             GPD.Ingame_Big_font.font.draw(100, 475, '대상 아군의 마나를 회복시킵니다.', White_font)
-        elif ID is 13:
+        elif ID == 13:
             GPD.Ingame_Big_font.font.draw(100, 500, '대상 적에게 데미지를 줍니다.', White_font)
-        elif ID is 14:
+        elif ID == 14:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 적에게 데미지를 줍니다.', White_font)
-        elif ID is 15:
+        elif ID == 15:
             GPD.Ingame_Big_font.font.draw(100, 545, '대상 적에게 데미지를 줍니다.', White_font)
             GPD.Ingame_Big_font.font.draw(100, 495, '적의 체력이 자신의 공격력보다 낮으면', White_font)
             GPD.Ingame_Big_font.font.draw(100, 445, '추가 데미지를 줍니다.', White_font)
-        elif ID is 16:
+        elif ID == 16:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 적의 자신에 대한 적개심을 낮춥니다.', White_font)
 
         GPD.Ingame_Big_font.font.draw(500, 500, "남은 골드: " + str(GPD.money), White_font)
@@ -141,11 +141,11 @@ def handle_events():
                 # game_framework.change_state(map)
                 game_framework.pop_state()
             elif event.key == SDLK_a:
-                if shop_mode is 0:
+                if shop_mode == 0:
                     shop_mode = 1
                     sel_player = sel_index
                     sel_index = 0
-                elif shop_mode is 1:
+                elif shop_mode == 1:
                     if GPD.players[sel_player].skill[sel_index].POWER * 10 <= GPD.money:
                         GPD.money -= GPD.players[sel_player].skill[sel_index].POWER * 10
                         GPD.players[sel_player].skill[sel_index].POWER += GPD.players[sel_player].skill[sel_index].UPGRADE
@@ -155,21 +155,21 @@ def handle_events():
             elif event.key == SDLK_s:
                 if shop_mode == 0:
                     game_framework.pop_state()
-                elif shop_mode is 1:
+                elif shop_mode == 1:
                     shop_mode = 0
                     sel_index = 0
                     system_message = ""
             elif event.key == SDLK_UP:
-                if shop_mode is 0:
+                if shop_mode == 0:
                     if sel_index > 0:
                         sel_index -= 1
-                elif shop_mode is 1:
+                elif shop_mode == 1:
                     if sel_index > 0:
                         sel_index -= 1
             elif event.key == SDLK_DOWN:
-                if shop_mode is 0:
+                if shop_mode == 0:
                     if sel_index < 3:
                         sel_index += 1
-                elif shop_mode is 1:
+                elif shop_mode == 1:
                     if sel_index < 3:
                         sel_index += 1

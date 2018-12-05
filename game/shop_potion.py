@@ -36,21 +36,21 @@ def draw():
 
     GPD.Menu.image.clip_draw(1, 1, 240, 160, 400, 500, 800, 200)
     # 초기메뉴
-    if shop_mode is 0:
+    if shop_mode == 0:
         GPD.Ingame_Big_font.font.draw(100, 500, '잡화 상점입니다.',White_font)
         GPD.Ingame_Big_font.font.draw(600, 500, '구입', White_font)
         GPD.Ingame_Big_font.font.draw(600, 450, '판매', White_font)
         GPD.Menu.image.clip_draw(242, 84, 17, 16, 550, 500 - sel_index * 50, 35, 35) # 손가락
     # 구입메뉴
-    elif shop_mode is 1:
+    elif shop_mode == 1:
         # 아이템 설명
-        if sel_index is 0:
+        if sel_index == 0:
             GPD.Ingame_Big_font.font.draw(100, 500, 'HP를 50 회복합니다.',White_font)
-        elif sel_index is 1:
+        elif sel_index == 1:
             GPD.Ingame_Big_font.font.draw(100, 500, 'MP를 50 회복합니다.',White_font)
-        elif sel_index is 2:
+        elif sel_index == 2:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 상태이상을 제거합니다.', White_font)
-        elif sel_index is 3:
+        elif sel_index == 3:
             GPD.Ingame_Big_font.font.draw(100, 525, '대상 아군의 HP와 MP를 전부 채워줍니다.', White_font)
             GPD.Ingame_Big_font.font.draw(100, 475, '대상이 죽어있었으면 부활시킵니다.', White_font)
 
@@ -73,15 +73,15 @@ def draw():
 
         GPD.Ingame_Big_font.font.draw(325, 50, system_message, [255,0,0])
     # 판매메뉴
-    elif shop_mode is 2:
+    elif shop_mode == 2:
         # 아이템 설명
-        if sel_index is 0:
+        if sel_index == 0:
             GPD.Ingame_Big_font.font.draw(100, 500, 'HP를 50 회복합니다.', White_font)
-        elif sel_index is 1:
+        elif sel_index == 1:
             GPD.Ingame_Big_font.font.draw(100, 500, 'MP를 50 회복합니다.', White_font)
-        elif sel_index is 2:
+        elif sel_index == 2:
             GPD.Ingame_Big_font.font.draw(100, 500, '모든 상태이상을 제거합니다.', White_font)
-        elif sel_index is 3:
+        elif sel_index == 3:
             GPD.Ingame_Big_font.font.draw(100, 525, '대상 아군의 HP와 MP를 전부 채워줍니다.', White_font)
             GPD.Ingame_Big_font.font.draw(100, 475, '대상이 죽어있었으면 부활시킵니다.', White_font)
 
@@ -152,21 +152,21 @@ def handle_events():
                 # game_framework.change_state(map)
                 game_framework.pop_state()
             elif event.key == SDLK_a:
-                if shop_mode is 0:
+                if shop_mode == 0:
                     if sel_index == 0:
                         shop_mode = 1
                         sel_index = 0
                     elif sel_index == 1:
                         shop_mode = 2
                         sel_index = 0
-                elif shop_mode is 1:
+                elif shop_mode == 1:
                     if GPD.items[sel_index].COST * sel_num[sel_index] <= GPD.money:
                         GPD.money -= GPD.items[sel_index].COST
                         GPD.items[sel_index].NUM += sel_num[sel_index]
                         system_message = "구매에 성공하였습니다!"
                     else:
                         system_message = "돈이 부족합니다!"
-                elif shop_mode is 2:
+                elif shop_mode == 2:
                     if sel_num[sel_index] <= GPD.items[sel_index].NUM:
                         GPD.money += GPD.items[sel_index].COST
                         GPD.items[sel_index].NUM -= sel_num[sel_index]
@@ -176,29 +176,29 @@ def handle_events():
             elif event.key == SDLK_s:
                 if shop_mode == 0:
                     game_framework.pop_state()
-                elif shop_mode is 1 or shop_mode is 2:
+                elif shop_mode == 1 or shop_mode == 2:
                     shop_mode = 0
                     sel_index = 0
                     system_message = ""
             elif event.key == SDLK_UP:
-                if shop_mode is 0:
+                if shop_mode == 0:
                     if sel_index > 0:
                         sel_index -= 1
-                elif shop_mode is 1 or shop_mode is 2:
+                elif shop_mode == 1 or shop_mode == 2:
                     if sel_index > 0:
                         sel_index -= 1
             elif event.key == SDLK_DOWN:
-                if shop_mode is 0:
+                if shop_mode == 0:
                     if sel_index < 1:
                         sel_index += 1
-                elif shop_mode is 1 or shop_mode is 2:
+                elif shop_mode == 1 or shop_mode == 2:
                     if sel_index < 3:
                         sel_index += 1
             elif event.key == SDLK_LEFT:
-                if shop_mode is 1 or shop_mode is 2:
+                if shop_mode == 1 or shop_mode == 2:
                     if sel_num[sel_index] > 1:
                         sel_num[sel_index] -= 1
             elif event.key == SDLK_RIGHT:
-                if shop_mode is 1 or shop_mode is 2:
+                if shop_mode == 1 or shop_mode == 2:
                     if sel_num[sel_index] < 10:
                         sel_num[sel_index] += 1

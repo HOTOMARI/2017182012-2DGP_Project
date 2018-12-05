@@ -74,7 +74,7 @@ def handle_events():
                 # game_framework.change_state(map)
                 game_framework.pop_state()
             elif event.key == SDLK_a:
-                if shop_mode is 0:
+                if shop_mode == 0:
                     if GPD.money < 200:
                         system_message = "돈이 부족합니다!"
                     else:
@@ -86,9 +86,9 @@ def handle_events():
                         SAVEManager.Save_game()
                         system_message = "데이터 저장이 완료되었습니다."
                         shop_mode = 1
-                elif shop_mode is 1:
+                elif shop_mode == 1:
                     game_framework.pop_state()
 
             elif event.key == SDLK_s:
-                if shop_mode is 0:
+                if shop_mode == 0:
                     game_framework.pop_state()
