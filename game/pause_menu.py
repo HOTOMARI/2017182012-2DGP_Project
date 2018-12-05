@@ -18,8 +18,6 @@ def enter():
     sel_index = 0
     sel_player = 0
     system_message = ""
-    # 능력치 증가 테스트용
-    GPD.players[0].AP += 5
 
 
 def exit():

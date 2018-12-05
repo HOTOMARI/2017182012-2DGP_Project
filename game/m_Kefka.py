@@ -163,11 +163,11 @@ class Kefka(Monster):
         for i in range(0,4):
             if GPD.players[i].HP > 0:
                 if self.next_skill is 2:
-                    GPD.players[i].HP -= 1000 * (-self.FireorIce)
-                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1000 * (-self.FireorIce)) + '피해')
+                    GPD.players[i].HP -= 2000 * (-self.FireorIce)
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(2000 * (-self.FireorIce)) + '피해')
                 else:
-                    GPD.players[i].HP -= 1000 * (self.FireorIce)
-                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1000 * (self.FireorIce)) + '피해')
+                    GPD.players[i].HP -= 2000 * (self.FireorIce)
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(2000 * (self.FireorIce)) + '피해')
 
                 if GPD.players[i].HP <= 0:
                     GPD.players[i].HP = 0
@@ -182,11 +182,11 @@ class Kefka(Monster):
         for i in range(0,4):
             if GPD.players[i].HP > 0:
                 if self.next_skill is 1:
-                    GPD.players[i].HP -= 1000 * (self.FireorIce)
-                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1000 * (self.FireorIce)) + '피해')
+                    GPD.players[i].HP -= 2000 * (self.FireorIce)
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(2000 * (self.FireorIce)) + '피해')
                 else:
-                    GPD.players[i].HP -= 1000 * (-self.FireorIce)
-                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1000 * (-self.FireorIce)) + '피해')
+                    GPD.players[i].HP -= 2000 * (-self.FireorIce)
+                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(2000 * (-self.FireorIce)) + '피해')
 
                 if GPD.players[i].HP <= 0:
                     GPD.players[i].HP = 0
@@ -225,8 +225,8 @@ class Kefka(Monster):
             GPD.Battlelog.append(self.name + '의 하이퍼드라이브')
             for i in range(0, 4):
                 if GPD.players[i].HP > 0:
-                    GPD.players[i].HP -= 1500
-                    GPD.Battlelog.append(GPD.players[i].name + '에게' + str(1500) + '피해')
+                    GPD.players[i].HP -= 3000
+                    GPD.Battlelog.append(GPD.players[i].name + '에게 3000 피해')
                     if GPD.players[i].HP <= 0:
                         GPD.players[i].HP = 0
                         GPD.players[i].act_type = 7

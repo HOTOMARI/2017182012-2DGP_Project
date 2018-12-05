@@ -15,6 +15,8 @@ class Cure(Skill):
         GPD.players[my_index].MP -= self.COST
         GPD.players[target_index].HP += int((self.POWER+GPD.players[my_index].DEF))
         GPD.Battlelog.append(GPD.players[target_index].name + '의 HP ' + str(int((self.POWER+GPD.players[my_index].DEF))) + '회복')
+        if GPD.players[target_index].HP > GPD.players[target_index].MAX_HP:
+            GPD.players[target_index].HP = GPD.players[target_index].MAX_HP
         if GPD.monsters[0].name == '케프카':
             GPD.monsters[0].hate[my_index] += (self.POWER)
         else:
