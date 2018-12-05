@@ -55,7 +55,7 @@ def update():
     global message_index
 
     for i in range (0,4):
-        GPD.players[i].frame += game_framework.frame_time * 8
+        GPD.players[i].frame += game_framework.frame_time * 4
 
     if message_index >= 7:
         if GPD.monsters[0].name == '케프카':
