@@ -18,7 +18,6 @@ class SFire(Skill):
             GPD.Battlelog.append(GPD.players[my_index].name + '가 ' + GPD.monsters[0].name + '에게 ' + str(
                 int((self.POWER + GPD.players[my_index].ATK))) + '피해')
             GPD.monsters[0].hate[my_index] += self.POWER * 2
-            print(GPD.monsters[0].name + '의 체력: ' + str(GPD.monsters[0].HP))
             GPD.monsters[0].FireorIce = GPD.monsters[0].FireorIce - 1
         else:
             for target_index in range(0,3):
@@ -26,5 +25,4 @@ class SFire(Skill):
                 GPD.Battlelog.append(GPD.players[my_index].name + '가 ' + GPD.monsters[target_index].name + '에게 ' + str(
                     int((self.POWER + GPD.players[my_index].ATK))) + '피해')
                 GPD.monsters[target_index].hate[my_index] += self.POWER * 2
-                print(GPD.monsters[target_index].name + str(target_index) + '의 체력: ' + str(GPD.monsters[target_index].HP))
         GPD.CleanLog()

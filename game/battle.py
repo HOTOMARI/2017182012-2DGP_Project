@@ -83,121 +83,114 @@ def update():
     global monster_turn_sign, monster_turn_index, monster_turn_step, monster_NO_deadshot
     global current_time, Prevtime
 
-    current_time = get_time()
+    if Battle_is_End:
+        Battle_is_End = False
+        game_framework.pop_state()
 
-    if current_time - Prevtime > 1 / 60:
+    else:
+        for i in range (0,4):
+            GPD.players[i].renew_status()
+            GPD.players[i].frame += game_framework.frame_time * 8
+        for i in range(0, 3):
+            GPD.monsters[i].frame += game_framework.frame_time * 8
 
-        if Battle_is_End:
-            Battle_is_End = False
-            game_framework.pop_state()
+        if turn_end_sign and len(turn_queue) != 0:
+            do_player_animation()
+            # 플레이어 평타
+            if animation_end:
+                if turn_queue[0][0] == 1:
+                    GPD.players[turn_queue[0][1]].attack(turn_queue[0][1], turn_queue[0][2])
+                    turn_queue.remove([turn_queue[0][0],turn_queue[0][1],turn_queue[0][2]])
+                    animation_end = False
+                # 플레이어 스킬사용
+                elif turn_queue[0][0] == 2:
+                    GPD.players[turn_queue[0][1]].skill[turn_queue[0][2]].activate(turn_queue[0][1])
+                    turn_queue.remove([turn_queue[0][0], turn_queue[0][1], turn_queue[0][2]])
+                    animation_end = False
+                elif turn_queue[0][0] == 3:
+                    GPD.players[turn_queue[0][1]].skill[turn_queue[0][2]].activate(turn_queue[0][1],turn_queue[0][3])
+                    turn_queue.remove([turn_queue[0][0], turn_queue[0][1], turn_queue[0][2], turn_queue[0][3]])
+                    animation_end = False
+                # 플레이어 아이템 사용
+                elif turn_queue[0][0] == 4:
+                    GPD.items[turn_queue[0][2]].use(turn_queue[0][3])
+                    turn_queue.remove([turn_queue[0][0], turn_queue[0][1], turn_queue[0][2], turn_queue[0][3]])
+                    animation_end = False
+            if len(turn_queue) == 0:
+                monster_turn_sign = True
 
-        else:
-            for i in range (0,4):
-                GPD.players[i].renew_status()
-                GPD.players[i].frame += game_framework.frame_time * 45
-            for i in range(0, 3):
-                GPD.monsters[i].frame += game_framework.frame_time * 45
-
-            if turn_end_sign and len(turn_queue) != 0:
-                do_player_animation()
-                # 플레이어 평타
-                if animation_end:
-                    if turn_queue[0][0] == 1:
-                        GPD.players[turn_queue[0][1]].attack(turn_queue[0][1], turn_queue[0][2])
-                        turn_queue.remove([turn_queue[0][0],turn_queue[0][1],turn_queue[0][2]])
-                        animation_end = False
-                    # 플레이어 스킬사용
-                    elif turn_queue[0][0] == 2:
-                        GPD.players[turn_queue[0][1]].skill[turn_queue[0][2]].activate(turn_queue[0][1])
-                        turn_queue.remove([turn_queue[0][0], turn_queue[0][1], turn_queue[0][2]])
-                        animation_end = False
-                    elif turn_queue[0][0] == 3:
-                        GPD.players[turn_queue[0][1]].skill[turn_queue[0][2]].activate(turn_queue[0][1],turn_queue[0][3])
-                        turn_queue.remove([turn_queue[0][0], turn_queue[0][1], turn_queue[0][2], turn_queue[0][3]])
-                        animation_end = False
-                    # 플레이어 아이템 사용
-                    elif turn_queue[0][0] == 4:
-                        GPD.items[turn_queue[0][2]].use(turn_queue[0][3])
-                        turn_queue.remove([turn_queue[0][0], turn_queue[0][1], turn_queue[0][2], turn_queue[0][3]])
-                        animation_end = False
-                if len(turn_queue) == 0:
-                    monster_turn_sign = True
-
-            if monster_turn_sign:
-                # 몬스터 체력 0 이하일시 사망처리
-                if monster_turn_step == 0:
-                    if GPD.monsters[monster_turn_index].HP <= 0 and GPD.monsters[monster_turn_index].act_type != 2:
-                        do_monster_animation(2, monster_turn_index)
-                        if animation_end:
-                            GPD.monsters[monster_turn_index].act_type = 2
-                            monster_turn_index += 1
-                            animation_end = False
-                            if monster_turn_index >= 3:
-                                monster_turn_index = 0
-                                monster_turn_step = 1
-                    elif GPD.monsters[monster_turn_index].HP > 0 or GPD.monsters[monster_turn_index].act_type == 2:
+        if monster_turn_sign:
+            # 몬스터 체력 0 이하일시 사망처리
+            if monster_turn_step == 0:
+                if GPD.monsters[monster_turn_index].HP <= 0 and GPD.monsters[monster_turn_index].act_type != 2:
+                    do_monster_animation(2, monster_turn_index)
+                    if animation_end:
+                        GPD.monsters[monster_turn_index].act_type = 2
                         monster_turn_index += 1
                         animation_end = False
                         if monster_turn_index >= 3:
                             monster_turn_index = 0
                             monster_turn_step = 1
-                # 몬스터가 모두 죽었으면 전투종료
-                elif monster_turn_step == 1:
-                    if GPD.monsters[0].act_type == 2 and \
-                            GPD.monsters[1].act_type == 2 and \
-                            GPD.monsters[2].act_type == 2:
-                        game_framework.push_state(battle_win)
-                        Battle_is_End = True
-                    else:
-                        monster_turn_step = 2
-                # 몬스터의 공격
-                elif monster_turn_step == 2:
-                    if GPD.monsters[monster_turn_index].act_type != 2:
-                        if monster_NO_deadshot == False:
-                            GPD.monsters[monster_turn_index].setting_target()
-                            monster_NO_deadshot = True
-                        do_monster_animation(1, monster_turn_index)
-                        if animation_end:
-                            GPD.monsters[monster_turn_index].attack(monster_turn_index)
-                            monster_turn_index += 1
-                            animation_end = False
-                            monster_NO_deadshot = False
-
-                            # 플레이어 모두 사망시 게임종료
-                            if GPD.players[0].act_type == 7 and \
-                                    GPD.players[1].act_type == 7 and \
-                                    GPD.players[2].act_type == 7 and \
-                                    GPD.players[3].act_type == 7:
-                                game_framework.change_state(gameover)
-
-                            if monster_turn_index >= 3:
-                                monster_turn_index = 0
-                                monster_turn_step = 3
-                    else:
+                elif GPD.monsters[monster_turn_index].HP > 0 or GPD.monsters[monster_turn_index].act_type == 2:
+                    monster_turn_index += 1
+                    animation_end = False
+                    if monster_turn_index >= 3:
+                        monster_turn_index = 0
+                        monster_turn_step = 1
+            # 몬스터가 모두 죽었으면 전투종료
+            elif monster_turn_step == 1:
+                if GPD.monsters[0].act_type == 2 and \
+                        GPD.monsters[1].act_type == 2 and \
+                        GPD.monsters[2].act_type == 2:
+                    game_framework.push_state(battle_win)
+                    Battle_is_End = True
+                else:
+                    monster_turn_step = 2
+            # 몬스터의 공격
+            elif monster_turn_step == 2:
+                if GPD.monsters[monster_turn_index].act_type != 2:
+                    if monster_NO_deadshot == False:
+                        GPD.monsters[monster_turn_index].setting_target()
+                        monster_NO_deadshot = True
+                    do_monster_animation(1, monster_turn_index)
+                    if animation_end:
+                        GPD.monsters[monster_turn_index].attack(monster_turn_index)
                         monster_turn_index += 1
+                        animation_end = False
+                        monster_NO_deadshot = False
+
+                        # 플레이어 모두 사망시 게임종료
+                        if GPD.players[0].act_type == 7 and \
+                                GPD.players[1].act_type == 7 and \
+                                GPD.players[2].act_type == 7 and \
+                                GPD.players[3].act_type == 7:
+                            game_framework.change_state(gameover)
+
                         if monster_turn_index >= 3:
                             monster_turn_index = 0
                             monster_turn_step = 3
+                else:
+                    monster_turn_index += 1
+                    if monster_turn_index >= 3:
+                        monster_turn_index = 0
+                        monster_turn_step = 3
 
-                # 앞의 플레이어가 죽었을 경우 턴 넘김
-                elif monster_turn_step == 3:
-                    player_turn_index = 0
-                    for i in range(0, 4):
-                        if GPD.players[i].act_type == 7:
-                            player_turn_index += 1
-                        else:
-                            monster_turn_step = 0
-                            monster_turn_sign= False
-                            turn_end_sign = False
-                            break
+            # 앞의 플레이어가 죽었을 경우 턴 넘김
+            elif monster_turn_step == 3:
+                player_turn_index = 0
+                for i in range(0, 4):
+                    if GPD.players[i].act_type == 7:
+                        player_turn_index += 1
+                    else:
+                        monster_turn_step = 0
+                        monster_turn_sign= False
+                        turn_end_sign = False
+                        break
 
-                    # 플레이어가 전부 죽으면 밖으로 나감
-                    if player_turn_index == 4:
-                        game_framework.change_state(gameover)
+                # 플레이어가 전부 죽으면 밖으로 나감
+                if player_turn_index == 4:
+                    game_framework.change_state(gameover)
 
-
-
-            Prevtime = current_time
 
 
 def draw():
@@ -538,7 +531,7 @@ def do_player_animation():
     if turn_queue[0][0] == 1:
         # 앞으로 이동
         if GPD.players[turn_queue[0][1]].anistep == 0:
-            GPD.players[turn_queue[0][1]].attack_animation -= 150 * (current_time - Prevtime)
+            GPD.players[turn_queue[0][1]].attack_animation -= 150 * game_framework.frame_time
             if GPD.players[turn_queue[0][1]].attack_animation <= -100:
                 GPD.players[turn_queue[0][1]].act_type = 2
                 GPD.players[turn_queue[0][1]].frame = 0
@@ -562,7 +555,7 @@ def do_player_animation():
         # 뒤로 이동
         elif GPD.players[turn_queue[0][1]].anistep == 3:
             if GPD.players[turn_queue[0][1]].attack_animation < 0:
-                GPD.players[turn_queue[0][1]].attack_animation += 150 * (current_time - Prevtime)
+                GPD.players[turn_queue[0][1]].attack_animation += 150 * game_framework.frame_time
             else:
                 set_player_acttype(turn_queue[0][1])
                 GPD.players[turn_queue[0][1]].anistep = 0
@@ -572,7 +565,7 @@ def do_player_animation():
     elif turn_queue[0][0] == 2 or turn_queue[0][0] == 3:
         # 앞으로 이동
         if GPD.players[turn_queue[0][1]].anistep == 0:
-            GPD.players[turn_queue[0][1]].attack_animation -= 150 * (current_time - Prevtime)
+            GPD.players[turn_queue[0][1]].attack_animation -= 150 * game_framework.frame_time
             if GPD.players[turn_queue[0][1]].attack_animation <= -100:
                 GPD.effects.frame = 0
                 GPD.effects.id = 10 + GPD.players[turn_queue[0][1]].skill[turn_queue[0][2]].ID
@@ -581,7 +574,7 @@ def do_player_animation():
         # 이펙트
         elif GPD.players[turn_queue[0][1]].anistep == 1:
             if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
-                GPD.effects.frame += 30 * game_framework.frame_time
+                GPD.effects.frame += 20 * game_framework.frame_time
             elif GPD.effects.frame >= GPD.skill_MAXframe[GPD.effects.id]:
                 GPD.effects.frame = 0
                 GPD.effects.id = -1
@@ -590,7 +583,7 @@ def do_player_animation():
         # 뒤로 이동
         elif GPD.players[turn_queue[0][1]].anistep == 2:
             if GPD.players[turn_queue[0][1]].attack_animation < 0:
-                GPD.players[turn_queue[0][1]].attack_animation += 150 * (current_time - Prevtime)
+                GPD.players[turn_queue[0][1]].attack_animation += 150 * game_framework.frame_time
             else:
                 set_player_acttype(turn_queue[0][1])
                 GPD.players[turn_queue[0][1]].anistep = 0
@@ -606,7 +599,7 @@ def do_player_animation():
 
         elif GPD.players[turn_queue[0][1]].anistep == 1:
             if GPD.players[turn_queue[0][1]].frame <= 1:
-                GPD.players[turn_queue[0][1]].frame += 120 * (current_time - Prevtime)
+                GPD.players[turn_queue[0][1]].frame += 120 * game_framework.frame_time
             else:
                 GPD.players[turn_queue[0][1]].anistep = 2
 
@@ -622,7 +615,7 @@ def do_player_animation():
 
         if GPD.players[turn_queue[0][1]].anistep == 3:
             if GPD.effects.frame < GPD.skill_MAXframe[GPD.effects.id]:
-                GPD.effects.frame += 30 * game_framework.frame_time
+                GPD.effects.frame += 20 * game_framework.frame_time
             elif GPD.effects.frame >= GPD.skill_MAXframe[GPD.effects.id]:
                 GPD.players[turn_queue[0][1]].anistep = 4
 
@@ -671,7 +664,7 @@ def do_monster_animation(id, index):
     elif id == 2:
         if GPD.monsters[index].anistep == 0:
             if GPD.monsters[index].die_animation < 72:
-                GPD.monsters[index].die_animation += 180 * (current_time - Prevtime)
+                GPD.monsters[index].die_animation += 180 * game_framework.frame_time
             elif GPD.monsters[index].die_animation >= 72:
                 animation_end = True
 

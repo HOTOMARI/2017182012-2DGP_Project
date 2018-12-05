@@ -3,8 +3,8 @@ from math import*
 import random
 import game_framework
 
-
-Diagonal = sqrt(3)
+Speed = 128 # pixelspeed per sec
+Diagonal = sqrt(Speed)
 
 # Character Event
 RIGHT_DOWN, LEFT_DOWN, UP_DOWN, DOWN_DOWN, RIGHT_UP, LEFT_UP, UP_UP, DOWN_UP = range(8)
@@ -34,44 +34,44 @@ class RunState:
 
     @staticmethod
     def do(character):
-        character.frame += 1 / 30
+        character.frame += 4 * game_framework.frame_time
         if character.move_dir[0] and character.move_dir[1] == 0 and character.move_dir[2] == 0 and character.move_dir[3] == 0:
             character.state = 3
-            character.x -= 3
-            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
+            character.x -= Speed * game_framework.frame_time
+            character.battle_counter -= random.randint(5, 10) * game_framework.frame_time
         elif character.move_dir[1] and character.move_dir[0] == 0 and character.move_dir[2] == 0 and character.move_dir[3] == 0:
             character.state = 2
-            character.x += 3
-            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
+            character.x += Speed * game_framework.frame_time
+            character.battle_counter -= random.randint(5, 10) * game_framework.frame_time
         elif character.move_dir[2] and character.move_dir[1] == 0 and character.move_dir[0] == 0 and character.move_dir[3] == 0:
             character.state = 1
-            character.y += 3
-            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
+            character.y += Speed * game_framework.frame_time
+            character.battle_counter -= random.randint(5, 10) * game_framework.frame_time
         elif character.move_dir[3] and character.move_dir[1] == 0 and character.move_dir[2] == 0 and character.move_dir[0] == 0:
             character.state = 0
-            character.y -= 3
-            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
+            character.y -= Speed * game_framework.frame_time
+            character.battle_counter -= random.randint(5, 10) * game_framework.frame_time
 
         elif character.move_dir[0] and character.move_dir[2]:
             character.state = 1
-            character.x -= Diagonal
-            character.y += Diagonal
-            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
+            character.x -= Diagonal * game_framework.frame_time
+            character.y += Diagonal * game_framework.frame_time
+            character.battle_counter -= random.randint(5, 10) * game_framework.frame_time
         elif character.move_dir[1] and character.move_dir[2]:
             character.state = 1
-            character.x += Diagonal
-            character.y += Diagonal
-            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
+            character.x += Diagonal * game_framework.frame_time
+            character.y += Diagonal * game_framework.frame_time
+            character.battle_counter -= random.randint(5, 10) * game_framework.frame_time
         elif character.move_dir[0] and character.move_dir[3]:
             character.state = 0
-            character.x -= Diagonal
-            character.y -= Diagonal
-            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
+            character.x -= Diagonal * game_framework.frame_time
+            character.y -= Diagonal * game_framework.frame_time
+            character.battle_counter -= random.randint(5, 10) * game_framework.frame_time
         elif character.move_dir[1] and character.move_dir[3]:
             character.state = 0
-            character.x += Diagonal
-            character.y -= Diagonal
-            character.battle_counter -= random.randint(5, 40) * game_framework.frame_time
+            character.x += Diagonal * game_framework.frame_time
+            character.y -= Diagonal * game_framework.frame_time
+            character.battle_counter -= random.randint(5, 10) * game_framework.frame_time
 
         character.x = clamp(0, character.x, character.bg.w)
         character.y = clamp(0, character.y, character.bg.h)

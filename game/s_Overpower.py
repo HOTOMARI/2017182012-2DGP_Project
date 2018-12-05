@@ -23,6 +23,6 @@ class Overpower(Skill):
                 GPD.Battlelog.append(GPD.players[my_index].name + '가 ' + GPD.monsters[target_index].name + '에게 ' + str(
                     int((self.POWER + GPD.players[my_index].ATK))) + '피해')
                 GPD.monsters[target_index].hate[my_index] += self.POWER * 2
-            print(GPD.monsters[target_index].name + str(target_index) + '의 체력: ' + str(GPD.monsters[target_index].HP))
+
 
         GPD.CleanLog()
