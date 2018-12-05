@@ -4,7 +4,7 @@ import random
 import game_framework
 
 Speed = 128 # pixelspeed per sec
-Diagonal = sqrt(Speed)
+Diagonal = sqrt(Speed**2)
 
 # Character Event
 RIGHT_DOWN, LEFT_DOWN, UP_DOWN, DOWN_DOWN, RIGHT_UP, LEFT_UP, UP_UP, DOWN_UP = range(8)
